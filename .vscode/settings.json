@@ -3,5 +3,10 @@
         "Struct",
         "cpptypeinfo"
     ],
-    "python.envFile": "${workspaceFolder}/.env"
+    "python.envFile": "${workspaceFolder}/.env",
+    "dscanner.ignoredKeys": [
+        "dscanner.style.undocumented_declaration",
+        "dscanner.style.phobos_naming_convention",
+        "dscanner.style.long_line",
+    ]
 }
