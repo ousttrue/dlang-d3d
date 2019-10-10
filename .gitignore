@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/dlang-d3d
+dlang-d3d.so
+dlang-d3d.dylib
+dlang-d3d.dll
+dlang-d3d.a
+dlang-d3d.lib
+dlang-d3d-test-*
+*.exe
+*.o
+*.obj
+*.lst
