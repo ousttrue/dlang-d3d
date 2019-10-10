@@ -9,12 +9,24 @@
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}/dlang-d3d.exe",
-            "args": [
-            ],
+            "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false
+        },
+        {
+            "name": "gen d3d11 dlang",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/dependencies/cpptypeinfo/cpptypeinfo/cli.py",
+            "args": [
+                "gen",
+                "--d3d11",
+                "dlang",
+                "${workspaceFolder}/source/windowskits",
+            ],
+            "console": "integratedTerminal"
         },
     ]
 }
