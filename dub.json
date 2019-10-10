@@ -5,5 +5,8 @@
 	"copyright": "Copyright © 2019, ousttrue",
 	"description": "A minimal D application.",
 	"license": "proprietary",
-	"name": "dlang-d3d"
+	"name": "dlang-d3d",
+	"libs": [
+		"user32"
+	]
 }
