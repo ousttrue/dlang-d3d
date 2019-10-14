@@ -1,4 +1,4 @@
-// cpptypeinfo generated: 2019-10-10 20:57:15.664579
+// cpptypeinfo generated
 module windowskits.dxgicommon;
 
 import core.sys.windows.windef;

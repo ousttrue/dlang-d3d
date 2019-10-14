@@ -1,4 +1,5 @@
 import core.sys.windows.windows;
+import windowskits;
 
 wstring g_className = "SAMPLE_CLASS_NAME";
 wstring g_windowName = "Window Title";
@@ -51,6 +52,37 @@ extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	ShowWindow(hwnd, nCmdShow);
 	UpdateWindow(hwnd);
+
+	auto dtype = D3D_DRIVER_TYPE.HARDWARE;
+	UINT flags = 0;
+	auto featureLevels = [
+		D3D_FEATURE_LEVEL._11_0, D3D_FEATURE_LEVEL._10_1, D3D_FEATURE_LEVEL._10_0,
+		D3D_FEATURE_LEVEL._9_3, D3D_FEATURE_LEVEL._9_2, D3D_FEATURE_LEVEL._9_1,
+	];
+
+	//UINT numFeatureLevels = sizeof(featureLevels) / sizeof(D3D_FEATURE_LEVEL);
+	// auto sdkVersion = D3D11_SDK_VERSION;
+	D3D_FEATURE_LEVEL validFeatureLevel;
+
+	DXGI_SWAP_CHAIN_DESC scDesc;
+	scDesc.BufferCount = 1;
+	scDesc.BufferDesc.Width = 0;
+	scDesc.BufferDesc.Height = 0;
+	scDesc.BufferDesc.Format = DXGI_FORMAT.R8G8B8A8_UNORM_SRGB;
+	scDesc.BufferDesc.RefreshRate.Numerator = 60;
+	scDesc.BufferDesc.RefreshRate.Denominator = 1;
+	scDesc.BufferUsage = DXGI_USAGE.RENDER_TARGET_OUTPUT;
+	scDesc.OutputWindow = hwnd;
+	scDesc.SampleDesc.Count = 1;
+	scDesc.SampleDesc.Quality = 0;
+	scDesc.Windowed = TRUE;
+
+	IDXGISwapChain swapchain;
+	ID3D11Device device;
+	ID3D11DeviceContext context;
+	HRESULT hr = D3D11CreateDeviceAndSwapChain(IDXGIAdapter.init, dtype, null, flags, featureLevels.ptr,
+			cast(uint) featureLevels.length, sdkVersion, &scDesc, &swapchain,
+			&device, &validFeatureLevel, &context);
 
 	MSG Msg;
 	while (GetMessage(&Msg, NULL, 0, 0))

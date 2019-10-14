@@ -1,4 +1,4 @@
-// cpptypeinfo generated: 2019-10-10 20:57:15.663581
+// cpptypeinfo generated
 module windowskits.windef;
 
 import core.sys.windows.windef;
@@ -14,5 +14,13 @@ struct tagRECT{
 struct tagSIZE{
     int cx;
     int cy;
+}
+
+struct HWND__{
+    int unused;
+}
+
+struct HMONITOR__{
+    int unused;
 }
 

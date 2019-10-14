@@ -1,0 +1,18 @@
+module windowskits;
+public import windowskits.ntdef;
+public import windowskits.guiddef;
+public import windowskits.wtypes;
+public import windowskits.wtypesbase;
+public import windowskits.wingdi;
+public import windowskits.d3d11;
+public import windowskits.unknwnbase;
+public import windowskits.dxgiformat;
+public import windowskits.d3dcommon;
+public import windowskits.windef;
+public import windowskits.dxgicommon;
+public import windowskits.dxgi;
+public import windowskits.dcommon;
+public import windowskits.dxgitype;
+public import windowskits.minwindef;
+public import windowskits.d3d10;
+public import windowskits.d3dtypes;

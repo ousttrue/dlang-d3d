@@ -1,4 +1,4 @@
-// cpptypeinfo generated: 2019-10-10 20:57:09.614700
+// cpptypeinfo generated
 module windowskits.wtypesbase;
 
 import core.sys.windows.windef;
