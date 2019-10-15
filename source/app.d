@@ -77,19 +77,32 @@ extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	scDesc.SampleDesc.Quality = 0;
 	scDesc.Windowed = TRUE;
 
-	IDXGISwapChain *swapchain;
-	ID3D11Device *device;
-	ID3D11DeviceContext *context;
+	IDXGISwapChain swapchain;
+	ID3D11Device device;
+	ID3D11DeviceContext context;
 	HRESULT hr = D3D11CreateDeviceAndSwapChain(null, dtype, null, flags, featureLevels.ptr,
 			cast(uint) featureLevels.length, sdkVersion, &scDesc, &swapchain,
 			&device, &validFeatureLevel, &context);
+    if(hr!=S_OK)      
+	{
+		return 3;
+	}
 
 	MSG Msg;
 	while (GetMessage(&Msg, NULL, 0, 0))
 	{
 		TranslateMessage(&Msg);
 		DispatchMessage(&Msg);
+
+		// float[4] clearColor = [0.0f, 0.0f, 1.0f, 0.0f];
+		// pDeviceContext.ClearRenderTargetView(pRenderTargetView.ptr, clearColor);
+
+		// context.Flush();
+
+		swapchain.Present(0, 0);
 	}
+
+	swapchain.Release();
 
 	return cast(int) Msg.wParam;
 }

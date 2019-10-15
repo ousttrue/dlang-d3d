@@ -158,7 +158,7 @@ struct DXGI_ADAPTER_DESC1{
 interface IDXGIObject: IUnknown {
     static immutable iidof = GUID(0xaec22fb8, 0x76f3, 0x4639, [0x9b, 0xe0, 0x28, 0xeb, 0x43, 0xa6, 0x7a, 0x2e]);
     extern(C) int SetPrivateData(_GUID* Name, uint DataSize, void* pData);
-    extern(C) int SetPrivateDataInterface(_GUID* Name, IUnknown* pUnknown);
+    extern(C) int SetPrivateDataInterface(_GUID* Name, IUnknown pUnknown);
     extern(C) int GetPrivateData(_GUID* Name, uint* pDataSize, void* pData);
     extern(C) int GetParent(_GUID* riid, void** ppParent);
 }
@@ -195,7 +195,7 @@ interface IDXGISurface1: IDXGISurface {
 // dxgi.h: 1257
 interface IDXGIAdapter: IDXGIObject {
     static immutable iidof = GUID(0x2411e7e1, 0x12ac, 0x4ccf, [0xbd, 0x14, 0x97, 0x98, 0xe8, 0x53, 0x4d, 0xc0]);
-    extern(C) int EnumOutputs(uint Output, IDXGIOutput** ppOutput);
+    extern(C) int EnumOutputs(uint Output, IDXGIOutput* ppOutput);
     extern(C) int GetDesc(DXGI_ADAPTER_DESC* pDesc);
     extern(C) int CheckInterfaceSupport(_GUID* InterfaceName, _LARGE_INTEGER* pUMDVersion);
 }
@@ -205,15 +205,15 @@ interface IDXGIOutput: IDXGIObject {
     static immutable iidof = GUID(0xae02eedb, 0xc735, 0x4690, [0x8d, 0x52, 0x5a, 0x8d, 0xc2, 0x02, 0x13, 0xaa]);
     extern(C) int GetDesc(DXGI_OUTPUT_DESC* pDesc);
     extern(C) int GetDisplayModeList(DXGI_FORMAT EnumFormat, uint Flags, uint* pNumModes, DXGI_MODE_DESC* pDesc);
-    extern(C) int FindClosestMatchingMode(DXGI_MODE_DESC* pModeToMatch, DXGI_MODE_DESC* pClosestMatch, IUnknown* pConcernedDevice);
+    extern(C) int FindClosestMatchingMode(DXGI_MODE_DESC* pModeToMatch, DXGI_MODE_DESC* pClosestMatch, IUnknown pConcernedDevice);
     extern(C) int WaitForVBlank();
-    extern(C) int TakeOwnership(IUnknown* pDevice, int Exclusive);
+    extern(C) int TakeOwnership(IUnknown pDevice, int Exclusive);
     extern(C) void ReleaseOwnership();
     extern(C) int GetGammaControlCapabilities(DXGI_GAMMA_CONTROL_CAPABILITIES* pGammaCaps);
     extern(C) int SetGammaControl(DXGI_GAMMA_CONTROL* pArray);
     extern(C) int GetGammaControl(DXGI_GAMMA_CONTROL* pArray);
-    extern(C) int SetDisplaySurface(IDXGISurface* pScanoutSurface);
-    extern(C) int GetDisplaySurfaceData(IDXGISurface* pDestination);
+    extern(C) int SetDisplaySurface(IDXGISurface pScanoutSurface);
+    extern(C) int GetDisplaySurfaceData(IDXGISurface pDestination);
     extern(C) int GetFrameStatistics(DXGI_FRAME_STATISTICS* pStats);
 }
 
@@ -222,12 +222,12 @@ interface IDXGISwapChain: IDXGIDeviceSubObject {
     static immutable iidof = GUID(0x310d36a0, 0xd2e7, 0x4c0a, [0xaa, 0x04, 0x6a, 0x9d, 0x23, 0xb8, 0x88, 0x6a]);
     extern(C) int Present(uint SyncInterval, uint Flags);
     extern(C) int GetBuffer(uint Buffer, _GUID* riid, void** ppSurface);
-    extern(C) int SetFullscreenState(int Fullscreen, IDXGIOutput* pTarget);
-    extern(C) int GetFullscreenState(int* pFullscreen, IDXGIOutput** ppTarget);
+    extern(C) int SetFullscreenState(int Fullscreen, IDXGIOutput pTarget);
+    extern(C) int GetFullscreenState(int* pFullscreen, IDXGIOutput* ppTarget);
     extern(C) int GetDesc(DXGI_SWAP_CHAIN_DESC* pDesc);
     extern(C) int ResizeBuffers(uint BufferCount, uint Width, uint Height, DXGI_FORMAT NewFormat, uint SwapChainFlags);
     extern(C) int ResizeTarget(DXGI_MODE_DESC* pNewTargetParameters);
-    extern(C) int GetContainingOutput(IDXGIOutput** ppOutput);
+    extern(C) int GetContainingOutput(IDXGIOutput* ppOutput);
     extern(C) int GetFrameStatistics(DXGI_FRAME_STATISTICS* pStats);
     extern(C) int GetLastPresentCount(uint* pLastPresentCount);
 }
@@ -235,19 +235,19 @@ interface IDXGISwapChain: IDXGIDeviceSubObject {
 // dxgi.h: 1986
 interface IDXGIFactory: IDXGIObject {
     static immutable iidof = GUID(0x7b7166ec, 0x21c7, 0x44ae, [0xb2, 0x1a, 0xc9, 0xae, 0x32, 0x1a, 0xe3, 0x69]);
-    extern(C) int EnumAdapters(uint Adapter, IDXGIAdapter** ppAdapter);
+    extern(C) int EnumAdapters(uint Adapter, IDXGIAdapter* ppAdapter);
     extern(C) int MakeWindowAssociation(HWND WindowHandle, uint Flags);
     extern(C) int GetWindowAssociation(HWND* pWindowHandle);
-    extern(C) int CreateSwapChain(IUnknown* pDevice, DXGI_SWAP_CHAIN_DESC* pDesc, IDXGISwapChain** ppSwapChain);
-    extern(C) int CreateSoftwareAdapter(HINSTANCE* Module, IDXGIAdapter** ppAdapter);
+    extern(C) int CreateSwapChain(IUnknown pDevice, DXGI_SWAP_CHAIN_DESC* pDesc, IDXGISwapChain* ppSwapChain);
+    extern(C) int CreateSoftwareAdapter(HINSTANCE* Module, IDXGIAdapter* ppAdapter);
 }
 
 // dxgi.h: 2186
 interface IDXGIDevice: IDXGIObject {
     static immutable iidof = GUID(0x54ec77fa, 0x1377, 0x44e6, [0x8c, 0x32, 0x88, 0xfd, 0x5f, 0x44, 0xc8, 0x4c]);
-    extern(C) int GetAdapter(IDXGIAdapter** pAdapter);
-    extern(C) int CreateSurface(DXGI_SURFACE_DESC* pDesc, uint NumSurfaces, uint Usage, DXGI_SHARED_RESOURCE* pSharedResource, IDXGISurface** ppSurface);
-    extern(C) int QueryResourceResidency(IUnknown** ppResources, DXGI_RESIDENCY* pResidencyStatus, uint NumResources);
+    extern(C) int GetAdapter(IDXGIAdapter* pAdapter);
+    extern(C) int CreateSurface(DXGI_SURFACE_DESC* pDesc, uint NumSurfaces, uint Usage, DXGI_SHARED_RESOURCE* pSharedResource, IDXGISurface* ppSurface);
+    extern(C) int QueryResourceResidency(IUnknown* ppResources, DXGI_RESIDENCY* pResidencyStatus, uint NumResources);
     extern(C) int SetGPUThreadPriority(int Priority);
     extern(C) int GetGPUThreadPriority(int* pPriority);
 }
@@ -255,7 +255,7 @@ interface IDXGIDevice: IDXGIObject {
 // dxgi.h: 2414
 interface IDXGIFactory1: IDXGIFactory {
     static immutable iidof = GUID(0x770aae78, 0xf26f, 0x4dba, [0xa8, 0x29, 0x25, 0x3c, 0x83, 0xd1, 0xb3, 0x87]);
-    extern(C) int EnumAdapters1(uint Adapter, IDXGIAdapter1** ppAdapter);
+    extern(C) int EnumAdapters1(uint Adapter, IDXGIAdapter1* ppAdapter);
     extern(C) int IsCurrent();
 }
 
