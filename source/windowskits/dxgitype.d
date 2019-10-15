@@ -6,6 +6,7 @@ import core.sys.windows.com;
 import windowskits.dxgicommon;
 import windowskits.dxgiformat;
 
+
 enum DXGI_MODE_SCANLINE_ORDER {
     UNSPECIFIED = 0x00000000,
     PROGRESSIVE = 0x00000001,

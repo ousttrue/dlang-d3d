@@ -4,6 +4,7 @@ module windowskits.d3dcommon;
 import core.sys.windows.windef;
 import core.sys.windows.com;
 
+
 enum D3D_PRIMITIVE_TOPOLOGY {
     UNDEFINED = 0x00000000,
     POINTLIST = 0x00000001,
@@ -628,14 +629,14 @@ enum _D3D_PARAMETER_FLAGS {
 // d3dcommon.h: 370
 interface ID3D10Blob: IUnknown {
     static immutable iidof = GUID(0x8ba5fb08, 0x5195, 0x40e2, [0xac, 0x58, 0x0d, 0x98, 0x9c, 0x3a, 0x01, 0x02]);
-    void* GetBufferPointer();
-    ulong GetBufferSize();
+    extern(C) void* GetBufferPointer();
+    extern(C) ulong GetBufferSize();
 }
 
 // d3dcommon.h: 472
 interface ID3DDestructionNotifier: IUnknown {
     static immutable iidof = GUID(0xa06eb39a, 0x50da, 0x425b, [0x8c, 0x31, 0x4e, 0xec, 0xd6, 0xc2, 0x70, 0xf3]);
-    int RegisterDestructionCallback(void* callbackFn, void* pData, uint* pCallbackID);
-    int UnregisterDestructionCallback(uint callbackID);
+    extern(C) int RegisterDestructionCallback(void* callbackFn, void* pData, uint* pCallbackID);
+    extern(C) int UnregisterDestructionCallback(uint callbackID);
 }
 

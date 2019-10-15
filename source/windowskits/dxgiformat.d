@@ -4,6 +4,7 @@ module windowskits.dxgiformat;
 import core.sys.windows.windef;
 import core.sys.windows.com;
 
+
 enum DXGI_FORMAT {
     UNKNOWN = 0x00000000,
     R32G32B32A32_TYPELESS = 0x00000001,

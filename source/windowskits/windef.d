@@ -4,6 +4,7 @@ module windowskits.windef;
 import core.sys.windows.windef;
 import core.sys.windows.com;
 
+
 struct tagRECT{
     int left;
     int top;

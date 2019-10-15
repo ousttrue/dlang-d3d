@@ -6,6 +6,7 @@ import core.sys.windows.com;
 import windowskits.dxgi;
 import windowskits.dxgiformat;
 
+
 enum DWRITE_MEASURING_MODE {
     NATURAL = 0x00000000,
     GDI_CLASSIC = 0x00000001,
@@ -35,8 +36,8 @@ enum D2D1_ALPHA_MODE {
 // dcommon.h: 30
 interface IDXGISurface: IDXGIDeviceSubObject {
     static immutable iidof = GUID(0xcafcb56c, 0x6ac3, 0x4889, [0xbf, 0x47, 0x9e, 0x23, 0xbb, 0xd2, 0x60, 0xec]);
-    int GetDesc(DXGI_SURFACE_DESC* pDesc);
-    int Map(DXGI_MAPPED_RECT* pLockedRect, uint MapFlags);
-    int Unmap();
+    extern(C) int GetDesc(DXGI_SURFACE_DESC* pDesc);
+    extern(C) int Map(DXGI_MAPPED_RECT* pLockedRect, uint MapFlags);
+    extern(C) int Unmap();
 }
 

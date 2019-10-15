@@ -4,6 +4,7 @@ module windowskits.wtypesbase;
 import core.sys.windows.windef;
 import core.sys.windows.com;
 
+
 struct _DWORD_BLOB{
     uint clSize;
     uint* alData;

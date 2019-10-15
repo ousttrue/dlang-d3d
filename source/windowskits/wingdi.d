@@ -4,6 +4,7 @@ module windowskits.wingdi;
 import core.sys.windows.windef;
 import core.sys.windows.com;
 
+
 struct tagLOGPALETTE{
     ushort palVersion;
     ushort palNumEntries;

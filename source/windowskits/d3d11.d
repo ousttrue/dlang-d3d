@@ -12,6 +12,8 @@ import windowskits.dxgicommon;
 import windowskits.dxgi;
 import windowskits.minwindef;
 
+const D3D11_SDK_VERSION = ( 7 );
+
 enum D3D11_RESOURCE_DIMENSION {
     UNKNOWN = 0x00000000,
     BUFFER = 0x00000001,
@@ -1331,90 +1333,90 @@ struct D3D11_TEX2D_ARRAY_VPOV{
 // d3d11.h: 1387
 interface ID3D11DeviceChild: IUnknown {
     static immutable iidof = GUID(0x1841e5c8, 0x16b0, 0x489b, [0xbc, 0xc8, 0x44, 0xcf, 0xb0, 0xd5, 0xde, 0xae]);
-    void GetDevice(ID3D11Device** ppDevice);
-    int GetPrivateData(_GUID* guid, uint* pDataSize, void* pData);
-    int SetPrivateData(_GUID* guid, uint DataSize, void* pData);
-    int SetPrivateDataInterface(_GUID* guid, IUnknown* pData);
+    extern(C) void GetDevice(ID3D11Device** ppDevice);
+    extern(C) int GetPrivateData(_GUID* guid, uint* pDataSize, void* pData);
+    extern(C) int SetPrivateData(_GUID* guid, uint DataSize, void* pData);
+    extern(C) int SetPrivateDataInterface(_GUID* guid, IUnknown* pData);
 }
 
 // d3d11.h: 1643
 interface ID3D11DepthStencilState: ID3D11DeviceChild {
     static immutable iidof = GUID(0x03823efb, 0x8d8f, 0x4e1c, [0x9a, 0xa2, 0xf6, 0x4b, 0xb2, 0xcb, 0xfd, 0xf1]);
-    void GetDesc(D3D11_DEPTH_STENCIL_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_DEPTH_STENCIL_DESC* pDesc);
 }
 
 // d3d11.h: 1866
 interface ID3D11BlendState: ID3D11DeviceChild {
     static immutable iidof = GUID(0x75b68faa, 0x347d, 0x4159, [0x8f, 0x45, 0xa0, 0x64, 0x0f, 0x01, 0xcd, 0x9a]);
-    void GetDesc(D3D11_BLEND_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_BLEND_DESC* pDesc);
 }
 
 // d3d11.h: 2062
 interface ID3D11RasterizerState: ID3D11DeviceChild {
     static immutable iidof = GUID(0x9bb4ab81, 0xab1a, 0x4d8f, [0xb5, 0x06, 0xfc, 0x04, 0x20, 0x0b, 0x6e, 0xe7]);
-    void GetDesc(D3D11_RASTERIZER_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_RASTERIZER_DESC* pDesc);
 }
 
 // d3d11.h: 2215
 interface ID3D11Resource: ID3D11DeviceChild {
     static immutable iidof = GUID(0xdc8e63f3, 0xd12b, 0x4952, [0xb4, 0x7b, 0x5e, 0x45, 0x02, 0x6a, 0x86, 0x2d]);
-    void GetType(D3D11_RESOURCE_DIMENSION* pResourceDimension);
-    void SetEvictionPriority(uint EvictionPriority);
-    uint GetEvictionPriority();
+    extern(C) void GetType(D3D11_RESOURCE_DIMENSION* pResourceDimension);
+    extern(C) void SetEvictionPriority(uint EvictionPriority);
+    extern(C) uint GetEvictionPriority();
 }
 
 // d3d11.h: 2406
 interface ID3D11Buffer: ID3D11Resource {
     static immutable iidof = GUID(0x48570b85, 0xd1ee, 0x4fcd, [0xa2, 0x50, 0xeb, 0x35, 0x07, 0x22, 0xb0, 0x37]);
-    void GetDesc(D3D11_BUFFER_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_BUFFER_DESC* pDesc);
 }
 
 // d3d11.h: 2606
 interface ID3D11Texture1D: ID3D11Resource {
     static immutable iidof = GUID(0xf8fb5c27, 0xc6b3, 0x4f75, [0xa4, 0xc8, 0x43, 0x9a, 0xf2, 0xef, 0x56, 0x4c]);
-    void GetDesc(D3D11_TEXTURE1D_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_TEXTURE1D_DESC* pDesc);
 }
 
 // d3d11.h: 2814
 interface ID3D11Texture2D: ID3D11Resource {
     static immutable iidof = GUID(0x6f15aaf2, 0xd208, 0x4e89, [0x9a, 0xb4, 0x48, 0x95, 0x35, 0xd3, 0x4f, 0x9c]);
-    void GetDesc(D3D11_TEXTURE2D_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_TEXTURE2D_DESC* pDesc);
 }
 
 // d3d11.h: 3017
 interface ID3D11Texture3D: ID3D11Resource {
     static immutable iidof = GUID(0x037e866e, 0xf56d, 0x4357, [0xa8, 0xaf, 0x9d, 0xab, 0xbe, 0x6e, 0x25, 0x0e]);
-    void GetDesc(D3D11_TEXTURE3D_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_TEXTURE3D_DESC* pDesc);
 }
 
 // d3d11.h: 3184
 interface ID3D11View: ID3D11DeviceChild {
     static immutable iidof = GUID(0x839d1216, 0xbb2e, 0x412b, [0xb7, 0xf4, 0xa9, 0xdb, 0xeb, 0xe0, 0x8e, 0xd1]);
-    void GetResource(ID3D11Resource** ppResource);
+    extern(C) void GetResource(ID3D11Resource** ppResource);
 }
 
 // d3d11.h: 3628
 interface ID3D11ShaderResourceView: ID3D11View {
     static immutable iidof = GUID(0xb0e06fe0, 0x8192, 0x4e1a, [0xb1, 0xca, 0x36, 0xd7, 0x41, 0x47, 0x10, 0xb2]);
-    void GetDesc(D3D11_SHADER_RESOURCE_VIEW_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_SHADER_RESOURCE_VIEW_DESC* pDesc);
 }
 
 // d3d11.h: 4002
 interface ID3D11RenderTargetView: ID3D11View {
     static immutable iidof = GUID(0xdfdba067, 0x0b8d, 0x4865, [0x87, 0x5b, 0xd7, 0xb4, 0x51, 0x6c, 0xc1, 0x64]);
-    void GetDesc(D3D11_RENDER_TARGET_VIEW_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_RENDER_TARGET_VIEW_DESC* pDesc);
 }
 
 // d3d11.h: 4473
 interface ID3D11DepthStencilView: ID3D11View {
     static immutable iidof = GUID(0x9fdac92a, 0x1876, 0x48c3, [0xaf, 0xad, 0x25, 0xb9, 0x4f, 0x84, 0xa9, 0xb6]);
-    void GetDesc(D3D11_DEPTH_STENCIL_VIEW_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_DEPTH_STENCIL_VIEW_DESC* pDesc);
 }
 
 // d3d11.h: 4825
 interface ID3D11UnorderedAccessView: ID3D11View {
     static immutable iidof = GUID(0x28acf509, 0x7f5c, 0x48f6, [0x86, 0x11, 0xf3, 0x16, 0x01, 0x0a, 0x63, 0x80]);
-    void GetDesc(D3D11_UNORDERED_ACCESS_VIEW_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_UNORDERED_ACCESS_VIEW_DESC* pDesc);
 }
 
 // d3d11.h: 4959
@@ -1455,19 +1457,19 @@ interface ID3D11InputLayout: ID3D11DeviceChild {
 // d3d11.h: 5947
 interface ID3D11SamplerState: ID3D11DeviceChild {
     static immutable iidof = GUID(0xda6fea51, 0x564c, 0x4487, [0x98, 0x10, 0xf0, 0xd0, 0xf9, 0xb4, 0xe3, 0xa5]);
-    void GetDesc(D3D11_SAMPLER_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_SAMPLER_DESC* pDesc);
 }
 
 // d3d11.h: 6133
 interface ID3D11Asynchronous: ID3D11DeviceChild {
     static immutable iidof = GUID(0x4b35d0cd, 0x1e15, 0x4258, [0x9c, 0x98, 0x1b, 0x13, 0x33, 0xf6, 0xdd, 0x3b]);
-    uint GetDataSize();
+    extern(C) uint GetDataSize();
 }
 
 // d3d11.h: 6321
 interface ID3D11Query: ID3D11Asynchronous {
     static immutable iidof = GUID(0xd6c00747, 0x87b7, 0x425e, [0xb8, 0x4d, 0x44, 0xd1, 0x08, 0x56, 0x0a, 0xfd]);
-    void GetDesc(D3D11_QUERY_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_QUERY_DESC* pDesc);
 }
 
 // d3d11.h: 6453
@@ -1478,334 +1480,334 @@ interface ID3D11Predicate: ID3D11Query {
 // d3d11.h: 6665
 interface ID3D11Counter: ID3D11Asynchronous {
     static immutable iidof = GUID(0x6e8c49fb, 0xa371, 0x4770, [0xb4, 0x40, 0x29, 0x08, 0x60, 0x22, 0xb7, 0x41]);
-    void GetDesc(D3D11_COUNTER_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_COUNTER_DESC* pDesc);
 }
 
 // d3d11.h: 6831
 interface ID3D11ClassInstance: ID3D11DeviceChild {
     static immutable iidof = GUID(0xa6cd7faa, 0xb0b7, 0x4a2f, [0x94, 0x36, 0x86, 0x62, 0xa6, 0x57, 0x97, 0xcb]);
-    void GetClassLinkage(ID3D11ClassLinkage** ppLinkage);
-    void GetDesc(D3D11_CLASS_INSTANCE_DESC* pDesc);
-    void GetInstanceName(byte* pInstanceName, ulong* pBufferLength);
-    void GetTypeName(byte* pTypeName, ulong* pBufferLength);
+    extern(C) void GetClassLinkage(ID3D11ClassLinkage** ppLinkage);
+    extern(C) void GetDesc(D3D11_CLASS_INSTANCE_DESC* pDesc);
+    extern(C) void GetInstanceName(byte* pInstanceName, ulong* pBufferLength);
+    extern(C) void GetTypeName(byte* pTypeName, ulong* pBufferLength);
 }
 
 // d3d11.h: 7000
 interface ID3D11ClassLinkage: ID3D11DeviceChild {
     static immutable iidof = GUID(0xddf57cba, 0x9543, 0x46e4, [0xa1, 0x2b, 0xf2, 0x07, 0xa0, 0xfe, 0x7f, 0xed]);
-    int GetClassInstance(byte* pClassInstanceName, uint InstanceIndex, ID3D11ClassInstance** ppInstance);
-    int CreateClassInstance(byte* pClassTypeName, uint ConstantBufferOffset, uint ConstantVectorOffset, uint TextureOffset, uint SamplerOffset, ID3D11ClassInstance** ppInstance);
+    extern(C) int GetClassInstance(byte* pClassInstanceName, uint InstanceIndex, ID3D11ClassInstance** ppInstance);
+    extern(C) int CreateClassInstance(byte* pClassTypeName, uint ConstantBufferOffset, uint ConstantVectorOffset, uint TextureOffset, uint SamplerOffset, ID3D11ClassInstance** ppInstance);
 }
 
 // d3d11.h: 7165
 interface ID3D11CommandList: ID3D11DeviceChild {
     static immutable iidof = GUID(0xa24bc4d1, 0x769e, 0x43f7, [0x80, 0x13, 0x98, 0xff, 0x56, 0x6c, 0x18, 0xe2]);
-    uint GetContextFlags();
+    extern(C) uint GetContextFlags();
 }
 
 // d3d11.h: 7499
 interface ID3D11DeviceContext: ID3D11DeviceChild {
     static immutable iidof = GUID(0xc0bfa96c, 0xe089, 0x44fb, [0x8e, 0xaf, 0x26, 0xf8, 0x79, 0x61, 0x90, 0xda]);
-    void VSSetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
-    void PSSetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
-    void PSSetShader(ID3D11PixelShader* pPixelShader, ID3D11ClassInstance** ppClassInstances, uint NumClassInstances);
-    void PSSetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
-    void VSSetShader(ID3D11VertexShader* pVertexShader, ID3D11ClassInstance** ppClassInstances, uint NumClassInstances);
-    void DrawIndexed(uint IndexCount, uint StartIndexLocation, int BaseVertexLocation);
-    void Draw(uint VertexCount, uint StartVertexLocation);
-    int Map(ID3D11Resource* pResource, uint Subresource, D3D11_MAP MapType, uint MapFlags, D3D11_MAPPED_SUBRESOURCE* pMappedResource);
-    void Unmap(ID3D11Resource* pResource, uint Subresource);
-    void PSSetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
-    void IASetInputLayout(ID3D11InputLayout* pInputLayout);
-    void IASetVertexBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppVertexBuffers, uint* pStrides, uint* pOffsets);
-    void IASetIndexBuffer(ID3D11Buffer* pIndexBuffer, DXGI_FORMAT Format, uint Offset);
-    void DrawIndexedInstanced(uint IndexCountPerInstance, uint InstanceCount, uint StartIndexLocation, int BaseVertexLocation, uint StartInstanceLocation);
-    void DrawInstanced(uint VertexCountPerInstance, uint InstanceCount, uint StartVertexLocation, uint StartInstanceLocation);
-    void GSSetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
-    void GSSetShader(ID3D11GeometryShader* pShader, ID3D11ClassInstance** ppClassInstances, uint NumClassInstances);
-    void IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY Topology);
-    void VSSetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
-    void VSSetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
-    void Begin(ID3D11Asynchronous* pAsync);
-    void End(ID3D11Asynchronous* pAsync);
-    int GetData(ID3D11Asynchronous* pAsync, void* pData, uint DataSize, uint GetDataFlags);
-    void SetPredication(ID3D11Predicate* pPredicate, int PredicateValue);
-    void GSSetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
-    void GSSetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
-    void OMSetRenderTargets(uint NumViews, ID3D11RenderTargetView** ppRenderTargetViews, ID3D11DepthStencilView* pDepthStencilView);
-    void OMSetRenderTargetsAndUnorderedAccessViews(uint NumRTVs, ID3D11RenderTargetView** ppRenderTargetViews, ID3D11DepthStencilView* pDepthStencilView, uint UAVStartSlot, uint NumUAVs, ID3D11UnorderedAccessView** ppUnorderedAccessViews, uint* pUAVInitialCounts);
-    void OMSetBlendState(ID3D11BlendState* pBlendState, float* BlendFactor, uint SampleMask);
-    void OMSetDepthStencilState(ID3D11DepthStencilState* pDepthStencilState, uint StencilRef);
-    void SOSetTargets(uint NumBuffers, ID3D11Buffer** ppSOTargets, uint* pOffsets);
-    void DrawAuto();
-    void DrawIndexedInstancedIndirect(ID3D11Buffer* pBufferForArgs, uint AlignedByteOffsetForArgs);
-    void DrawInstancedIndirect(ID3D11Buffer* pBufferForArgs, uint AlignedByteOffsetForArgs);
-    void Dispatch(uint ThreadGroupCountX, uint ThreadGroupCountY, uint ThreadGroupCountZ);
-    void DispatchIndirect(ID3D11Buffer* pBufferForArgs, uint AlignedByteOffsetForArgs);
-    void RSSetState(ID3D11RasterizerState* pRasterizerState);
-    void RSSetViewports(uint NumViewports, D3D11_VIEWPORT* pViewports);
-    void RSSetScissorRects(uint NumRects, tagRECT* pRects);
-    void CopySubresourceRegion(ID3D11Resource* pDstResource, uint DstSubresource, uint DstX, uint DstY, uint DstZ, ID3D11Resource* pSrcResource, uint SrcSubresource, D3D11_BOX* pSrcBox);
-    void CopyResource(ID3D11Resource* pDstResource, ID3D11Resource* pSrcResource);
-    void UpdateSubresource(ID3D11Resource* pDstResource, uint DstSubresource, D3D11_BOX* pDstBox, void* pSrcData, uint SrcRowPitch, uint SrcDepthPitch);
-    void CopyStructureCount(ID3D11Buffer* pDstBuffer, uint DstAlignedByteOffset, ID3D11UnorderedAccessView* pSrcView);
-    void ClearRenderTargetView(ID3D11RenderTargetView* pRenderTargetView, float* ColorRGBA);
-    void ClearUnorderedAccessViewUint(ID3D11UnorderedAccessView* pUnorderedAccessView, uint* Values);
-    void ClearUnorderedAccessViewFloat(ID3D11UnorderedAccessView* pUnorderedAccessView, float* Values);
-    void ClearDepthStencilView(ID3D11DepthStencilView* pDepthStencilView, uint ClearFlags, float Depth, ubyte Stencil);
-    void GenerateMips(ID3D11ShaderResourceView* pShaderResourceView);
-    void SetResourceMinLOD(ID3D11Resource* pResource, float MinLOD);
-    float GetResourceMinLOD(ID3D11Resource* pResource);
-    void ResolveSubresource(ID3D11Resource* pDstResource, uint DstSubresource, ID3D11Resource* pSrcResource, uint SrcSubresource, DXGI_FORMAT Format);
-    void ExecuteCommandList(ID3D11CommandList* pCommandList, int RestoreContextState);
-    void HSSetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
-    void HSSetShader(ID3D11HullShader* pHullShader, ID3D11ClassInstance** ppClassInstances, uint NumClassInstances);
-    void HSSetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
-    void HSSetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
-    void DSSetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
-    void DSSetShader(ID3D11DomainShader* pDomainShader, ID3D11ClassInstance** ppClassInstances, uint NumClassInstances);
-    void DSSetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
-    void DSSetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
-    void CSSetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
-    void CSSetUnorderedAccessViews(uint StartSlot, uint NumUAVs, ID3D11UnorderedAccessView** ppUnorderedAccessViews, uint* pUAVInitialCounts);
-    void CSSetShader(ID3D11ComputeShader* pComputeShader, ID3D11ClassInstance** ppClassInstances, uint NumClassInstances);
-    void CSSetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
-    void CSSetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
-    void VSGetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
-    void PSGetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
-    void PSGetShader(ID3D11PixelShader** ppPixelShader, ID3D11ClassInstance** ppClassInstances, uint* pNumClassInstances);
-    void PSGetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
-    void VSGetShader(ID3D11VertexShader** ppVertexShader, ID3D11ClassInstance** ppClassInstances, uint* pNumClassInstances);
-    void PSGetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
-    void IAGetInputLayout(ID3D11InputLayout** ppInputLayout);
-    void IAGetVertexBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppVertexBuffers, uint* pStrides, uint* pOffsets);
-    void IAGetIndexBuffer(ID3D11Buffer** pIndexBuffer, DXGI_FORMAT* Format, uint* Offset);
-    void GSGetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
-    void GSGetShader(ID3D11GeometryShader** ppGeometryShader, ID3D11ClassInstance** ppClassInstances, uint* pNumClassInstances);
-    void IAGetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY* pTopology);
-    void VSGetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
-    void VSGetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
-    void GetPredication(ID3D11Predicate** ppPredicate, int* pPredicateValue);
-    void GSGetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
-    void GSGetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
-    void OMGetRenderTargets(uint NumViews, ID3D11RenderTargetView** ppRenderTargetViews, ID3D11DepthStencilView** ppDepthStencilView);
-    void OMGetRenderTargetsAndUnorderedAccessViews(uint NumRTVs, ID3D11RenderTargetView** ppRenderTargetViews, ID3D11DepthStencilView** ppDepthStencilView, uint UAVStartSlot, uint NumUAVs, ID3D11UnorderedAccessView** ppUnorderedAccessViews);
-    void OMGetBlendState(ID3D11BlendState** ppBlendState, float* BlendFactor, uint* pSampleMask);
-    void OMGetDepthStencilState(ID3D11DepthStencilState** ppDepthStencilState, uint* pStencilRef);
-    void SOGetTargets(uint NumBuffers, ID3D11Buffer** ppSOTargets);
-    void RSGetState(ID3D11RasterizerState** ppRasterizerState);
-    void RSGetViewports(uint* pNumViewports, D3D11_VIEWPORT* pViewports);
-    void RSGetScissorRects(uint* pNumRects, tagRECT* pRects);
-    void HSGetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
-    void HSGetShader(ID3D11HullShader** ppHullShader, ID3D11ClassInstance** ppClassInstances, uint* pNumClassInstances);
-    void HSGetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
-    void HSGetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
-    void DSGetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
-    void DSGetShader(ID3D11DomainShader** ppDomainShader, ID3D11ClassInstance** ppClassInstances, uint* pNumClassInstances);
-    void DSGetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
-    void DSGetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
-    void CSGetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
-    void CSGetUnorderedAccessViews(uint StartSlot, uint NumUAVs, ID3D11UnorderedAccessView** ppUnorderedAccessViews);
-    void CSGetShader(ID3D11ComputeShader** ppComputeShader, ID3D11ClassInstance** ppClassInstances, uint* pNumClassInstances);
-    void CSGetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
-    void CSGetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
-    void ClearState();
-    void Flush();
-    D3D11_DEVICE_CONTEXT_TYPE GetType();
-    uint GetContextFlags();
-    int FinishCommandList(int RestoreDeferredContextState, ID3D11CommandList** ppCommandList);
+    extern(C) void VSSetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
+    extern(C) void PSSetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
+    extern(C) void PSSetShader(ID3D11PixelShader* pPixelShader, ID3D11ClassInstance** ppClassInstances, uint NumClassInstances);
+    extern(C) void PSSetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
+    extern(C) void VSSetShader(ID3D11VertexShader* pVertexShader, ID3D11ClassInstance** ppClassInstances, uint NumClassInstances);
+    extern(C) void DrawIndexed(uint IndexCount, uint StartIndexLocation, int BaseVertexLocation);
+    extern(C) void Draw(uint VertexCount, uint StartVertexLocation);
+    extern(C) int Map(ID3D11Resource* pResource, uint Subresource, D3D11_MAP MapType, uint MapFlags, D3D11_MAPPED_SUBRESOURCE* pMappedResource);
+    extern(C) void Unmap(ID3D11Resource* pResource, uint Subresource);
+    extern(C) void PSSetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
+    extern(C) void IASetInputLayout(ID3D11InputLayout* pInputLayout);
+    extern(C) void IASetVertexBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppVertexBuffers, uint* pStrides, uint* pOffsets);
+    extern(C) void IASetIndexBuffer(ID3D11Buffer* pIndexBuffer, DXGI_FORMAT Format, uint Offset);
+    extern(C) void DrawIndexedInstanced(uint IndexCountPerInstance, uint InstanceCount, uint StartIndexLocation, int BaseVertexLocation, uint StartInstanceLocation);
+    extern(C) void DrawInstanced(uint VertexCountPerInstance, uint InstanceCount, uint StartVertexLocation, uint StartInstanceLocation);
+    extern(C) void GSSetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
+    extern(C) void GSSetShader(ID3D11GeometryShader* pShader, ID3D11ClassInstance** ppClassInstances, uint NumClassInstances);
+    extern(C) void IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY Topology);
+    extern(C) void VSSetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
+    extern(C) void VSSetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
+    extern(C) void Begin(ID3D11Asynchronous* pAsync);
+    extern(C) void End(ID3D11Asynchronous* pAsync);
+    extern(C) int GetData(ID3D11Asynchronous* pAsync, void* pData, uint DataSize, uint GetDataFlags);
+    extern(C) void SetPredication(ID3D11Predicate* pPredicate, int PredicateValue);
+    extern(C) void GSSetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
+    extern(C) void GSSetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
+    extern(C) void OMSetRenderTargets(uint NumViews, ID3D11RenderTargetView** ppRenderTargetViews, ID3D11DepthStencilView* pDepthStencilView);
+    extern(C) void OMSetRenderTargetsAndUnorderedAccessViews(uint NumRTVs, ID3D11RenderTargetView** ppRenderTargetViews, ID3D11DepthStencilView* pDepthStencilView, uint UAVStartSlot, uint NumUAVs, ID3D11UnorderedAccessView** ppUnorderedAccessViews, uint* pUAVInitialCounts);
+    extern(C) void OMSetBlendState(ID3D11BlendState* pBlendState, float* BlendFactor, uint SampleMask);
+    extern(C) void OMSetDepthStencilState(ID3D11DepthStencilState* pDepthStencilState, uint StencilRef);
+    extern(C) void SOSetTargets(uint NumBuffers, ID3D11Buffer** ppSOTargets, uint* pOffsets);
+    extern(C) void DrawAuto();
+    extern(C) void DrawIndexedInstancedIndirect(ID3D11Buffer* pBufferForArgs, uint AlignedByteOffsetForArgs);
+    extern(C) void DrawInstancedIndirect(ID3D11Buffer* pBufferForArgs, uint AlignedByteOffsetForArgs);
+    extern(C) void Dispatch(uint ThreadGroupCountX, uint ThreadGroupCountY, uint ThreadGroupCountZ);
+    extern(C) void DispatchIndirect(ID3D11Buffer* pBufferForArgs, uint AlignedByteOffsetForArgs);
+    extern(C) void RSSetState(ID3D11RasterizerState* pRasterizerState);
+    extern(C) void RSSetViewports(uint NumViewports, D3D11_VIEWPORT* pViewports);
+    extern(C) void RSSetScissorRects(uint NumRects, tagRECT* pRects);
+    extern(C) void CopySubresourceRegion(ID3D11Resource* pDstResource, uint DstSubresource, uint DstX, uint DstY, uint DstZ, ID3D11Resource* pSrcResource, uint SrcSubresource, D3D11_BOX* pSrcBox);
+    extern(C) void CopyResource(ID3D11Resource* pDstResource, ID3D11Resource* pSrcResource);
+    extern(C) void UpdateSubresource(ID3D11Resource* pDstResource, uint DstSubresource, D3D11_BOX* pDstBox, void* pSrcData, uint SrcRowPitch, uint SrcDepthPitch);
+    extern(C) void CopyStructureCount(ID3D11Buffer* pDstBuffer, uint DstAlignedByteOffset, ID3D11UnorderedAccessView* pSrcView);
+    extern(C) void ClearRenderTargetView(ID3D11RenderTargetView* pRenderTargetView, float* ColorRGBA);
+    extern(C) void ClearUnorderedAccessViewUint(ID3D11UnorderedAccessView* pUnorderedAccessView, uint* Values);
+    extern(C) void ClearUnorderedAccessViewFloat(ID3D11UnorderedAccessView* pUnorderedAccessView, float* Values);
+    extern(C) void ClearDepthStencilView(ID3D11DepthStencilView* pDepthStencilView, uint ClearFlags, float Depth, ubyte Stencil);
+    extern(C) void GenerateMips(ID3D11ShaderResourceView* pShaderResourceView);
+    extern(C) void SetResourceMinLOD(ID3D11Resource* pResource, float MinLOD);
+    extern(C) float GetResourceMinLOD(ID3D11Resource* pResource);
+    extern(C) void ResolveSubresource(ID3D11Resource* pDstResource, uint DstSubresource, ID3D11Resource* pSrcResource, uint SrcSubresource, DXGI_FORMAT Format);
+    extern(C) void ExecuteCommandList(ID3D11CommandList* pCommandList, int RestoreContextState);
+    extern(C) void HSSetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
+    extern(C) void HSSetShader(ID3D11HullShader* pHullShader, ID3D11ClassInstance** ppClassInstances, uint NumClassInstances);
+    extern(C) void HSSetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
+    extern(C) void HSSetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
+    extern(C) void DSSetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
+    extern(C) void DSSetShader(ID3D11DomainShader* pDomainShader, ID3D11ClassInstance** ppClassInstances, uint NumClassInstances);
+    extern(C) void DSSetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
+    extern(C) void DSSetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
+    extern(C) void CSSetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
+    extern(C) void CSSetUnorderedAccessViews(uint StartSlot, uint NumUAVs, ID3D11UnorderedAccessView** ppUnorderedAccessViews, uint* pUAVInitialCounts);
+    extern(C) void CSSetShader(ID3D11ComputeShader* pComputeShader, ID3D11ClassInstance** ppClassInstances, uint NumClassInstances);
+    extern(C) void CSSetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
+    extern(C) void CSSetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
+    extern(C) void VSGetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
+    extern(C) void PSGetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
+    extern(C) void PSGetShader(ID3D11PixelShader** ppPixelShader, ID3D11ClassInstance** ppClassInstances, uint* pNumClassInstances);
+    extern(C) void PSGetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
+    extern(C) void VSGetShader(ID3D11VertexShader** ppVertexShader, ID3D11ClassInstance** ppClassInstances, uint* pNumClassInstances);
+    extern(C) void PSGetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
+    extern(C) void IAGetInputLayout(ID3D11InputLayout** ppInputLayout);
+    extern(C) void IAGetVertexBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppVertexBuffers, uint* pStrides, uint* pOffsets);
+    extern(C) void IAGetIndexBuffer(ID3D11Buffer** pIndexBuffer, DXGI_FORMAT* Format, uint* Offset);
+    extern(C) void GSGetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
+    extern(C) void GSGetShader(ID3D11GeometryShader** ppGeometryShader, ID3D11ClassInstance** ppClassInstances, uint* pNumClassInstances);
+    extern(C) void IAGetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY* pTopology);
+    extern(C) void VSGetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
+    extern(C) void VSGetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
+    extern(C) void GetPredication(ID3D11Predicate** ppPredicate, int* pPredicateValue);
+    extern(C) void GSGetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
+    extern(C) void GSGetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
+    extern(C) void OMGetRenderTargets(uint NumViews, ID3D11RenderTargetView** ppRenderTargetViews, ID3D11DepthStencilView** ppDepthStencilView);
+    extern(C) void OMGetRenderTargetsAndUnorderedAccessViews(uint NumRTVs, ID3D11RenderTargetView** ppRenderTargetViews, ID3D11DepthStencilView** ppDepthStencilView, uint UAVStartSlot, uint NumUAVs, ID3D11UnorderedAccessView** ppUnorderedAccessViews);
+    extern(C) void OMGetBlendState(ID3D11BlendState** ppBlendState, float* BlendFactor, uint* pSampleMask);
+    extern(C) void OMGetDepthStencilState(ID3D11DepthStencilState** ppDepthStencilState, uint* pStencilRef);
+    extern(C) void SOGetTargets(uint NumBuffers, ID3D11Buffer** ppSOTargets);
+    extern(C) void RSGetState(ID3D11RasterizerState** ppRasterizerState);
+    extern(C) void RSGetViewports(uint* pNumViewports, D3D11_VIEWPORT* pViewports);
+    extern(C) void RSGetScissorRects(uint* pNumRects, tagRECT* pRects);
+    extern(C) void HSGetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
+    extern(C) void HSGetShader(ID3D11HullShader** ppHullShader, ID3D11ClassInstance** ppClassInstances, uint* pNumClassInstances);
+    extern(C) void HSGetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
+    extern(C) void HSGetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
+    extern(C) void DSGetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
+    extern(C) void DSGetShader(ID3D11DomainShader** ppDomainShader, ID3D11ClassInstance** ppClassInstances, uint* pNumClassInstances);
+    extern(C) void DSGetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
+    extern(C) void DSGetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
+    extern(C) void CSGetShaderResources(uint StartSlot, uint NumViews, ID3D11ShaderResourceView** ppShaderResourceViews);
+    extern(C) void CSGetUnorderedAccessViews(uint StartSlot, uint NumUAVs, ID3D11UnorderedAccessView** ppUnorderedAccessViews);
+    extern(C) void CSGetShader(ID3D11ComputeShader** ppComputeShader, ID3D11ClassInstance** ppClassInstances, uint* pNumClassInstances);
+    extern(C) void CSGetSamplers(uint StartSlot, uint NumSamplers, ID3D11SamplerState** ppSamplers);
+    extern(C) void CSGetConstantBuffers(uint StartSlot, uint NumBuffers, ID3D11Buffer** ppConstantBuffers);
+    extern(C) void ClearState();
+    extern(C) void Flush();
+    extern(C) D3D11_DEVICE_CONTEXT_TYPE GetType();
+    extern(C) uint GetContextFlags();
+    extern(C) int FinishCommandList(int RestoreDeferredContextState, ID3D11CommandList** ppCommandList);
 }
 
 // d3d11.h: 9789
 interface ID3D11VideoDecoder: ID3D11DeviceChild {
     static immutable iidof = GUID(0x3c9c5b51, 0x995d, 0x48d1, [0x9b, 0x8d, 0xfa, 0x5c, 0xae, 0xde, 0xd6, 0x5c]);
-    int GetCreationParameters(D3D11_VIDEO_DECODER_DESC* pVideoDesc, D3D11_VIDEO_DECODER_CONFIG* pConfig);
-    int GetDriverHandle(void** pDriverHandle);
+    extern(C) int GetCreationParameters(D3D11_VIDEO_DECODER_DESC* pVideoDesc, D3D11_VIDEO_DECODER_CONFIG* pConfig);
+    extern(C) int GetDriverHandle(void** pDriverHandle);
 }
 
 // d3d11.h: 10156
 interface ID3D11VideoProcessorEnumerator: ID3D11DeviceChild {
     static immutable iidof = GUID(0x31627037, 0x53ab, 0x4200, [0x90, 0x61, 0x05, 0xfa, 0xa9, 0xab, 0x45, 0xf9]);
-    int GetVideoProcessorContentDesc(D3D11_VIDEO_PROCESSOR_CONTENT_DESC* pContentDesc);
-    int CheckVideoProcessorFormat(DXGI_FORMAT Format, uint* pFlags);
-    int GetVideoProcessorCaps(D3D11_VIDEO_PROCESSOR_CAPS* pCaps);
-    int GetVideoProcessorRateConversionCaps(uint TypeIndex, D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS* pCaps);
-    int GetVideoProcessorCustomRate(uint TypeIndex, uint CustomRateIndex, D3D11_VIDEO_PROCESSOR_CUSTOM_RATE* pRate);
-    int GetVideoProcessorFilterRange(D3D11_VIDEO_PROCESSOR_FILTER Filter, D3D11_VIDEO_PROCESSOR_FILTER_RANGE* pRange);
+    extern(C) int GetVideoProcessorContentDesc(D3D11_VIDEO_PROCESSOR_CONTENT_DESC* pContentDesc);
+    extern(C) int CheckVideoProcessorFormat(DXGI_FORMAT Format, uint* pFlags);
+    extern(C) int GetVideoProcessorCaps(D3D11_VIDEO_PROCESSOR_CAPS* pCaps);
+    extern(C) int GetVideoProcessorRateConversionCaps(uint TypeIndex, D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS* pCaps);
+    extern(C) int GetVideoProcessorCustomRate(uint TypeIndex, uint CustomRateIndex, D3D11_VIDEO_PROCESSOR_CUSTOM_RATE* pRate);
+    extern(C) int GetVideoProcessorFilterRange(D3D11_VIDEO_PROCESSOR_FILTER Filter, D3D11_VIDEO_PROCESSOR_FILTER_RANGE* pRange);
 }
 
 // d3d11.h: 10478
 interface ID3D11VideoProcessor: ID3D11DeviceChild {
     static immutable iidof = GUID(0x1d7b0652, 0x185f, 0x41c6, [0x85, 0xce, 0x0c, 0x5b, 0xe3, 0xd4, 0xae, 0x6c]);
-    void GetContentDesc(D3D11_VIDEO_PROCESSOR_CONTENT_DESC* pDesc);
-    void GetRateConversionCaps(D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS* pCaps);
+    extern(C) void GetContentDesc(D3D11_VIDEO_PROCESSOR_CONTENT_DESC* pDesc);
+    extern(C) void GetRateConversionCaps(D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS* pCaps);
 }
 
 // d3d11.h: 10636
 interface ID3D11AuthenticatedChannel: ID3D11DeviceChild {
     static immutable iidof = GUID(0x3015a308, 0xdcbd, 0x47aa, [0xa7, 0x47, 0x19, 0x24, 0x86, 0xd1, 0x4d, 0x4a]);
-    int GetCertificateSize(uint* pCertificateSize);
-    int GetCertificate(uint CertificateSize, ubyte* pCertificate);
-    void GetChannelHandle(void** pChannelHandle);
+    extern(C) int GetCertificateSize(uint* pCertificateSize);
+    extern(C) int GetCertificate(uint CertificateSize, ubyte* pCertificate);
+    extern(C) void GetChannelHandle(void** pChannelHandle);
 }
 
 // d3d11.h: 11042
 interface ID3D11CryptoSession: ID3D11DeviceChild {
     static immutable iidof = GUID(0x9b32f9ad, 0xbdcc, 0x40a6, [0xa3, 0x9d, 0xd5, 0xc8, 0x65, 0x84, 0x57, 0x20]);
-    void GetCryptoType(_GUID* pCryptoType);
-    void GetDecoderProfile(_GUID* pDecoderProfile);
-    int GetCertificateSize(uint* pCertificateSize);
-    int GetCertificate(uint CertificateSize, ubyte* pCertificate);
-    void GetCryptoSessionHandle(void** pCryptoSessionHandle);
+    extern(C) void GetCryptoType(_GUID* pCryptoType);
+    extern(C) void GetDecoderProfile(_GUID* pDecoderProfile);
+    extern(C) int GetCertificateSize(uint* pCertificateSize);
+    extern(C) int GetCertificate(uint CertificateSize, ubyte* pCertificate);
+    extern(C) void GetCryptoSessionHandle(void** pCryptoSessionHandle);
 }
 
 // d3d11.h: 11249
 interface ID3D11VideoDecoderOutputView: ID3D11View {
     static immutable iidof = GUID(0xc2931aea, 0x2a85, 0x4f20, [0x86, 0x0f, 0xfb, 0xa1, 0xfd, 0x25, 0x6e, 0x18]);
-    void GetDesc(D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC* pDesc);
 }
 
 // d3d11.h: 11414
 interface ID3D11VideoProcessorInputView: ID3D11View {
     static immutable iidof = GUID(0x11ec5a5f, 0x51dc, 0x4945, [0xab, 0x34, 0x6e, 0x8c, 0x21, 0x30, 0x0e, 0xa5]);
-    void GetDesc(D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC* pDesc);
 }
 
 // d3d11.h: 11586
 interface ID3D11VideoProcessorOutputView: ID3D11View {
     static immutable iidof = GUID(0xa048285e, 0x25a9, 0x4527, [0xbd, 0x93, 0xd6, 0x8b, 0x68, 0xc4, 0x42, 0x54]);
-    void GetDesc(D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC* pDesc);
+    extern(C) void GetDesc(D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC* pDesc);
 }
 
 // d3d11.h: 11720
 interface ID3D11VideoContext: ID3D11DeviceChild {
     static immutable iidof = GUID(0x61f21c45, 0x3c0e, 0x4a74, [0x9c, 0xea, 0x67, 0x10, 0x0d, 0x9a, 0xd5, 0xe4]);
-    int GetDecoderBuffer(ID3D11VideoDecoder* pDecoder, D3D11_VIDEO_DECODER_BUFFER_TYPE Type, uint* pBufferSize, void** ppBuffer);
-    int ReleaseDecoderBuffer(ID3D11VideoDecoder* pDecoder, D3D11_VIDEO_DECODER_BUFFER_TYPE Type);
-    int DecoderBeginFrame(ID3D11VideoDecoder* pDecoder, ID3D11VideoDecoderOutputView* pView, uint ContentKeySize, void* pContentKey);
-    int DecoderEndFrame(ID3D11VideoDecoder* pDecoder);
-    int SubmitDecoderBuffers(ID3D11VideoDecoder* pDecoder, uint NumBuffers, D3D11_VIDEO_DECODER_BUFFER_DESC* pBufferDesc);
-    int DecoderExtension(ID3D11VideoDecoder* pDecoder, D3D11_VIDEO_DECODER_EXTENSION* pExtensionData);
-    void VideoProcessorSetOutputTargetRect(ID3D11VideoProcessor* pVideoProcessor, int Enable, tagRECT* pRect);
-    void VideoProcessorSetOutputBackgroundColor(ID3D11VideoProcessor* pVideoProcessor, int YCbCr, D3D11_VIDEO_COLOR* pColor);
-    void VideoProcessorSetOutputColorSpace(ID3D11VideoProcessor* pVideoProcessor, D3D11_VIDEO_PROCESSOR_COLOR_SPACE* pColorSpace);
-    void VideoProcessorSetOutputAlphaFillMode(ID3D11VideoProcessor* pVideoProcessor, D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE AlphaFillMode, uint StreamIndex);
-    void VideoProcessorSetOutputConstriction(ID3D11VideoProcessor* pVideoProcessor, int Enable, tagSIZE Size);
-    void VideoProcessorSetOutputStereoMode(ID3D11VideoProcessor* pVideoProcessor, int Enable);
-    int VideoProcessorSetOutputExtension(ID3D11VideoProcessor* pVideoProcessor, _GUID* pExtensionGuid, uint DataSize, void* pData);
-    void VideoProcessorGetOutputTargetRect(ID3D11VideoProcessor* pVideoProcessor, int* Enabled, tagRECT* pRect);
-    void VideoProcessorGetOutputBackgroundColor(ID3D11VideoProcessor* pVideoProcessor, int* pYCbCr, D3D11_VIDEO_COLOR* pColor);
-    void VideoProcessorGetOutputColorSpace(ID3D11VideoProcessor* pVideoProcessor, D3D11_VIDEO_PROCESSOR_COLOR_SPACE* pColorSpace);
-    void VideoProcessorGetOutputAlphaFillMode(ID3D11VideoProcessor* pVideoProcessor, D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE* pAlphaFillMode, uint* pStreamIndex);
-    void VideoProcessorGetOutputConstriction(ID3D11VideoProcessor* pVideoProcessor, int* pEnabled, tagSIZE* pSize);
-    void VideoProcessorGetOutputStereoMode(ID3D11VideoProcessor* pVideoProcessor, int* pEnabled);
-    int VideoProcessorGetOutputExtension(ID3D11VideoProcessor* pVideoProcessor, _GUID* pExtensionGuid, uint DataSize, void* pData);
-    void VideoProcessorSetStreamFrameFormat(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, D3D11_VIDEO_FRAME_FORMAT FrameFormat);
-    void VideoProcessorSetStreamColorSpace(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_COLOR_SPACE* pColorSpace);
-    void VideoProcessorSetStreamOutputRate(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_OUTPUT_RATE OutputRate, int RepeatFrame, DXGI_RATIONAL* pCustomRate);
-    void VideoProcessorSetStreamSourceRect(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int Enable, tagRECT* pRect);
-    void VideoProcessorSetStreamDestRect(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int Enable, tagRECT* pRect);
-    void VideoProcessorSetStreamAlpha(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int Enable, float Alpha);
-    void VideoProcessorSetStreamPalette(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, uint Count, uint* pEntries);
-    void VideoProcessorSetStreamPixelAspectRatio(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int Enable, DXGI_RATIONAL* pSourceAspectRatio, DXGI_RATIONAL* pDestinationAspectRatio);
-    void VideoProcessorSetStreamLumaKey(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int Enable, float Lower, float Upper);
-    void VideoProcessorSetStreamStereoFormat(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int Enable, D3D11_VIDEO_PROCESSOR_STEREO_FORMAT Format, int LeftViewFrame0, int BaseViewFrame0, D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE FlipMode, int MonoOffset);
-    void VideoProcessorSetStreamAutoProcessingMode(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int Enable);
-    void VideoProcessorSetStreamFilter(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_FILTER Filter, int Enable, int Level);
-    int VideoProcessorSetStreamExtension(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, _GUID* pExtensionGuid, uint DataSize, void* pData);
-    void VideoProcessorGetStreamFrameFormat(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, D3D11_VIDEO_FRAME_FORMAT* pFrameFormat);
-    void VideoProcessorGetStreamColorSpace(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_COLOR_SPACE* pColorSpace);
-    void VideoProcessorGetStreamOutputRate(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_OUTPUT_RATE* pOutputRate, int* pRepeatFrame, DXGI_RATIONAL* pCustomRate);
-    void VideoProcessorGetStreamSourceRect(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int* pEnabled, tagRECT* pRect);
-    void VideoProcessorGetStreamDestRect(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int* pEnabled, tagRECT* pRect);
-    void VideoProcessorGetStreamAlpha(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int* pEnabled, float* pAlpha);
-    void VideoProcessorGetStreamPalette(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, uint Count, uint* pEntries);
-    void VideoProcessorGetStreamPixelAspectRatio(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int* pEnabled, DXGI_RATIONAL* pSourceAspectRatio, DXGI_RATIONAL* pDestinationAspectRatio);
-    void VideoProcessorGetStreamLumaKey(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int* pEnabled, float* pLower, float* pUpper);
-    void VideoProcessorGetStreamStereoFormat(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int* pEnable, D3D11_VIDEO_PROCESSOR_STEREO_FORMAT* pFormat, int* pLeftViewFrame0, int* pBaseViewFrame0, D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE* pFlipMode, int* MonoOffset);
-    void VideoProcessorGetStreamAutoProcessingMode(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int* pEnabled);
-    void VideoProcessorGetStreamFilter(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_FILTER Filter, int* pEnabled, int* pLevel);
-    int VideoProcessorGetStreamExtension(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, _GUID* pExtensionGuid, uint DataSize, void* pData);
-    int VideoProcessorBlt(ID3D11VideoProcessor* pVideoProcessor, ID3D11VideoProcessorOutputView* pView, uint OutputFrame, uint StreamCount, D3D11_VIDEO_PROCESSOR_STREAM* pStreams);
-    int NegotiateCryptoSessionKeyExchange(ID3D11CryptoSession* pCryptoSession, uint DataSize, void* pData);
-    void EncryptionBlt(ID3D11CryptoSession* pCryptoSession, ID3D11Texture2D* pSrcSurface, ID3D11Texture2D* pDstSurface, uint IVSize, void* pIV);
-    void DecryptionBlt(ID3D11CryptoSession* pCryptoSession, ID3D11Texture2D* pSrcSurface, ID3D11Texture2D* pDstSurface, D3D11_ENCRYPTED_BLOCK_INFO* pEncryptedBlockInfo, uint ContentKeySize, void* pContentKey, uint IVSize, void* pIV);
-    void StartSessionKeyRefresh(ID3D11CryptoSession* pCryptoSession, uint RandomNumberSize, void* pRandomNumber);
-    void FinishSessionKeyRefresh(ID3D11CryptoSession* pCryptoSession);
-    int GetEncryptionBltKey(ID3D11CryptoSession* pCryptoSession, uint KeySize, void* pReadbackKey);
-    int NegotiateAuthenticatedChannelKeyExchange(ID3D11AuthenticatedChannel* pChannel, uint DataSize, void* pData);
-    int QueryAuthenticatedChannel(ID3D11AuthenticatedChannel* pChannel, uint InputSize, void* pInput, uint OutputSize, void* pOutput);
-    int ConfigureAuthenticatedChannel(ID3D11AuthenticatedChannel* pChannel, uint InputSize, void* pInput, D3D11_AUTHENTICATED_CONFIGURE_OUTPUT* pOutput);
-    void VideoProcessorSetStreamRotation(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int Enable, D3D11_VIDEO_PROCESSOR_ROTATION Rotation);
-    void VideoProcessorGetStreamRotation(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int* pEnable, D3D11_VIDEO_PROCESSOR_ROTATION* pRotation);
+    extern(C) int GetDecoderBuffer(ID3D11VideoDecoder* pDecoder, D3D11_VIDEO_DECODER_BUFFER_TYPE Type, uint* pBufferSize, void** ppBuffer);
+    extern(C) int ReleaseDecoderBuffer(ID3D11VideoDecoder* pDecoder, D3D11_VIDEO_DECODER_BUFFER_TYPE Type);
+    extern(C) int DecoderBeginFrame(ID3D11VideoDecoder* pDecoder, ID3D11VideoDecoderOutputView* pView, uint ContentKeySize, void* pContentKey);
+    extern(C) int DecoderEndFrame(ID3D11VideoDecoder* pDecoder);
+    extern(C) int SubmitDecoderBuffers(ID3D11VideoDecoder* pDecoder, uint NumBuffers, D3D11_VIDEO_DECODER_BUFFER_DESC* pBufferDesc);
+    extern(C) int DecoderExtension(ID3D11VideoDecoder* pDecoder, D3D11_VIDEO_DECODER_EXTENSION* pExtensionData);
+    extern(C) void VideoProcessorSetOutputTargetRect(ID3D11VideoProcessor* pVideoProcessor, int Enable, tagRECT* pRect);
+    extern(C) void VideoProcessorSetOutputBackgroundColor(ID3D11VideoProcessor* pVideoProcessor, int YCbCr, D3D11_VIDEO_COLOR* pColor);
+    extern(C) void VideoProcessorSetOutputColorSpace(ID3D11VideoProcessor* pVideoProcessor, D3D11_VIDEO_PROCESSOR_COLOR_SPACE* pColorSpace);
+    extern(C) void VideoProcessorSetOutputAlphaFillMode(ID3D11VideoProcessor* pVideoProcessor, D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE AlphaFillMode, uint StreamIndex);
+    extern(C) void VideoProcessorSetOutputConstriction(ID3D11VideoProcessor* pVideoProcessor, int Enable, tagSIZE Size);
+    extern(C) void VideoProcessorSetOutputStereoMode(ID3D11VideoProcessor* pVideoProcessor, int Enable);
+    extern(C) int VideoProcessorSetOutputExtension(ID3D11VideoProcessor* pVideoProcessor, _GUID* pExtensionGuid, uint DataSize, void* pData);
+    extern(C) void VideoProcessorGetOutputTargetRect(ID3D11VideoProcessor* pVideoProcessor, int* Enabled, tagRECT* pRect);
+    extern(C) void VideoProcessorGetOutputBackgroundColor(ID3D11VideoProcessor* pVideoProcessor, int* pYCbCr, D3D11_VIDEO_COLOR* pColor);
+    extern(C) void VideoProcessorGetOutputColorSpace(ID3D11VideoProcessor* pVideoProcessor, D3D11_VIDEO_PROCESSOR_COLOR_SPACE* pColorSpace);
+    extern(C) void VideoProcessorGetOutputAlphaFillMode(ID3D11VideoProcessor* pVideoProcessor, D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE* pAlphaFillMode, uint* pStreamIndex);
+    extern(C) void VideoProcessorGetOutputConstriction(ID3D11VideoProcessor* pVideoProcessor, int* pEnabled, tagSIZE* pSize);
+    extern(C) void VideoProcessorGetOutputStereoMode(ID3D11VideoProcessor* pVideoProcessor, int* pEnabled);
+    extern(C) int VideoProcessorGetOutputExtension(ID3D11VideoProcessor* pVideoProcessor, _GUID* pExtensionGuid, uint DataSize, void* pData);
+    extern(C) void VideoProcessorSetStreamFrameFormat(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, D3D11_VIDEO_FRAME_FORMAT FrameFormat);
+    extern(C) void VideoProcessorSetStreamColorSpace(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_COLOR_SPACE* pColorSpace);
+    extern(C) void VideoProcessorSetStreamOutputRate(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_OUTPUT_RATE OutputRate, int RepeatFrame, DXGI_RATIONAL* pCustomRate);
+    extern(C) void VideoProcessorSetStreamSourceRect(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int Enable, tagRECT* pRect);
+    extern(C) void VideoProcessorSetStreamDestRect(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int Enable, tagRECT* pRect);
+    extern(C) void VideoProcessorSetStreamAlpha(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int Enable, float Alpha);
+    extern(C) void VideoProcessorSetStreamPalette(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, uint Count, uint* pEntries);
+    extern(C) void VideoProcessorSetStreamPixelAspectRatio(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int Enable, DXGI_RATIONAL* pSourceAspectRatio, DXGI_RATIONAL* pDestinationAspectRatio);
+    extern(C) void VideoProcessorSetStreamLumaKey(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int Enable, float Lower, float Upper);
+    extern(C) void VideoProcessorSetStreamStereoFormat(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int Enable, D3D11_VIDEO_PROCESSOR_STEREO_FORMAT Format, int LeftViewFrame0, int BaseViewFrame0, D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE FlipMode, int MonoOffset);
+    extern(C) void VideoProcessorSetStreamAutoProcessingMode(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int Enable);
+    extern(C) void VideoProcessorSetStreamFilter(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_FILTER Filter, int Enable, int Level);
+    extern(C) int VideoProcessorSetStreamExtension(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, _GUID* pExtensionGuid, uint DataSize, void* pData);
+    extern(C) void VideoProcessorGetStreamFrameFormat(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, D3D11_VIDEO_FRAME_FORMAT* pFrameFormat);
+    extern(C) void VideoProcessorGetStreamColorSpace(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_COLOR_SPACE* pColorSpace);
+    extern(C) void VideoProcessorGetStreamOutputRate(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_OUTPUT_RATE* pOutputRate, int* pRepeatFrame, DXGI_RATIONAL* pCustomRate);
+    extern(C) void VideoProcessorGetStreamSourceRect(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int* pEnabled, tagRECT* pRect);
+    extern(C) void VideoProcessorGetStreamDestRect(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int* pEnabled, tagRECT* pRect);
+    extern(C) void VideoProcessorGetStreamAlpha(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int* pEnabled, float* pAlpha);
+    extern(C) void VideoProcessorGetStreamPalette(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, uint Count, uint* pEntries);
+    extern(C) void VideoProcessorGetStreamPixelAspectRatio(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int* pEnabled, DXGI_RATIONAL* pSourceAspectRatio, DXGI_RATIONAL* pDestinationAspectRatio);
+    extern(C) void VideoProcessorGetStreamLumaKey(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int* pEnabled, float* pLower, float* pUpper);
+    extern(C) void VideoProcessorGetStreamStereoFormat(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int* pEnable, D3D11_VIDEO_PROCESSOR_STEREO_FORMAT* pFormat, int* pLeftViewFrame0, int* pBaseViewFrame0, D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE* pFlipMode, int* MonoOffset);
+    extern(C) void VideoProcessorGetStreamAutoProcessingMode(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int* pEnabled);
+    extern(C) void VideoProcessorGetStreamFilter(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_FILTER Filter, int* pEnabled, int* pLevel);
+    extern(C) int VideoProcessorGetStreamExtension(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, _GUID* pExtensionGuid, uint DataSize, void* pData);
+    extern(C) int VideoProcessorBlt(ID3D11VideoProcessor* pVideoProcessor, ID3D11VideoProcessorOutputView* pView, uint OutputFrame, uint StreamCount, D3D11_VIDEO_PROCESSOR_STREAM* pStreams);
+    extern(C) int NegotiateCryptoSessionKeyExchange(ID3D11CryptoSession* pCryptoSession, uint DataSize, void* pData);
+    extern(C) void EncryptionBlt(ID3D11CryptoSession* pCryptoSession, ID3D11Texture2D* pSrcSurface, ID3D11Texture2D* pDstSurface, uint IVSize, void* pIV);
+    extern(C) void DecryptionBlt(ID3D11CryptoSession* pCryptoSession, ID3D11Texture2D* pSrcSurface, ID3D11Texture2D* pDstSurface, D3D11_ENCRYPTED_BLOCK_INFO* pEncryptedBlockInfo, uint ContentKeySize, void* pContentKey, uint IVSize, void* pIV);
+    extern(C) void StartSessionKeyRefresh(ID3D11CryptoSession* pCryptoSession, uint RandomNumberSize, void* pRandomNumber);
+    extern(C) void FinishSessionKeyRefresh(ID3D11CryptoSession* pCryptoSession);
+    extern(C) int GetEncryptionBltKey(ID3D11CryptoSession* pCryptoSession, uint KeySize, void* pReadbackKey);
+    extern(C) int NegotiateAuthenticatedChannelKeyExchange(ID3D11AuthenticatedChannel* pChannel, uint DataSize, void* pData);
+    extern(C) int QueryAuthenticatedChannel(ID3D11AuthenticatedChannel* pChannel, uint InputSize, void* pInput, uint OutputSize, void* pOutput);
+    extern(C) int ConfigureAuthenticatedChannel(ID3D11AuthenticatedChannel* pChannel, uint InputSize, void* pInput, D3D11_AUTHENTICATED_CONFIGURE_OUTPUT* pOutput);
+    extern(C) void VideoProcessorSetStreamRotation(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int Enable, D3D11_VIDEO_PROCESSOR_ROTATION Rotation);
+    extern(C) void VideoProcessorGetStreamRotation(ID3D11VideoProcessor* pVideoProcessor, uint StreamIndex, int* pEnable, D3D11_VIDEO_PROCESSOR_ROTATION* pRotation);
 }
 
 // d3d11.h: 13173
 interface ID3D11VideoDevice: IUnknown {
     static immutable iidof = GUID(0x10ec4d5b, 0x975a, 0x4689, [0xb9, 0xe4, 0xd0, 0xaa, 0xc3, 0x0f, 0xe3, 0x33]);
-    int CreateVideoDecoder(D3D11_VIDEO_DECODER_DESC* pVideoDesc, D3D11_VIDEO_DECODER_CONFIG* pConfig, ID3D11VideoDecoder** ppDecoder);
-    int CreateVideoProcessor(ID3D11VideoProcessorEnumerator* pEnum, uint RateConversionIndex, ID3D11VideoProcessor** ppVideoProcessor);
-    int CreateAuthenticatedChannel(D3D11_AUTHENTICATED_CHANNEL_TYPE ChannelType, ID3D11AuthenticatedChannel** ppAuthenticatedChannel);
-    int CreateCryptoSession(_GUID* pCryptoType, _GUID* pDecoderProfile, _GUID* pKeyExchangeType, ID3D11CryptoSession** ppCryptoSession);
-    int CreateVideoDecoderOutputView(ID3D11Resource* pResource, D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC* pDesc, ID3D11VideoDecoderOutputView** ppVDOVView);
-    int CreateVideoProcessorInputView(ID3D11Resource* pResource, ID3D11VideoProcessorEnumerator* pEnum, D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC* pDesc, ID3D11VideoProcessorInputView** ppVPIView);
-    int CreateVideoProcessorOutputView(ID3D11Resource* pResource, ID3D11VideoProcessorEnumerator* pEnum, D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC* pDesc, ID3D11VideoProcessorOutputView** ppVPOView);
-    int CreateVideoProcessorEnumerator(D3D11_VIDEO_PROCESSOR_CONTENT_DESC* pDesc, ID3D11VideoProcessorEnumerator** ppEnum);
-    uint GetVideoDecoderProfileCount();
-    int GetVideoDecoderProfile(uint Index, _GUID* pDecoderProfile);
-    int CheckVideoDecoderFormat(_GUID* pDecoderProfile, DXGI_FORMAT Format, int* pSupported);
-    int GetVideoDecoderConfigCount(D3D11_VIDEO_DECODER_DESC* pDesc, uint* pCount);
-    int GetVideoDecoderConfig(D3D11_VIDEO_DECODER_DESC* pDesc, uint Index, D3D11_VIDEO_DECODER_CONFIG* pConfig);
-    int GetContentProtectionCaps(_GUID* pCryptoType, _GUID* pDecoderProfile, D3D11_VIDEO_CONTENT_PROTECTION_CAPS* pCaps);
-    int CheckCryptoKeyExchange(_GUID* pCryptoType, _GUID* pDecoderProfile, uint Index, _GUID* pKeyExchangeType);
-    int SetPrivateData(_GUID* guid, uint DataSize, void* pData);
-    int SetPrivateDataInterface(_GUID* guid, IUnknown* pData);
+    extern(C) int CreateVideoDecoder(D3D11_VIDEO_DECODER_DESC* pVideoDesc, D3D11_VIDEO_DECODER_CONFIG* pConfig, ID3D11VideoDecoder** ppDecoder);
+    extern(C) int CreateVideoProcessor(ID3D11VideoProcessorEnumerator* pEnum, uint RateConversionIndex, ID3D11VideoProcessor** ppVideoProcessor);
+    extern(C) int CreateAuthenticatedChannel(D3D11_AUTHENTICATED_CHANNEL_TYPE ChannelType, ID3D11AuthenticatedChannel** ppAuthenticatedChannel);
+    extern(C) int CreateCryptoSession(_GUID* pCryptoType, _GUID* pDecoderProfile, _GUID* pKeyExchangeType, ID3D11CryptoSession** ppCryptoSession);
+    extern(C) int CreateVideoDecoderOutputView(ID3D11Resource* pResource, D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC* pDesc, ID3D11VideoDecoderOutputView** ppVDOVView);
+    extern(C) int CreateVideoProcessorInputView(ID3D11Resource* pResource, ID3D11VideoProcessorEnumerator* pEnum, D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC* pDesc, ID3D11VideoProcessorInputView** ppVPIView);
+    extern(C) int CreateVideoProcessorOutputView(ID3D11Resource* pResource, ID3D11VideoProcessorEnumerator* pEnum, D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC* pDesc, ID3D11VideoProcessorOutputView** ppVPOView);
+    extern(C) int CreateVideoProcessorEnumerator(D3D11_VIDEO_PROCESSOR_CONTENT_DESC* pDesc, ID3D11VideoProcessorEnumerator** ppEnum);
+    extern(C) uint GetVideoDecoderProfileCount();
+    extern(C) int GetVideoDecoderProfile(uint Index, _GUID* pDecoderProfile);
+    extern(C) int CheckVideoDecoderFormat(_GUID* pDecoderProfile, DXGI_FORMAT Format, int* pSupported);
+    extern(C) int GetVideoDecoderConfigCount(D3D11_VIDEO_DECODER_DESC* pDesc, uint* pCount);
+    extern(C) int GetVideoDecoderConfig(D3D11_VIDEO_DECODER_DESC* pDesc, uint Index, D3D11_VIDEO_DECODER_CONFIG* pConfig);
+    extern(C) int GetContentProtectionCaps(_GUID* pCryptoType, _GUID* pDecoderProfile, D3D11_VIDEO_CONTENT_PROTECTION_CAPS* pCaps);
+    extern(C) int CheckCryptoKeyExchange(_GUID* pCryptoType, _GUID* pDecoderProfile, uint Index, _GUID* pKeyExchangeType);
+    extern(C) int SetPrivateData(_GUID* guid, uint DataSize, void* pData);
+    extern(C) int SetPrivateDataInterface(_GUID* guid, IUnknown* pData);
 }
 
 // d3d11.h: 13576
 interface ID3D11Device: IUnknown {
     static immutable iidof = GUID(0xdb6f6ddb, 0xac77, 0x4e88, [0x82, 0x53, 0x81, 0x9d, 0xf9, 0xbb, 0xf1, 0x40]);
-    int CreateBuffer(D3D11_BUFFER_DESC* pDesc, D3D11_SUBRESOURCE_DATA* pInitialData, ID3D11Buffer** ppBuffer);
-    int CreateTexture1D(D3D11_TEXTURE1D_DESC* pDesc, D3D11_SUBRESOURCE_DATA* pInitialData, ID3D11Texture1D** ppTexture1D);
-    int CreateTexture2D(D3D11_TEXTURE2D_DESC* pDesc, D3D11_SUBRESOURCE_DATA* pInitialData, ID3D11Texture2D** ppTexture2D);
-    int CreateTexture3D(D3D11_TEXTURE3D_DESC* pDesc, D3D11_SUBRESOURCE_DATA* pInitialData, ID3D11Texture3D** ppTexture3D);
-    int CreateShaderResourceView(ID3D11Resource* pResource, D3D11_SHADER_RESOURCE_VIEW_DESC* pDesc, ID3D11ShaderResourceView** ppSRView);
-    int CreateUnorderedAccessView(ID3D11Resource* pResource, D3D11_UNORDERED_ACCESS_VIEW_DESC* pDesc, ID3D11UnorderedAccessView** ppUAView);
-    int CreateRenderTargetView(ID3D11Resource* pResource, D3D11_RENDER_TARGET_VIEW_DESC* pDesc, ID3D11RenderTargetView** ppRTView);
-    int CreateDepthStencilView(ID3D11Resource* pResource, D3D11_DEPTH_STENCIL_VIEW_DESC* pDesc, ID3D11DepthStencilView** ppDepthStencilView);
-    int CreateInputLayout(D3D11_INPUT_ELEMENT_DESC* pInputElementDescs, uint NumElements, void* pShaderBytecodeWithInputSignature, ulong BytecodeLength, ID3D11InputLayout** ppInputLayout);
-    int CreateVertexShader(void* pShaderBytecode, ulong BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11VertexShader** ppVertexShader);
-    int CreateGeometryShader(void* pShaderBytecode, ulong BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11GeometryShader** ppGeometryShader);
-    int CreateGeometryShaderWithStreamOutput(void* pShaderBytecode, ulong BytecodeLength, D3D11_SO_DECLARATION_ENTRY* pSODeclaration, uint NumEntries, uint* pBufferStrides, uint NumStrides, uint RasterizedStream, ID3D11ClassLinkage* pClassLinkage, ID3D11GeometryShader** ppGeometryShader);
-    int CreatePixelShader(void* pShaderBytecode, ulong BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11PixelShader** ppPixelShader);
-    int CreateHullShader(void* pShaderBytecode, ulong BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11HullShader** ppHullShader);
-    int CreateDomainShader(void* pShaderBytecode, ulong BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11DomainShader** ppDomainShader);
-    int CreateComputeShader(void* pShaderBytecode, ulong BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11ComputeShader** ppComputeShader);
-    int CreateClassLinkage(ID3D11ClassLinkage** ppLinkage);
-    int CreateBlendState(D3D11_BLEND_DESC* pBlendStateDesc, ID3D11BlendState** ppBlendState);
-    int CreateDepthStencilState(D3D11_DEPTH_STENCIL_DESC* pDepthStencilDesc, ID3D11DepthStencilState** ppDepthStencilState);
-    int CreateRasterizerState(D3D11_RASTERIZER_DESC* pRasterizerDesc, ID3D11RasterizerState** ppRasterizerState);
-    int CreateSamplerState(D3D11_SAMPLER_DESC* pSamplerDesc, ID3D11SamplerState** ppSamplerState);
-    int CreateQuery(D3D11_QUERY_DESC* pQueryDesc, ID3D11Query** ppQuery);
-    int CreatePredicate(D3D11_QUERY_DESC* pPredicateDesc, ID3D11Predicate** ppPredicate);
-    int CreateCounter(D3D11_COUNTER_DESC* pCounterDesc, ID3D11Counter** ppCounter);
-    int CreateDeferredContext(uint ContextFlags, ID3D11DeviceContext** ppDeferredContext);
-    int OpenSharedResource(void* hResource, _GUID* ReturnedInterface, void** ppResource);
-    int CheckFormatSupport(DXGI_FORMAT Format, uint* pFormatSupport);
-    int CheckMultisampleQualityLevels(DXGI_FORMAT Format, uint SampleCount, uint* pNumQualityLevels);
-    void CheckCounterInfo(D3D11_COUNTER_INFO* pCounterInfo);
-    int CheckCounter(D3D11_COUNTER_DESC* pDesc, D3D11_COUNTER_TYPE* pType, uint* pActiveCounters, byte* szName, uint* pNameLength, byte* szUnits, uint* pUnitsLength, byte* szDescription, uint* pDescriptionLength);
-    int CheckFeatureSupport(D3D11_FEATURE Feature, void* pFeatureSupportData, uint FeatureSupportDataSize);
-    int GetPrivateData(_GUID* guid, uint* pDataSize, void* pData);
-    int SetPrivateData(_GUID* guid, uint DataSize, void* pData);
-    int SetPrivateDataInterface(_GUID* guid, IUnknown* pData);
-    D3D_FEATURE_LEVEL GetFeatureLevel();
-    uint GetCreationFlags();
-    int GetDeviceRemovedReason();
-    void GetImmediateContext(ID3D11DeviceContext** ppImmediateContext);
-    int SetExceptionMode(uint RaiseFlags);
-    uint GetExceptionMode();
+    extern(C) int CreateBuffer(D3D11_BUFFER_DESC* pDesc, D3D11_SUBRESOURCE_DATA* pInitialData, ID3D11Buffer** ppBuffer);
+    extern(C) int CreateTexture1D(D3D11_TEXTURE1D_DESC* pDesc, D3D11_SUBRESOURCE_DATA* pInitialData, ID3D11Texture1D** ppTexture1D);
+    extern(C) int CreateTexture2D(D3D11_TEXTURE2D_DESC* pDesc, D3D11_SUBRESOURCE_DATA* pInitialData, ID3D11Texture2D** ppTexture2D);
+    extern(C) int CreateTexture3D(D3D11_TEXTURE3D_DESC* pDesc, D3D11_SUBRESOURCE_DATA* pInitialData, ID3D11Texture3D** ppTexture3D);
+    extern(C) int CreateShaderResourceView(ID3D11Resource* pResource, D3D11_SHADER_RESOURCE_VIEW_DESC* pDesc, ID3D11ShaderResourceView** ppSRView);
+    extern(C) int CreateUnorderedAccessView(ID3D11Resource* pResource, D3D11_UNORDERED_ACCESS_VIEW_DESC* pDesc, ID3D11UnorderedAccessView** ppUAView);
+    extern(C) int CreateRenderTargetView(ID3D11Resource* pResource, D3D11_RENDER_TARGET_VIEW_DESC* pDesc, ID3D11RenderTargetView** ppRTView);
+    extern(C) int CreateDepthStencilView(ID3D11Resource* pResource, D3D11_DEPTH_STENCIL_VIEW_DESC* pDesc, ID3D11DepthStencilView** ppDepthStencilView);
+    extern(C) int CreateInputLayout(D3D11_INPUT_ELEMENT_DESC* pInputElementDescs, uint NumElements, void* pShaderBytecodeWithInputSignature, ulong BytecodeLength, ID3D11InputLayout** ppInputLayout);
+    extern(C) int CreateVertexShader(void* pShaderBytecode, ulong BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11VertexShader** ppVertexShader);
+    extern(C) int CreateGeometryShader(void* pShaderBytecode, ulong BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11GeometryShader** ppGeometryShader);
+    extern(C) int CreateGeometryShaderWithStreamOutput(void* pShaderBytecode, ulong BytecodeLength, D3D11_SO_DECLARATION_ENTRY* pSODeclaration, uint NumEntries, uint* pBufferStrides, uint NumStrides, uint RasterizedStream, ID3D11ClassLinkage* pClassLinkage, ID3D11GeometryShader** ppGeometryShader);
+    extern(C) int CreatePixelShader(void* pShaderBytecode, ulong BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11PixelShader** ppPixelShader);
+    extern(C) int CreateHullShader(void* pShaderBytecode, ulong BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11HullShader** ppHullShader);
+    extern(C) int CreateDomainShader(void* pShaderBytecode, ulong BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11DomainShader** ppDomainShader);
+    extern(C) int CreateComputeShader(void* pShaderBytecode, ulong BytecodeLength, ID3D11ClassLinkage* pClassLinkage, ID3D11ComputeShader** ppComputeShader);
+    extern(C) int CreateClassLinkage(ID3D11ClassLinkage** ppLinkage);
+    extern(C) int CreateBlendState(D3D11_BLEND_DESC* pBlendStateDesc, ID3D11BlendState** ppBlendState);
+    extern(C) int CreateDepthStencilState(D3D11_DEPTH_STENCIL_DESC* pDepthStencilDesc, ID3D11DepthStencilState** ppDepthStencilState);
+    extern(C) int CreateRasterizerState(D3D11_RASTERIZER_DESC* pRasterizerDesc, ID3D11RasterizerState** ppRasterizerState);
+    extern(C) int CreateSamplerState(D3D11_SAMPLER_DESC* pSamplerDesc, ID3D11SamplerState** ppSamplerState);
+    extern(C) int CreateQuery(D3D11_QUERY_DESC* pQueryDesc, ID3D11Query** ppQuery);
+    extern(C) int CreatePredicate(D3D11_QUERY_DESC* pPredicateDesc, ID3D11Predicate** ppPredicate);
+    extern(C) int CreateCounter(D3D11_COUNTER_DESC* pCounterDesc, ID3D11Counter** ppCounter);
+    extern(C) int CreateDeferredContext(uint ContextFlags, ID3D11DeviceContext** ppDeferredContext);
+    extern(C) int OpenSharedResource(void* hResource, _GUID* ReturnedInterface, void** ppResource);
+    extern(C) int CheckFormatSupport(DXGI_FORMAT Format, uint* pFormatSupport);
+    extern(C) int CheckMultisampleQualityLevels(DXGI_FORMAT Format, uint SampleCount, uint* pNumQualityLevels);
+    extern(C) void CheckCounterInfo(D3D11_COUNTER_INFO* pCounterInfo);
+    extern(C) int CheckCounter(D3D11_COUNTER_DESC* pDesc, D3D11_COUNTER_TYPE* pType, uint* pActiveCounters, byte* szName, uint* pNameLength, byte* szUnits, uint* pUnitsLength, byte* szDescription, uint* pDescriptionLength);
+    extern(C) int CheckFeatureSupport(D3D11_FEATURE Feature, void* pFeatureSupportData, uint FeatureSupportDataSize);
+    extern(C) int GetPrivateData(_GUID* guid, uint* pDataSize, void* pData);
+    extern(C) int SetPrivateData(_GUID* guid, uint DataSize, void* pData);
+    extern(C) int SetPrivateDataInterface(_GUID* guid, IUnknown* pData);
+    extern(C) D3D_FEATURE_LEVEL GetFeatureLevel();
+    extern(C) uint GetCreationFlags();
+    extern(C) int GetDeviceRemovedReason();
+    extern(C) void GetImmediateContext(ID3D11DeviceContext** ppImmediateContext);
+    extern(C) int SetExceptionMode(uint RaiseFlags);
+    extern(C) uint GetExceptionMode();
 }
 
-int D3D11CreateDevice(IDXGIAdapter* pAdapter, D3D_DRIVER_TYPE DriverType, HINSTANCE* Software, uint Flags, D3D_FEATURE_LEVEL* pFeatureLevels, uint FeatureLevels, uint SDKVersion, ID3D11Device** ppDevice, D3D_FEATURE_LEVEL* pFeatureLevel, ID3D11DeviceContext** ppImmediateContext);
-int D3D11CreateDeviceAndSwapChain(IDXGIAdapter* pAdapter, D3D_DRIVER_TYPE DriverType, HINSTANCE* Software, uint Flags, D3D_FEATURE_LEVEL* pFeatureLevels, uint FeatureLevels, uint SDKVersion, DXGI_SWAP_CHAIN_DESC* pSwapChainDesc, IDXGISwapChain** ppSwapChain, ID3D11Device** ppDevice, D3D_FEATURE_LEVEL* pFeatureLevel, ID3D11DeviceContext** ppImmediateContext);
+extern(C) int D3D11CreateDevice(IDXGIAdapter* pAdapter, D3D_DRIVER_TYPE DriverType, HINSTANCE* Software, uint Flags, D3D_FEATURE_LEVEL* pFeatureLevels, uint FeatureLevels, uint SDKVersion, ID3D11Device** ppDevice, D3D_FEATURE_LEVEL* pFeatureLevel, ID3D11DeviceContext** ppImmediateContext);
+extern(C) int D3D11CreateDeviceAndSwapChain(IDXGIAdapter* pAdapter, D3D_DRIVER_TYPE DriverType, HINSTANCE* Software, uint Flags, D3D_FEATURE_LEVEL* pFeatureLevels, uint FeatureLevels, uint SDKVersion, DXGI_SWAP_CHAIN_DESC* pSwapChainDesc, IDXGISwapChain** ppSwapChain, ID3D11Device** ppDevice, D3D_FEATURE_LEVEL* pFeatureLevel, ID3D11DeviceContext** ppImmediateContext);

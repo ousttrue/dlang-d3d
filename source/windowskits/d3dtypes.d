@@ -5,6 +5,7 @@ import core.sys.windows.windef;
 import core.sys.windows.com;
 import windowskits.dxgitype;
 
+
 enum _D3DLIGHTTYPE {
     D3DLIGHT_POINT = 0x00000001,
     D3DLIGHT_SPOT = 0x00000002,

@@ -5,6 +5,7 @@ import core.sys.windows.windef;
 import core.sys.windows.com;
 import windowskits.guiddef;
 
+
 enum COMPARTMENT_ID {
     UNSPECIFIED_COMPARTMENT_ID = 0x00000000,
     DEFAULT_COMPARTMENT_ID = 0x00000001,
@@ -91,7 +92,7 @@ struct _LUID{
     int HighPart;
 }
 
-ubyte _rotl8(ubyte Value, ubyte Shift);
-ushort _rotl16(ushort Value, ubyte Shift);
-uint _rotl(uint Value, int Shift);
-ulong _rotl64(ulong Value, int Shift);
+extern(C) ubyte _rotl8(ubyte Value, ubyte Shift);
+extern(C) ushort _rotl16(ushort Value, ubyte Shift);
+extern(C) uint _rotl(uint Value, int Shift);
+extern(C) ulong _rotl64(ulong Value, int Shift);

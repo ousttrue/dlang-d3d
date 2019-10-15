@@ -7,6 +7,7 @@
 	"license": "proprietary",
 	"name": "dlang-d3d",
 	"libs": [
-		"user32"
+		"user32",
+		"d3d11"
 	]
 }

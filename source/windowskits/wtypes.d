@@ -7,6 +7,7 @@ import windowskits.wtypesbase;
 import windowskits.wingdi;
 import windowskits.guiddef;
 
+
 enum tagDVASPECT {
     DVASPECT_CONTENT = 0x00000001,
     DVASPECT_THUMBNAIL = 0x00000002,
