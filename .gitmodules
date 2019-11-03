@@ -1,3 +1,6 @@
 [submodule "dependencies/cpptypeinfo"]
 	path = dependencies/cpptypeinfo
 	url = https://github.com/ousttrue/cpptypeinfo.git
+[submodule "dependencies/dclangen"]
+	path = dependencies/dclangen
+	url = https://github.com/ousttrue/dclangen.git
