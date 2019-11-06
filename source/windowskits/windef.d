@@ -1,27 +1,28 @@
-// cpptypeinfo generated
 module windowskits.windef;
-
+import windowskits.winnt;
 import core.sys.windows.windef;
-import core.sys.windows.com;
-
-
-struct tagRECT{
-    int left;
-    int top;
-    int right;
-    int bottom;
+import core.sys.windows.winnt;
+struct tagRECT
+{
+   LONG left;
+   LONG top;
+   LONG right;
+   LONG bottom;
 }
-
-struct tagSIZE{
-    int cx;
-    int cy;
+struct tagSIZE
+{
+   LONG cx;
+   LONG cy;
 }
-
-struct HWND__{
-    int unused;
+struct HMONITOR__
+{
+   int unused;
 }
-
-struct HMONITOR__{
-    int unused;
+struct HWND__
+{
+   int unused;
 }
-
+struct HDC__
+{
+   int unused;
+}

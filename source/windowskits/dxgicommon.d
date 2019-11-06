@@ -1,17 +1,13 @@
-// cpptypeinfo generated
 module windowskits.dxgicommon;
-
+import windowskits.minwindef;
 import core.sys.windows.windef;
-import core.sys.windows.com;
-
-
-struct DXGI_RATIONAL{
-    uint Numerator;
-    uint Denominator;
+struct DXGI_SAMPLE_DESC
+{
+   UINT Count;
+   UINT Quality;
 }
-
-struct DXGI_SAMPLE_DESC{
-    uint Count;
-    uint Quality;
+struct DXGI_RATIONAL
+{
+   UINT Numerator;
+   UINT Denominator;
 }
-

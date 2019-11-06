@@ -17,6 +17,15 @@
             "problemMatcher": []
         },
         {
+            "label": "build dclangen",
+            "type": "shell",
+            "command": "dub build",
+            "options": {
+                "cwd": "${workspaceFolder}/dependencies/dclangen"
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "generate d3d",
             "type": "shell",
             "command": "python",

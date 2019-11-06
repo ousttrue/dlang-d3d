@@ -1,66 +1,55 @@
-// cpptypeinfo generated
 module windowskits.dxgitype;
-
+import windowskits.minwindef;
 import core.sys.windows.windef;
-import core.sys.windows.com;
 import windowskits.dxgicommon;
 import windowskits.dxgiformat;
-
-
-enum DXGI_MODE_SCANLINE_ORDER {
-    UNSPECIFIED = 0x00000000,
-    PROGRESSIVE = 0x00000001,
-    UPPER_FIELD_FIRST = 0x00000002,
-    LOWER_FIELD_FIRST = 0x00000003,
+enum DXGI_MODE_ROTATION
+{
+    DXGI_MODE_ROTATION_UNSPECIFIED = 0x0,
+    DXGI_MODE_ROTATION_IDENTITY = 0x1,
+    DXGI_MODE_ROTATION_ROTATE90 = 0x2,
+    DXGI_MODE_ROTATION_ROTATE180 = 0x3,
+    DXGI_MODE_ROTATION_ROTATE270 = 0x4,
 }
-
-enum DXGI_MODE_SCALING {
-    UNSPECIFIED = 0x00000000,
-    CENTERED = 0x00000001,
-    STRETCHED = 0x00000002,
+struct DXGI_MODE_DESC
+{
+   UINT Width;
+   UINT Height;
+   DXGI_RATIONAL RefreshRate;
+   DXGI_FORMAT Format;
+   DXGI_MODE_SCANLINE_ORDER ScanlineOrdering;
+   DXGI_MODE_SCALING Scaling;
 }
-
-enum DXGI_MODE_ROTATION {
-    UNSPECIFIED = 0x00000000,
-    IDENTITY = 0x00000001,
-    ROTATE90 = 0x00000002,
-    ROTATE180 = 0x00000003,
-    ROTATE270 = 0x00000004,
+enum DXGI_MODE_SCANLINE_ORDER
+{
+    DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED = 0x0,
+    DXGI_MODE_SCANLINE_ORDER_PROGRESSIVE = 0x1,
+    DXGI_MODE_SCANLINE_ORDER_UPPER_FIELD_FIRST = 0x2,
+    DXGI_MODE_SCANLINE_ORDER_LOWER_FIELD_FIRST = 0x3,
 }
-
-struct DXGI_MODE_DESC{
-    uint Width;
-    uint Height;
-    DXGI_RATIONAL RefreshRate;
-    DXGI_FORMAT Format;
-    DXGI_MODE_SCANLINE_ORDER ScanlineOrdering;
-    DXGI_MODE_SCALING Scaling;
+enum DXGI_MODE_SCALING
+{
+    DXGI_MODE_SCALING_UNSPECIFIED = 0x0,
+    DXGI_MODE_SCALING_CENTERED = 0x1,
+    DXGI_MODE_SCALING_STRETCHED = 0x2,
 }
-
-struct DXGI_GAMMA_CONTROL_CAPABILITIES{
-    int ScaleAndOffsetSupported;
-    float MaxConvertedValue;
-    float MinConvertedValue;
-    uint NumGammaControlPoints;
-    float* ControlPointPositions;
+struct DXGI_GAMMA_CONTROL_CAPABILITIES
+{
+   BOOL ScaleAndOffsetSupported;
+   float MaxConvertedValue;
+   float MinConvertedValue;
+   UINT NumGammaControlPoints;
+   float[1025] ControlPointPositions;
 }
-
-struct DXGI_GAMMA_CONTROL{
-    DXGI_RGB Scale;
-    DXGI_RGB Offset;
-    DXGI_RGB* GammaCurve;
+struct DXGI_GAMMA_CONTROL
+{
+   DXGI_RGB Scale;
+   DXGI_RGB Offset;
+   DXGI_RGB[1025] GammaCurve;
 }
-
-struct DXGI_RGB{
-    float Red;
-    float Green;
-    float Blue;
+struct DXGI_RGB
+{
+   float Red;
+   float Green;
+   float Blue;
 }
-
-struct _D3DCOLORVALUE{
-    float r;
-    float g;
-    float b;
-    float a;
-}
-

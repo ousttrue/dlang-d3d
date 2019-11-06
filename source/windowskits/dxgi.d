@@ -1,275 +1,272 @@
-// cpptypeinfo generated
 module windowskits.dxgi;
-
+import core.sys.windows.unknwn;
+import std.uuid;
+import windowskits.winnt;
 import core.sys.windows.windef;
-import core.sys.windows.com;
+import core.sys.windows.winnt;
 import windowskits.guiddef;
-import windowskits.unknwnbase;
-import windowskits.windef;
-import windowskits.ntdef;
-import windowskits.dxgiformat;
-import windowskits.dxgitype;
-import windowskits.dcommon;
+import core.sys.windows.basetyps;
 import windowskits.minwindef;
+import windowskits.windef;
+import windowskits.dxgitype;
+import windowskits.dxgiformat;
 import windowskits.dxgicommon;
-
-const DXGI_CPU_ACCESS_NONE = ( 0 );
-const DXGI_CPU_ACCESS_DYNAMIC = ( 1 );
-const DXGI_CPU_ACCESS_READ_WRITE = ( 2 );
-const DXGI_CPU_ACCESS_SCRATCH = ( 3 );
-const DXGI_CPU_ACCESS_FIELD = 15;
-const DXGI_USAGE_SHADER_INPUT = 0x00000010UL;
-const DXGI_USAGE_RENDER_TARGET_OUTPUT = 0x00000020UL;
-const DXGI_USAGE_BACK_BUFFER = 0x00000040UL;
-const DXGI_USAGE_SHARED = 0x00000080UL;
-const DXGI_USAGE_READ_ONLY = 0x00000100UL;
-const DXGI_USAGE_DISCARD_ON_PRESENT = 0x00000200UL;
-const DXGI_USAGE_UNORDERED_ACCESS = 0x00000400UL;
-const DXGI_RESOURCE_PRIORITY_MINIMUM = ( 0x28000000 );
-const DXGI_RESOURCE_PRIORITY_LOW = ( 0x50000000 );
-const DXGI_RESOURCE_PRIORITY_NORMAL = ( 0x78000000 );
-const DXGI_RESOURCE_PRIORITY_HIGH = ( 0xa0000000 );
-const DXGI_RESOURCE_PRIORITY_MAXIMUM = ( 0xc8000000 );
-const DXGI_MAP_READ = ( 1UL );
-const DXGI_MAP_WRITE = ( 2UL );
-const DXGI_MAP_DISCARD = ( 4UL );
-const DXGI_ENUM_MODES_INTERLACED = ( 1UL );
-const DXGI_ENUM_MODES_SCALING = ( 2UL );
-const DXGI_MAX_SWAP_CHAIN_BUFFERS = ( 16 );
-const DXGI_PRESENT_TEST = 0x00000001UL;
-const DXGI_PRESENT_DO_NOT_SEQUENCE = 0x00000002UL;
-const DXGI_PRESENT_RESTART = 0x00000004UL;
-const DXGI_PRESENT_DO_NOT_WAIT = 0x00000008UL;
-const DXGI_PRESENT_STEREO_PREFER_RIGHT = 0x00000010UL;
-const DXGI_PRESENT_STEREO_TEMPORARY_MONO = 0x00000020UL;
-const DXGI_PRESENT_RESTRICT_TO_OUTPUT = 0x00000040UL;
-const DXGI_PRESENT_USE_DURATION = 0x00000100UL;
-const DXGI_PRESENT_ALLOW_TEARING = 0x00000200UL;
-const DXGI_MWA_NO_WINDOW_CHANGES = ( 1 << 0 );
-const DXGI_MWA_NO_ALT_ENTER = ( 1 << 1 );
-const DXGI_MWA_NO_PRINT_SCREEN = ( 1 << 2 );
-const DXGI_MWA_VALID = ( 0x7 );
-
-enum DXGI_RESIDENCY {
-    FULLY_RESIDENT = 0x00000001,
-    RESIDENT_IN_SHARED_MEMORY = 0x00000002,
-    EVICTED_TO_DISK = 0x00000003,
+import windowskits.basetsd;
+enum DXGI_CPU_ACCESS_NONE = ( 0 );
+enum DXGI_CPU_ACCESS_DYNAMIC = ( 1 );
+enum DXGI_CPU_ACCESS_READ_WRITE = ( 2 );
+enum DXGI_CPU_ACCESS_SCRATCH = ( 3 );
+enum DXGI_CPU_ACCESS_FIELD = 15;
+enum DXGI_USAGE_SHADER_INPUT = 0x00000010UL;
+enum DXGI_USAGE_RENDER_TARGET_OUTPUT = 0x00000020UL;
+enum DXGI_USAGE_BACK_BUFFER = 0x00000040UL;
+enum DXGI_USAGE_SHARED = 0x00000080UL;
+enum DXGI_USAGE_READ_ONLY = 0x00000100UL;
+enum DXGI_USAGE_DISCARD_ON_PRESENT = 0x00000200UL;
+enum DXGI_USAGE_UNORDERED_ACCESS = 0x00000400UL;
+enum DXGI_RESOURCE_PRIORITY_MINIMUM = ( 0x28000000 );
+enum DXGI_RESOURCE_PRIORITY_LOW = ( 0x50000000 );
+enum DXGI_RESOURCE_PRIORITY_NORMAL = ( 0x78000000 );
+enum DXGI_RESOURCE_PRIORITY_HIGH = ( 0xa0000000 );
+enum DXGI_RESOURCE_PRIORITY_MAXIMUM = ( 0xc8000000 );
+enum DXGI_MAP_READ = ( 1UL );
+enum DXGI_MAP_WRITE = ( 2UL );
+enum DXGI_MAP_DISCARD = ( 4UL );
+enum DXGI_ENUM_MODES_INTERLACED = ( 1UL );
+enum DXGI_ENUM_MODES_SCALING = ( 2UL );
+enum DXGI_MAX_SWAP_CHAIN_BUFFERS = ( 16 );
+enum DXGI_PRESENT_TEST = 0x00000001UL;
+enum DXGI_PRESENT_DO_NOT_SEQUENCE = 0x00000002UL;
+enum DXGI_PRESENT_RESTART = 0x00000004UL;
+enum DXGI_PRESENT_DO_NOT_WAIT = 0x00000008UL;
+enum DXGI_PRESENT_STEREO_PREFER_RIGHT = 0x00000010UL;
+enum DXGI_PRESENT_STEREO_TEMPORARY_MONO = 0x00000020UL;
+enum DXGI_PRESENT_RESTRICT_TO_OUTPUT = 0x00000040UL;
+enum DXGI_PRESENT_USE_DURATION = 0x00000100UL;
+enum DXGI_PRESENT_ALLOW_TEARING = 0x00000200UL;
+enum DXGI_MWA_NO_WINDOW_CHANGES = ( 1 << 0 );
+enum DXGI_MWA_NO_ALT_ENTER = ( 1 << 1 );
+enum DXGI_MWA_NO_PRINT_SCREEN = ( 1 << 2 );
+enum DXGI_MWA_VALID = ( 0x7 );
+interface IDXGIAdapter: IDXGIObject
+{
+    enum iidof = parseUUID("2411e7e1-12ac-4ccf-bd14-9798e8534dc0");
+    HRESULT EnumOutputs(UINT Output, IDXGIOutput* ppOutput);
+    HRESULT GetDesc(DXGI_ADAPTER_DESC* pDesc);
+    HRESULT CheckInterfaceSupport(GUID* InterfaceName, LARGE_INTEGER* pUMDVersion);
 }
-
-enum DXGI_SWAP_EFFECT {
-    DISCARD = 0x00000000,
-    SEQUENTIAL = 0x00000001,
-    FLIP_SEQUENTIAL = 0x00000003,
-    FLIP_DISCARD = 0x00000004,
+interface IDXGIObject: IUnknown
+{
+    enum iidof = parseUUID("aec22fb8-76f3-4639-9be0-28eb43a67a2e");
+    HRESULT SetPrivateData(GUID* Name, UINT DataSize, void* pData);
+    HRESULT SetPrivateDataInterface(GUID* Name, IUnknown pUnknown);
+    HRESULT GetPrivateData(GUID* Name, UINT* pDataSize, void* pData);
+    HRESULT GetParent(IID* riid, void** ppParent);
 }
-
-enum DXGI_SWAP_CHAIN_FLAG {
-    NONPREROTATED = 0x00000001,
-    ALLOW_MODE_SWITCH = 0x00000002,
-    GDI_COMPATIBLE = 0x00000004,
-    RESTRICTED_CONTENT = 0x00000008,
-    RESTRICT_SHARED_RESOURCE_DRIVER = 0x00000010,
-    DISPLAY_ONLY = 0x00000020,
-    FRAME_LATENCY_WAITABLE_OBJECT = 0x00000040,
-    FOREGROUND_LAYER = 0x00000080,
-    FULLSCREEN_VIDEO = 0x00000100,
-    YUV_VIDEO = 0x00000200,
-    HW_PROTECTED = 0x00000400,
-    ALLOW_TEARING = 0x00000800,
-    RESTRICTED_TO_ALL_HOLOGRAPHIC_DISPLAYS = 0x00001000,
+interface IDXGIOutput: IDXGIObject
+{
+    enum iidof = parseUUID("ae02eedb-c735-4690-8d52-5a8dc20213aa");
+    HRESULT GetDesc(DXGI_OUTPUT_DESC* pDesc);
+    HRESULT GetDisplayModeList(DXGI_FORMAT EnumFormat, UINT Flags, UINT* pNumModes, DXGI_MODE_DESC* pDesc);
+    HRESULT FindClosestMatchingMode(DXGI_MODE_DESC* pModeToMatch, DXGI_MODE_DESC* pClosestMatch, IUnknown pConcernedDevice);
+    HRESULT WaitForVBlank();
+    HRESULT TakeOwnership(IUnknown pDevice, BOOL Exclusive);
+    HRESULT GetGammaControlCapabilities(DXGI_GAMMA_CONTROL_CAPABILITIES* pGammaCaps);
+    HRESULT SetGammaControl(DXGI_GAMMA_CONTROL* pArray);
+    HRESULT GetGammaControl(DXGI_GAMMA_CONTROL* pArray);
+    HRESULT SetDisplaySurface(IDXGISurface pScanoutSurface);
+    HRESULT GetDisplaySurfaceData(IDXGISurface pDestination);
+    HRESULT GetFrameStatistics(DXGI_FRAME_STATISTICS* pStats);
 }
-
-enum DXGI_ADAPTER_FLAG {
-    NONE = 0x00000000,
-    REMOTE = 0x00000001,
-    SOFTWARE = 0x00000002,
-    FORCE_DWORD = -0x0000001,
+struct DXGI_OUTPUT_DESC
+{
+   WCHAR[32] DeviceName;
+   RECT DesktopCoordinates;
+   BOOL AttachedToDesktop;
+   DXGI_MODE_ROTATION Rotation;
+   HMONITOR Monitor;
 }
-
-struct DXGI_SURFACE_DESC{
-    uint Width;
-    uint Height;
-    DXGI_FORMAT Format;
-    DXGI_SAMPLE_DESC SampleDesc;
+interface IDXGISurface: IDXGIDeviceSubObject
+{
+    enum iidof = parseUUID("cafcb56c-6ac3-4889-bf47-9e23bbd260ec");
+    HRESULT GetDesc(DXGI_SURFACE_DESC* pDesc);
+    HRESULT Map(DXGI_MAPPED_RECT* pLockedRect, UINT MapFlags);
+    HRESULT Unmap();
 }
-
-struct DXGI_MAPPED_RECT{
-    int Pitch;
-    ubyte* pBits;
+interface IDXGIDeviceSubObject: IDXGIObject
+{
+    enum iidof = parseUUID("3d3e0379-f9de-4d58-bb6c-18d62992f1a6");
+    HRESULT GetDevice(IID* riid, void** ppDevice);
 }
-
-struct DXGI_ADAPTER_DESC{
-    ushort* Description;
-    uint VendorId;
-    uint DeviceId;
-    uint SubSysId;
-    uint Revision;
-    ulong DedicatedVideoMemory;
-    ulong DedicatedSystemMemory;
-    ulong SharedSystemMemory;
-    _LUID AdapterLuid;
+struct DXGI_SURFACE_DESC
+{
+   UINT Width;
+   UINT Height;
+   DXGI_FORMAT Format;
+   DXGI_SAMPLE_DESC SampleDesc;
 }
-
-struct DXGI_OUTPUT_DESC{
-    ushort* DeviceName;
-    tagRECT DesktopCoordinates;
-    int AttachedToDesktop;
-    DXGI_MODE_ROTATION Rotation;
-    HMONITOR__* Monitor;
+struct DXGI_MAPPED_RECT
+{
+   INT Pitch;
+   BYTE* pBits;
 }
-
-struct DXGI_FRAME_STATISTICS{
-    uint PresentCount;
-    uint PresentRefreshCount;
-    uint SyncRefreshCount;
-    _LARGE_INTEGER SyncQPCTime;
-    _LARGE_INTEGER SyncGPUTime;
+struct DXGI_FRAME_STATISTICS
+{
+   UINT PresentCount;
+   UINT PresentRefreshCount;
+   UINT SyncRefreshCount;
+   LARGE_INTEGER SyncQPCTime;
+   LARGE_INTEGER SyncGPUTime;
 }
-
-struct DXGI_SWAP_CHAIN_DESC{
-    DXGI_MODE_DESC BufferDesc;
-    DXGI_SAMPLE_DESC SampleDesc;
-    uint BufferUsage;
-    uint BufferCount;
-    HWND OutputWindow;
-    int Windowed;
-    DXGI_SWAP_EFFECT SwapEffect;
-    uint Flags;
+struct DXGI_ADAPTER_DESC
+{
+   WCHAR[128] Description;
+   UINT VendorId;
+   UINT DeviceId;
+   UINT SubSysId;
+   UINT Revision;
+   SIZE_T DedicatedVideoMemory;
+   SIZE_T DedicatedSystemMemory;
+   SIZE_T SharedSystemMemory;
+   LUID AdapterLuid;
 }
-
-struct DXGI_SHARED_RESOURCE{
-    void* Handle;
+struct DXGI_SWAP_CHAIN_DESC
+{
+   DXGI_MODE_DESC BufferDesc;
+   DXGI_SAMPLE_DESC SampleDesc;
+   DXGI_USAGE BufferUsage;
+   UINT BufferCount;
+   HWND OutputWindow;
+   BOOL Windowed;
+   DXGI_SWAP_EFFECT SwapEffect;
+   UINT Flags;
 }
-
-struct DXGI_ADAPTER_DESC1{
-    ushort* Description;
-    uint VendorId;
-    uint DeviceId;
-    uint SubSysId;
-    uint Revision;
-    ulong DedicatedVideoMemory;
-    ulong DedicatedSystemMemory;
-    ulong SharedSystemMemory;
-    _LUID AdapterLuid;
-    uint Flags;
+alias DXGI_USAGE = UINT;
+enum DXGI_SWAP_EFFECT
+{
+    DXGI_SWAP_EFFECT_DISCARD = 0x0,
+    DXGI_SWAP_EFFECT_SEQUENTIAL = 0x1,
+    DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL = 0x3,
+    DXGI_SWAP_EFFECT_FLIP_DISCARD = 0x4,
 }
-
-// dxgi.h: 314
-interface IDXGIObject: IUnknown {
-    static immutable iidof = GUID(0xaec22fb8, 0x76f3, 0x4639, [0x9b, 0xe0, 0x28, 0xeb, 0x43, 0xa6, 0x7a, 0x2e]);
-    extern(C) int SetPrivateData(_GUID* Name, uint DataSize, void* pData);
-    extern(C) int SetPrivateDataInterface(_GUID* Name, IUnknown pUnknown);
-    extern(C) int GetPrivateData(_GUID* Name, uint* pDataSize, void* pData);
-    extern(C) int GetParent(_GUID* riid, void** ppParent);
+interface IDXGISwapChain: IDXGIDeviceSubObject
+{
+    enum iidof = parseUUID("310d36a0-d2e7-4c0a-aa04-6a9d23b8886a");
+    HRESULT Present(UINT SyncInterval, UINT Flags);
+    HRESULT GetBuffer(UINT Buffer, IID* riid, void** ppSurface);
+    HRESULT SetFullscreenState(BOOL Fullscreen, IDXGIOutput pTarget);
+    HRESULT GetFullscreenState(BOOL* pFullscreen, IDXGIOutput* ppTarget);
+    HRESULT GetDesc(DXGI_SWAP_CHAIN_DESC* pDesc);
+    HRESULT ResizeBuffers(UINT BufferCount, UINT Width, UINT Height, DXGI_FORMAT NewFormat, UINT SwapChainFlags);
+    HRESULT ResizeTarget(DXGI_MODE_DESC* pNewTargetParameters);
+    HRESULT GetContainingOutput(IDXGIOutput* ppOutput);
+    HRESULT GetFrameStatistics(DXGI_FRAME_STATISTICS* pStats);
+    HRESULT GetLastPresentCount(UINT* pLastPresentCount);
 }
-
-// dxgi.h: 454
-interface IDXGIDeviceSubObject: IDXGIObject {
-    static immutable iidof = GUID(0x3d3e0379, 0xf9de, 0x4d58, [0xbb, 0x6c, 0x18, 0xd6, 0x29, 0x92, 0xf1, 0xa6]);
-    extern(C) int GetDevice(_GUID* riid, void** ppDevice);
+interface IDXGIResource: IDXGIDeviceSubObject
+{
+    enum iidof = parseUUID("035f3ab4-482e-4e50-b41f-8a7f8bd8960b");
+    HRESULT GetSharedHandle(HANDLE* pSharedHandle);
+    HRESULT GetUsage(DXGI_USAGE* pUsage);
+    HRESULT SetEvictionPriority(UINT EvictionPriority);
+    HRESULT GetEvictionPriority(UINT* pEvictionPriority);
 }
-
-// dxgi.h: 584
-interface IDXGIResource: IDXGIDeviceSubObject {
-    static immutable iidof = GUID(0x035f3ab4, 0x482e, 0x4e50, [0xb4, 0x1f, 0x8a, 0x7f, 0x8b, 0xd8, 0x96, 0x0b]);
-    extern(C) int GetSharedHandle(void** pSharedHandle);
-    extern(C) int GetUsage(uint* pUsage);
-    extern(C) int SetEvictionPriority(uint EvictionPriority);
-    extern(C) int GetEvictionPriority(uint* pEvictionPriority);
+interface IDXGIKeyedMutex: IDXGIDeviceSubObject
+{
+    enum iidof = parseUUID("9d8e1289-d7b3-465f-8126-250e349af85d");
+    HRESULT AcquireSync(UINT64 Key, DWORD dwMilliseconds);
+    HRESULT ReleaseSync(UINT64 Key);
 }
-
-// dxgi.h: 753
-interface IDXGIKeyedMutex: IDXGIDeviceSubObject {
-    static immutable iidof = GUID(0x9d8e1289, 0xd7b3, 0x465f, [0x81, 0x26, 0x25, 0x0e, 0x34, 0x9a, 0xf8, 0x5d]);
-    extern(C) int AcquireSync(ulong Key, uint dwMilliseconds);
-    extern(C) int ReleaseSync(ulong Key);
+interface IDXGISurface1: IDXGISurface
+{
+    enum iidof = parseUUID("4ae63092-6327-4c1b-80ae-bfe12ea32b86");
+    HRESULT GetDC(BOOL Discard, HDC* phdc);
+    HRESULT ReleaseDC(RECT* pDirtyRect);
 }
-
-// dxgi.h: 1073
-interface IDXGISurface1: IDXGISurface {
-    static immutable iidof = GUID(0x4ae63092, 0x6327, 0x4c1b, [0x80, 0xae, 0xbf, 0xe1, 0x2e, 0xa3, 0x2b, 0x86]);
-    extern(C) int GetDC(int Discard, HDC** phdc);
-    extern(C) int ReleaseDC(tagRECT* pDirtyRect);
+interface IDXGIFactory: IDXGIObject
+{
+    enum iidof = parseUUID("7b7166ec-21c7-44ae-b21a-c9ae321ae369");
+    HRESULT EnumAdapters(UINT Adapter, IDXGIAdapter* ppAdapter);
+    HRESULT MakeWindowAssociation(HWND WindowHandle, UINT Flags);
+    HRESULT GetWindowAssociation(HWND* pWindowHandle);
+    HRESULT CreateSwapChain(IUnknown pDevice, DXGI_SWAP_CHAIN_DESC* pDesc, IDXGISwapChain* ppSwapChain);
+    HRESULT CreateSoftwareAdapter(HMODULE Module, IDXGIAdapter* ppAdapter);
 }
-
-// dxgi.h: 1257
-interface IDXGIAdapter: IDXGIObject {
-    static immutable iidof = GUID(0x2411e7e1, 0x12ac, 0x4ccf, [0xbd, 0x14, 0x97, 0x98, 0xe8, 0x53, 0x4d, 0xc0]);
-    extern(C) int EnumOutputs(uint Output, IDXGIOutput* ppOutput);
-    extern(C) int GetDesc(DXGI_ADAPTER_DESC* pDesc);
-    extern(C) int CheckInterfaceSupport(_GUID* InterfaceName, _LARGE_INTEGER* pUMDVersion);
+interface IDXGIDevice: IDXGIObject
+{
+    enum iidof = parseUUID("54ec77fa-1377-44e6-8c32-88fd5f44c84c");
+    HRESULT GetAdapter(IDXGIAdapter* pAdapter);
+    HRESULT CreateSurface(DXGI_SURFACE_DESC* pDesc, UINT NumSurfaces, DXGI_USAGE Usage, DXGI_SHARED_RESOURCE* pSharedResource, IDXGISurface* ppSurface);
+    HRESULT QueryResourceResidency(IUnknown* ppResources, DXGI_RESIDENCY* pResidencyStatus, UINT NumResources);
+    HRESULT SetGPUThreadPriority(INT Priority);
+    HRESULT GetGPUThreadPriority(INT* pPriority);
 }
-
-// dxgi.h: 1425
-interface IDXGIOutput: IDXGIObject {
-    static immutable iidof = GUID(0xae02eedb, 0xc735, 0x4690, [0x8d, 0x52, 0x5a, 0x8d, 0xc2, 0x02, 0x13, 0xaa]);
-    extern(C) int GetDesc(DXGI_OUTPUT_DESC* pDesc);
-    extern(C) int GetDisplayModeList(DXGI_FORMAT EnumFormat, uint Flags, uint* pNumModes, DXGI_MODE_DESC* pDesc);
-    extern(C) int FindClosestMatchingMode(DXGI_MODE_DESC* pModeToMatch, DXGI_MODE_DESC* pClosestMatch, IUnknown pConcernedDevice);
-    extern(C) int WaitForVBlank();
-    extern(C) int TakeOwnership(IUnknown pDevice, int Exclusive);
-    extern(C) void ReleaseOwnership();
-    extern(C) int GetGammaControlCapabilities(DXGI_GAMMA_CONTROL_CAPABILITIES* pGammaCaps);
-    extern(C) int SetGammaControl(DXGI_GAMMA_CONTROL* pArray);
-    extern(C) int GetGammaControl(DXGI_GAMMA_CONTROL* pArray);
-    extern(C) int SetDisplaySurface(IDXGISurface pScanoutSurface);
-    extern(C) int GetDisplaySurfaceData(IDXGISurface pDestination);
-    extern(C) int GetFrameStatistics(DXGI_FRAME_STATISTICS* pStats);
+struct DXGI_SHARED_RESOURCE
+{
+   HANDLE Handle;
 }
-
-// dxgi.h: 1711
-interface IDXGISwapChain: IDXGIDeviceSubObject {
-    static immutable iidof = GUID(0x310d36a0, 0xd2e7, 0x4c0a, [0xaa, 0x04, 0x6a, 0x9d, 0x23, 0xb8, 0x88, 0x6a]);
-    extern(C) int Present(uint SyncInterval, uint Flags);
-    extern(C) int GetBuffer(uint Buffer, _GUID* riid, void** ppSurface);
-    extern(C) int SetFullscreenState(int Fullscreen, IDXGIOutput pTarget);
-    extern(C) int GetFullscreenState(int* pFullscreen, IDXGIOutput* ppTarget);
-    extern(C) int GetDesc(DXGI_SWAP_CHAIN_DESC* pDesc);
-    extern(C) int ResizeBuffers(uint BufferCount, uint Width, uint Height, DXGI_FORMAT NewFormat, uint SwapChainFlags);
-    extern(C) int ResizeTarget(DXGI_MODE_DESC* pNewTargetParameters);
-    extern(C) int GetContainingOutput(IDXGIOutput* ppOutput);
-    extern(C) int GetFrameStatistics(DXGI_FRAME_STATISTICS* pStats);
-    extern(C) int GetLastPresentCount(uint* pLastPresentCount);
+enum DXGI_RESIDENCY
+{
+    DXGI_RESIDENCY_FULLY_RESIDENT = 0x1,
+    DXGI_RESIDENCY_RESIDENT_IN_SHARED_MEMORY = 0x2,
+    DXGI_RESIDENCY_EVICTED_TO_DISK = 0x3,
 }
-
-// dxgi.h: 1986
-interface IDXGIFactory: IDXGIObject {
-    static immutable iidof = GUID(0x7b7166ec, 0x21c7, 0x44ae, [0xb2, 0x1a, 0xc9, 0xae, 0x32, 0x1a, 0xe3, 0x69]);
-    extern(C) int EnumAdapters(uint Adapter, IDXGIAdapter* ppAdapter);
-    extern(C) int MakeWindowAssociation(HWND WindowHandle, uint Flags);
-    extern(C) int GetWindowAssociation(HWND* pWindowHandle);
-    extern(C) int CreateSwapChain(IUnknown pDevice, DXGI_SWAP_CHAIN_DESC* pDesc, IDXGISwapChain* ppSwapChain);
-    extern(C) int CreateSoftwareAdapter(HINSTANCE* Module, IDXGIAdapter* ppAdapter);
+interface IDXGIFactory1: IDXGIFactory
+{
+    enum iidof = parseUUID("770aae78-f26f-4dba-a829-253c83d1b387");
+    HRESULT EnumAdapters1(UINT Adapter, IDXGIAdapter1* ppAdapter);
 }
-
-// dxgi.h: 2186
-interface IDXGIDevice: IDXGIObject {
-    static immutable iidof = GUID(0x54ec77fa, 0x1377, 0x44e6, [0x8c, 0x32, 0x88, 0xfd, 0x5f, 0x44, 0xc8, 0x4c]);
-    extern(C) int GetAdapter(IDXGIAdapter* pAdapter);
-    extern(C) int CreateSurface(DXGI_SURFACE_DESC* pDesc, uint NumSurfaces, uint Usage, DXGI_SHARED_RESOURCE* pSharedResource, IDXGISurface* ppSurface);
-    extern(C) int QueryResourceResidency(IUnknown* ppResources, DXGI_RESIDENCY* pResidencyStatus, uint NumResources);
-    extern(C) int SetGPUThreadPriority(int Priority);
-    extern(C) int GetGPUThreadPriority(int* pPriority);
+interface IDXGIAdapter1: IDXGIAdapter
+{
+    enum iidof = parseUUID("29038f61-3839-4626-91fd-086879011a05");
+    HRESULT GetDesc1(DXGI_ADAPTER_DESC1* pDesc);
 }
-
-// dxgi.h: 2414
-interface IDXGIFactory1: IDXGIFactory {
-    static immutable iidof = GUID(0x770aae78, 0xf26f, 0x4dba, [0xa8, 0x29, 0x25, 0x3c, 0x83, 0xd1, 0xb3, 0x87]);
-    extern(C) int EnumAdapters1(uint Adapter, IDXGIAdapter1* ppAdapter);
-    extern(C) int IsCurrent();
+struct DXGI_ADAPTER_DESC1
+{
+   WCHAR[128] Description;
+   UINT VendorId;
+   UINT DeviceId;
+   UINT SubSysId;
+   UINT Revision;
+   SIZE_T DedicatedVideoMemory;
+   SIZE_T DedicatedSystemMemory;
+   SIZE_T SharedSystemMemory;
+   LUID AdapterLuid;
+   UINT Flags;
 }
-
-// dxgi.h: 2597
-interface IDXGIAdapter1: IDXGIAdapter {
-    static immutable iidof = GUID(0x29038f61, 0x3839, 0x4626, [0x91, 0xfd, 0x08, 0x68, 0x79, 0x01, 0x1a, 0x05]);
-    extern(C) int GetDesc1(DXGI_ADAPTER_DESC1* pDesc);
+interface IDXGIDevice1: IDXGIDevice
+{
+    enum iidof = parseUUID("77db970f-6276-48ba-ba28-070143b4392c");
+    HRESULT SetMaximumFrameLatency(UINT MaxLatency);
+    HRESULT GetMaximumFrameLatency(UINT* pMaxLatency);
 }
-
-// dxgi.h: 2751
-interface IDXGIDevice1: IDXGIDevice {
-    static immutable iidof = GUID(0x77db970f, 0x6276, 0x48ba, [0xba, 0x28, 0x07, 0x01, 0x43, 0xb4, 0x39, 0x2c]);
-    extern(C) int SetMaximumFrameLatency(uint MaxLatency);
-    extern(C) int GetMaximumFrameLatency(uint* pMaxLatency);
+enum DXGI_SWAP_CHAIN_FLAG
+{
+    DXGI_SWAP_CHAIN_FLAG_NONPREROTATED = 0x1,
+    DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH = 0x2,
+    DXGI_SWAP_CHAIN_FLAG_GDI_COMPATIBLE = 0x4,
+    DXGI_SWAP_CHAIN_FLAG_RESTRICTED_CONTENT = 0x8,
+    DXGI_SWAP_CHAIN_FLAG_RESTRICT_SHARED_RESOURCE_DRIVER = 0x10,
+    DXGI_SWAP_CHAIN_FLAG_DISPLAY_ONLY = 0x20,
+    DXGI_SWAP_CHAIN_FLAG_FRAME_LATENCY_WAITABLE_OBJECT = 0x40,
+    DXGI_SWAP_CHAIN_FLAG_FOREGROUND_LAYER = 0x80,
+    DXGI_SWAP_CHAIN_FLAG_FULLSCREEN_VIDEO = 0x100,
+    DXGI_SWAP_CHAIN_FLAG_YUV_VIDEO = 0x200,
+    DXGI_SWAP_CHAIN_FLAG_HW_PROTECTED = 0x400,
+    DXGI_SWAP_CHAIN_FLAG_ALLOW_TEARING = 0x800,
+    DXGI_SWAP_CHAIN_FLAG_RESTRICTED_TO_ALL_HOLOGRAPHIC_DISPLAYS = 0x1000,
 }
-
-extern(C) int CreateDXGIFactory(_GUID* riid, void** ppFactory);
+extern(C) HRESULT CreateDXGIFactory(IID* riid, void** ppFactory);
+extern(C) HRESULT CreateDXGIFactory1(IID* riid, void** ppFactory);
+enum DXGI_ADAPTER_FLAG
+{
+    DXGI_ADAPTER_FLAG_NONE = 0x0,
+    DXGI_ADAPTER_FLAG_REMOTE = 0x1,
+    DXGI_ADAPTER_FLAG_SOFTWARE = 0x2,
+    DXGI_ADAPTER_FLAG_FORCE_DWORD = 0xffffffff,
+}
+struct DXGI_DISPLAY_COLOR_SPACE
+{
+   FLOAT[2][8] PrimaryCoordinates;
+   FLOAT[2][16] WhitePoints;
+}
