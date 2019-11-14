@@ -1,7 +1,10 @@
 {
     "cSpell.words": [
+        "LLVM",
         "Struct",
-        "cpptypeinfo"
+        "cpptypeinfo",
+        "libclang",
+        "outdir"
     ],
     "python.envFile": "${workspaceFolder}/.env",
     "dscanner.ignoredKeys": [

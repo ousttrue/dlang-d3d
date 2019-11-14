@@ -4,6 +4,23 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "dub(shell)",
+            "type": "shell",
+            "command": "dub",
+            "args": [
+                "build"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": []
+        },
+        {
             "type": "dub",
             "run": false,
             "compiler": "dmd",
@@ -12,7 +29,7 @@
             "configuration": "application",
             "group": {
                 "kind": "build",
-                "isDefault": true
+                // "isDefault": true
             },
             "problemMatcher": []
         },
@@ -30,7 +47,13 @@
             "type": "shell",
             "command": "python",
             "args": [
-                "-m", "cpptypeinfo.cli", "gen", "--d3d11", "--windows", "dlang", "${workspaceFolder}/source/windowskits"
+                "-m",
+                "cpptypeinfo.cli",
+                "gen",
+                "--d3d11",
+                "--windows",
+                "dlang",
+                "${workspaceFolder}/source/windowskits"
             ],
             "options": {
                 "cwd": "${workspaceFolder}/dependencies/cpptypeinfo"

@@ -13,12 +13,12 @@ enum DXGI_MODE_ROTATION
 }
 struct DXGI_MODE_DESC
 {
-   UINT Width;
-   UINT Height;
-   DXGI_RATIONAL RefreshRate;
-   DXGI_FORMAT Format;
-   DXGI_MODE_SCANLINE_ORDER ScanlineOrdering;
-   DXGI_MODE_SCALING Scaling;
+    UINT Width;
+    UINT Height;
+    DXGI_RATIONAL RefreshRate;
+    DXGI_FORMAT Format;
+    DXGI_MODE_SCANLINE_ORDER ScanlineOrdering;
+    DXGI_MODE_SCALING Scaling;
 }
 enum DXGI_MODE_SCANLINE_ORDER
 {
@@ -35,21 +35,21 @@ enum DXGI_MODE_SCALING
 }
 struct DXGI_GAMMA_CONTROL_CAPABILITIES
 {
-   BOOL ScaleAndOffsetSupported;
-   float MaxConvertedValue;
-   float MinConvertedValue;
-   UINT NumGammaControlPoints;
-   float[1025] ControlPointPositions;
+    BOOL ScaleAndOffsetSupported;
+    float MaxConvertedValue;
+    float MinConvertedValue;
+    UINT NumGammaControlPoints;
+    float[1025] ControlPointPositions;
 }
 struct DXGI_GAMMA_CONTROL
 {
-   DXGI_RGB Scale;
-   DXGI_RGB Offset;
-   DXGI_RGB[1025] GammaCurve;
+    DXGI_RGB Scale;
+    DXGI_RGB Offset;
+    DXGI_RGB[1025] GammaCurve;
 }
 struct DXGI_RGB
 {
-   float Red;
-   float Green;
-   float Blue;
+    float Red;
+    float Green;
+    float Blue;
 }

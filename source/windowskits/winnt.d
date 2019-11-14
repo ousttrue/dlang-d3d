@@ -4,12 +4,15 @@ import core.sys.windows.windef;
 alias HANDLE = void*;
 struct _LARGE_INTEGER
 {
-   // anonymous u;
-   LONGLONG QuadPart;
+   // anonymous struct ;
+   // anonymous struct ;
+   // anonymous struct u;
+    LONGLONG QuadPart;
 }
+// struct nameless
 // struct nameless
 struct _LUID
 {
-   DWORD LowPart;
-   LONG HighPart;
+    DWORD LowPart;
+    LONG HighPart;
 }

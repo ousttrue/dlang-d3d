@@ -71,6 +71,7 @@ interface IDXGIOutput: IDXGIObject
     HRESULT FindClosestMatchingMode(DXGI_MODE_DESC* pModeToMatch, DXGI_MODE_DESC* pClosestMatch, IUnknown pConcernedDevice);
     HRESULT WaitForVBlank();
     HRESULT TakeOwnership(IUnknown pDevice, BOOL Exclusive);
+    void ReleaseOwnership();
     HRESULT GetGammaControlCapabilities(DXGI_GAMMA_CONTROL_CAPABILITIES* pGammaCaps);
     HRESULT SetGammaControl(DXGI_GAMMA_CONTROL* pArray);
     HRESULT GetGammaControl(DXGI_GAMMA_CONTROL* pArray);
@@ -80,11 +81,11 @@ interface IDXGIOutput: IDXGIObject
 }
 struct DXGI_OUTPUT_DESC
 {
-   WCHAR[32] DeviceName;
-   RECT DesktopCoordinates;
-   BOOL AttachedToDesktop;
-   DXGI_MODE_ROTATION Rotation;
-   HMONITOR Monitor;
+    WCHAR[32] DeviceName;
+    RECT DesktopCoordinates;
+    BOOL AttachedToDesktop;
+    DXGI_MODE_ROTATION Rotation;
+    HMONITOR Monitor;
 }
 interface IDXGISurface: IDXGIDeviceSubObject
 {
@@ -100,46 +101,46 @@ interface IDXGIDeviceSubObject: IDXGIObject
 }
 struct DXGI_SURFACE_DESC
 {
-   UINT Width;
-   UINT Height;
-   DXGI_FORMAT Format;
-   DXGI_SAMPLE_DESC SampleDesc;
+    UINT Width;
+    UINT Height;
+    DXGI_FORMAT Format;
+    DXGI_SAMPLE_DESC SampleDesc;
 }
 struct DXGI_MAPPED_RECT
 {
-   INT Pitch;
-   BYTE* pBits;
+    INT Pitch;
+    BYTE* pBits;
 }
 struct DXGI_FRAME_STATISTICS
 {
-   UINT PresentCount;
-   UINT PresentRefreshCount;
-   UINT SyncRefreshCount;
-   LARGE_INTEGER SyncQPCTime;
-   LARGE_INTEGER SyncGPUTime;
+    UINT PresentCount;
+    UINT PresentRefreshCount;
+    UINT SyncRefreshCount;
+    LARGE_INTEGER SyncQPCTime;
+    LARGE_INTEGER SyncGPUTime;
 }
 struct DXGI_ADAPTER_DESC
 {
-   WCHAR[128] Description;
-   UINT VendorId;
-   UINT DeviceId;
-   UINT SubSysId;
-   UINT Revision;
-   SIZE_T DedicatedVideoMemory;
-   SIZE_T DedicatedSystemMemory;
-   SIZE_T SharedSystemMemory;
-   LUID AdapterLuid;
+    WCHAR[128] Description;
+    UINT VendorId;
+    UINT DeviceId;
+    UINT SubSysId;
+    UINT Revision;
+    SIZE_T DedicatedVideoMemory;
+    SIZE_T DedicatedSystemMemory;
+    SIZE_T SharedSystemMemory;
+    LUID AdapterLuid;
 }
 struct DXGI_SWAP_CHAIN_DESC
 {
-   DXGI_MODE_DESC BufferDesc;
-   DXGI_SAMPLE_DESC SampleDesc;
-   DXGI_USAGE BufferUsage;
-   UINT BufferCount;
-   HWND OutputWindow;
-   BOOL Windowed;
-   DXGI_SWAP_EFFECT SwapEffect;
-   UINT Flags;
+    DXGI_MODE_DESC BufferDesc;
+    DXGI_SAMPLE_DESC SampleDesc;
+    DXGI_USAGE BufferUsage;
+    UINT BufferCount;
+    HWND OutputWindow;
+    BOOL Windowed;
+    DXGI_SWAP_EFFECT SwapEffect;
+    UINT Flags;
 }
 alias DXGI_USAGE = UINT;
 enum DXGI_SWAP_EFFECT
@@ -203,7 +204,7 @@ interface IDXGIDevice: IDXGIObject
 }
 struct DXGI_SHARED_RESOURCE
 {
-   HANDLE Handle;
+    HANDLE Handle;
 }
 enum DXGI_RESIDENCY
 {
@@ -215,6 +216,7 @@ interface IDXGIFactory1: IDXGIFactory
 {
     enum iidof = parseUUID("770aae78-f26f-4dba-a829-253c83d1b387");
     HRESULT EnumAdapters1(UINT Adapter, IDXGIAdapter1* ppAdapter);
+    BOOL IsCurrent();
 }
 interface IDXGIAdapter1: IDXGIAdapter
 {
@@ -223,16 +225,16 @@ interface IDXGIAdapter1: IDXGIAdapter
 }
 struct DXGI_ADAPTER_DESC1
 {
-   WCHAR[128] Description;
-   UINT VendorId;
-   UINT DeviceId;
-   UINT SubSysId;
-   UINT Revision;
-   SIZE_T DedicatedVideoMemory;
-   SIZE_T DedicatedSystemMemory;
-   SIZE_T SharedSystemMemory;
-   LUID AdapterLuid;
-   UINT Flags;
+    WCHAR[128] Description;
+    UINT VendorId;
+    UINT DeviceId;
+    UINT SubSysId;
+    UINT Revision;
+    SIZE_T DedicatedVideoMemory;
+    SIZE_T DedicatedSystemMemory;
+    SIZE_T SharedSystemMemory;
+    LUID AdapterLuid;
+    UINT Flags;
 }
 interface IDXGIDevice1: IDXGIDevice
 {
@@ -267,6 +269,6 @@ enum DXGI_ADAPTER_FLAG
 }
 struct DXGI_DISPLAY_COLOR_SPACE
 {
-   FLOAT[2][8] PrimaryCoordinates;
-   FLOAT[2][16] WhitePoints;
+    FLOAT[2][8] PrimaryCoordinates;
+    FLOAT[2][16] WhitePoints;
 }
