@@ -1,6 +1,6 @@
 module windowskits.d3d11;
 import core.sys.windows.unknwn;
-import std.uuid;
+import windowskits.guidutil;
 import windowskits.winnt;
 import core.sys.windows.windef;
 import core.sys.windows.winnt;
@@ -402,7 +402,7 @@ enum D3D11_ANISOTROPIC_FILTERING_BIT = ( 0x40 );
 enum D3D11_SDK_VERSION = ( 7 );
 interface ID3D11DeviceChild: IUnknown
 {
-    enum iidof = parseUUID("1841e5c8-16b0-489b-bcc8-44cfb0d5deae");
+    enum iidof = parseGUID("1841e5c8-16b0-489b-bcc8-44cfb0d5deae");
     void GetDevice(ID3D11Device* ppDevice);
     HRESULT GetPrivateData(GUID* guid, UINT* pDataSize, void* pData);
     HRESULT SetPrivateData(GUID* guid, UINT DataSize, void* pData);
@@ -410,7 +410,7 @@ interface ID3D11DeviceChild: IUnknown
 }
 interface ID3D11Device: IUnknown
 {
-    enum iidof = parseUUID("db6f6ddb-ac77-4e88-8253-819df9bbf140");
+    enum iidof = parseGUID("db6f6ddb-ac77-4e88-8253-819df9bbf140");
     HRESULT CreateBuffer(D3D11_BUFFER_DESC* pDesc, D3D11_SUBRESOURCE_DATA* pInitialData, ID3D11Buffer* ppBuffer);
     HRESULT CreateTexture1D(D3D11_TEXTURE1D_DESC* pDesc, D3D11_SUBRESOURCE_DATA* pInitialData, ID3D11Texture1D* ppTexture1D);
     HRESULT CreateTexture2D(D3D11_TEXTURE2D_DESC* pDesc, D3D11_SUBRESOURCE_DATA* pInitialData, ID3D11Texture2D* ppTexture2D);
@@ -476,12 +476,12 @@ struct D3D11_SUBRESOURCE_DATA
 }
 interface ID3D11Buffer: ID3D11Resource
 {
-    enum iidof = parseUUID("48570b85-d1ee-4fcd-a250-eb350722b037");
+    enum iidof = parseGUID("48570b85-d1ee-4fcd-a250-eb350722b037");
     void GetDesc(D3D11_BUFFER_DESC* pDesc);
 }
 interface ID3D11Resource: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("dc8e63f3-d12b-4952-b47b-5e45026a862d");
+    enum iidof = parseGUID("dc8e63f3-d12b-4952-b47b-5e45026a862d");
     void GetType(D3D11_RESOURCE_DIMENSION* pResourceDimension);
     void SetEvictionPriority(UINT EvictionPriority);
     UINT GetEvictionPriority();
@@ -507,7 +507,7 @@ struct D3D11_TEXTURE1D_DESC
 }
 interface ID3D11Texture1D: ID3D11Resource
 {
-    enum iidof = parseUUID("f8fb5c27-c6b3-4f75-a4c8-439af2ef564c");
+    enum iidof = parseGUID("f8fb5c27-c6b3-4f75-a4c8-439af2ef564c");
     void GetDesc(D3D11_TEXTURE1D_DESC* pDesc);
 }
 struct D3D11_TEXTURE2D_DESC
@@ -525,7 +525,7 @@ struct D3D11_TEXTURE2D_DESC
 }
 interface ID3D11Texture2D: ID3D11Resource
 {
-    enum iidof = parseUUID("6f15aaf2-d208-4e89-9ab4-489535d34f9c");
+    static const iidof = parseGUID("6f15aaf2-d208-4e89-9ab4-489535d34f9c");
     void GetDesc(D3D11_TEXTURE2D_DESC* pDesc);
 }
 struct D3D11_TEXTURE3D_DESC
@@ -542,7 +542,7 @@ struct D3D11_TEXTURE3D_DESC
 }
 interface ID3D11Texture3D: ID3D11Resource
 {
-    enum iidof = parseUUID("037e866e-f56d-4357-a8af-9dabbe6e250e");
+    enum iidof = parseGUID("037e866e-f56d-4357-a8af-9dabbe6e250e");
     void GetDesc(D3D11_TEXTURE3D_DESC* pDesc);
 }
 struct D3D11_SHADER_RESOURCE_VIEW_DESC
@@ -636,12 +636,12 @@ struct D3D11_BUFFEREX_SRV
 }
 interface ID3D11ShaderResourceView: ID3D11View
 {
-    enum iidof = parseUUID("b0e06fe0-8192-4e1a-b1ca-36d7414710b2");
+    enum iidof = parseGUID("b0e06fe0-8192-4e1a-b1ca-36d7414710b2");
     void GetDesc(D3D11_SHADER_RESOURCE_VIEW_DESC* pDesc);
 }
 interface ID3D11View: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("839d1216-bb2e-412b-b7f4-a9dbebe08ed1");
+    enum iidof = parseGUID("839d1216-bb2e-412b-b7f4-a9dbebe08ed1");
     void GetResource(ID3D11Resource* ppResource);
 }
 struct D3D11_UNORDERED_ACCESS_VIEW_DESC
@@ -702,7 +702,7 @@ struct D3D11_TEX3D_UAV
 }
 interface ID3D11UnorderedAccessView: ID3D11View
 {
-    enum iidof = parseUUID("28acf509-7f5c-48f6-8611-f316010a6380");
+    enum iidof = parseGUID("28acf509-7f5c-48f6-8611-f316010a6380");
     void GetDesc(D3D11_UNORDERED_ACCESS_VIEW_DESC* pDesc);
 }
 struct D3D11_RENDER_TARGET_VIEW_DESC
@@ -783,7 +783,7 @@ struct D3D11_TEX3D_RTV
 }
 interface ID3D11RenderTargetView: ID3D11View
 {
-    enum iidof = parseUUID("dfdba067-0b8d-4865-875b-d7b4516cc164");
+    enum iidof = parseGUID("dfdba067-0b8d-4865-875b-d7b4516cc164");
     void GetDesc(D3D11_RENDER_TARGET_VIEW_DESC* pDesc);
 }
 struct D3D11_DEPTH_STENCIL_VIEW_DESC
@@ -842,7 +842,7 @@ struct D3D11_TEX2DMS_ARRAY_DSV
 }
 interface ID3D11DepthStencilView: ID3D11View
 {
-    enum iidof = parseUUID("9fdac92a-1876-48c3-afad-25b94f84a9b6");
+    enum iidof = parseGUID("9fdac92a-1876-48c3-afad-25b94f84a9b6");
     void GetDesc(D3D11_DEPTH_STENCIL_VIEW_DESC* pDesc);
 }
 struct D3D11_INPUT_ELEMENT_DESC
@@ -862,17 +862,17 @@ enum D3D11_INPUT_CLASSIFICATION
 }
 interface ID3D11InputLayout: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("e4819ddc-4cf0-4025-bd26-5de82a3e07b7");
+    enum iidof = parseGUID("e4819ddc-4cf0-4025-bd26-5de82a3e07b7");
 }
 interface ID3D11ClassLinkage: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("ddf57cba-9543-46e4-a12b-f207a0fe7fed");
+    enum iidof = parseGUID("ddf57cba-9543-46e4-a12b-f207a0fe7fed");
     HRESULT GetClassInstance(LPCSTR pClassInstanceName, UINT InstanceIndex, ID3D11ClassInstance* ppInstance);
     HRESULT CreateClassInstance(LPCSTR pClassTypeName, UINT ConstantBufferOffset, UINT ConstantVectorOffset, UINT TextureOffset, UINT SamplerOffset, ID3D11ClassInstance* ppInstance);
 }
 interface ID3D11ClassInstance: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("a6cd7faa-b0b7-4a2f-9436-8662a65797cb");
+    enum iidof = parseGUID("a6cd7faa-b0b7-4a2f-9436-8662a65797cb");
     void GetClassLinkage(ID3D11ClassLinkage* ppLinkage);
     void GetDesc(D3D11_CLASS_INSTANCE_DESC* pDesc);
     void GetInstanceName(LPSTR pInstanceName, SIZE_T* pBufferLength);
@@ -891,11 +891,11 @@ struct D3D11_CLASS_INSTANCE_DESC
 }
 interface ID3D11VertexShader: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("3b301d64-d678-4289-8897-22f8928b72f3");
+    enum iidof = parseGUID("3b301d64-d678-4289-8897-22f8928b72f3");
 }
 interface ID3D11GeometryShader: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("38325b96-effb-4022-ba02-2e795b70275c");
+    enum iidof = parseGUID("38325b96-effb-4022-ba02-2e795b70275c");
 }
 struct D3D11_SO_DECLARATION_ENTRY
 {
@@ -908,19 +908,19 @@ struct D3D11_SO_DECLARATION_ENTRY
 }
 interface ID3D11PixelShader: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("ea82e40d-51dc-4f33-93d4-db7c9125ae8c");
+    enum iidof = parseGUID("ea82e40d-51dc-4f33-93d4-db7c9125ae8c");
 }
 interface ID3D11HullShader: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("8e5c6061-628a-4c8e-8264-bbe45cb3d5dd");
+    enum iidof = parseGUID("8e5c6061-628a-4c8e-8264-bbe45cb3d5dd");
 }
 interface ID3D11DomainShader: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("f582c508-0f36-490c-9977-31eece268cfa");
+    enum iidof = parseGUID("f582c508-0f36-490c-9977-31eece268cfa");
 }
 interface ID3D11ComputeShader: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("4f5b196e-c2bd-495e-bd01-1fded38e4969");
+    enum iidof = parseGUID("4f5b196e-c2bd-495e-bd01-1fded38e4969");
 }
 struct D3D11_BLEND_DESC
 {
@@ -969,7 +969,7 @@ enum D3D11_BLEND_OP
 }
 interface ID3D11BlendState: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("75b68faa-347d-4159-8f45-a0640f01cd9a");
+    enum iidof = parseGUID("75b68faa-347d-4159-8f45-a0640f01cd9a");
     void GetDesc(D3D11_BLEND_DESC* pDesc);
 }
 struct D3D11_DEPTH_STENCIL_DESC
@@ -1019,7 +1019,7 @@ enum D3D11_STENCIL_OP
 }
 interface ID3D11DepthStencilState: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("03823efb-8d8f-4e1c-9aa2-f64bb2cbfdf1");
+    enum iidof = parseGUID("03823efb-8d8f-4e1c-9aa2-f64bb2cbfdf1");
     void GetDesc(D3D11_DEPTH_STENCIL_DESC* pDesc);
 }
 struct D3D11_RASTERIZER_DESC
@@ -1048,7 +1048,7 @@ enum D3D11_CULL_MODE
 }
 interface ID3D11RasterizerState: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("9bb4ab81-ab1a-4d8f-b506-fc04200b6ee7");
+    enum iidof = parseGUID("9bb4ab81-ab1a-4d8f-b506-fc04200b6ee7");
     void GetDesc(D3D11_RASTERIZER_DESC* pDesc);
 }
 struct D3D11_SAMPLER_DESC
@@ -1113,7 +1113,7 @@ enum D3D11_TEXTURE_ADDRESS_MODE
 }
 interface ID3D11SamplerState: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("da6fea51-564c-4487-9810-f0d0f9b4e3a5");
+    enum iidof = parseGUID("da6fea51-564c-4487-9810-f0d0f9b4e3a5");
     void GetDesc(D3D11_SAMPLER_DESC* pDesc);
 }
 struct D3D11_QUERY_DESC
@@ -1142,17 +1142,17 @@ enum D3D11_QUERY
 }
 interface ID3D11Query: ID3D11Asynchronous
 {
-    enum iidof = parseUUID("d6c00747-87b7-425e-b84d-44d108560afd");
+    enum iidof = parseGUID("d6c00747-87b7-425e-b84d-44d108560afd");
     void GetDesc(D3D11_QUERY_DESC* pDesc);
 }
 interface ID3D11Asynchronous: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("4b35d0cd-1e15-4258-9c98-1b1333f6dd3b");
+    enum iidof = parseGUID("4b35d0cd-1e15-4258-9c98-1b1333f6dd3b");
     UINT GetDataSize();
 }
 interface ID3D11Predicate: ID3D11Query
 {
-    enum iidof = parseUUID("9eb576dd-9f77-4d86-81aa-8bab5fe490e2");
+    enum iidof = parseGUID("9eb576dd-9f77-4d86-81aa-8bab5fe490e2");
 }
 struct D3D11_COUNTER_DESC
 {
@@ -1165,12 +1165,12 @@ enum D3D11_COUNTER
 }
 interface ID3D11Counter: ID3D11Asynchronous
 {
-    enum iidof = parseUUID("6e8c49fb-a371-4770-b440-29086022b741");
+    enum iidof = parseGUID("6e8c49fb-a371-4770-b440-29086022b741");
     void GetDesc(D3D11_COUNTER_DESC* pDesc);
 }
 interface ID3D11DeviceContext: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("c0bfa96c-e089-44fb-8eaf-26f8796190da");
+    enum iidof = parseGUID("c0bfa96c-e089-44fb-8eaf-26f8796190da");
     void VSSetConstantBuffers(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* ppConstantBuffers);
     void PSSetShaderResources(UINT StartSlot, UINT NumViews, ID3D11ShaderResourceView* ppShaderResourceViews);
     void PSSetShader(ID3D11PixelShader pPixelShader, ID3D11ClassInstance* ppClassInstances, UINT NumClassInstances);
@@ -1316,7 +1316,7 @@ struct D3D11_BOX
 }
 interface ID3D11CommandList: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("a24bc4d1-769e-43f7-8013-98ff566c18e2");
+    enum iidof = parseGUID("a24bc4d1-769e-43f7-8013-98ff566c18e2");
     UINT GetContextFlags();
 }
 enum D3D11_DEVICE_CONTEXT_TYPE
@@ -1362,7 +1362,7 @@ enum D3D11_FEATURE
 }
 interface ID3D11VideoDecoder: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("3c9c5b51-995d-48d1-9b8d-fa5caeded65c");
+    enum iidof = parseGUID("3c9c5b51-995d-48d1-9b8d-fa5caeded65c");
     HRESULT GetCreationParameters(D3D11_VIDEO_DECODER_DESC* pVideoDesc, D3D11_VIDEO_DECODER_CONFIG* pConfig);
     HRESULT GetDriverHandle(HANDLE* pDriverHandle);
 }
@@ -1395,7 +1395,7 @@ struct D3D11_VIDEO_DECODER_CONFIG
 }
 interface ID3D11VideoProcessorEnumerator: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("31627037-53ab-4200-9061-05faa9ab45f9");
+    enum iidof = parseGUID("31627037-53ab-4200-9061-05faa9ab45f9");
     HRESULT GetVideoProcessorContentDesc(D3D11_VIDEO_PROCESSOR_CONTENT_DESC* pContentDesc);
     HRESULT CheckVideoProcessorFormat(DXGI_FORMAT Format, UINT* pFlags);
     HRESULT GetVideoProcessorCaps(D3D11_VIDEO_PROCESSOR_CAPS* pCaps);
@@ -1473,20 +1473,20 @@ struct D3D11_VIDEO_PROCESSOR_FILTER_RANGE
 }
 interface ID3D11VideoProcessor: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("1d7b0652-185f-41c6-85ce-0c5be3d4ae6c");
+    enum iidof = parseGUID("1d7b0652-185f-41c6-85ce-0c5be3d4ae6c");
     void GetContentDesc(D3D11_VIDEO_PROCESSOR_CONTENT_DESC* pDesc);
     void GetRateConversionCaps(D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS* pCaps);
 }
 interface ID3D11AuthenticatedChannel: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("3015a308-dcbd-47aa-a747-192486d14d4a");
+    enum iidof = parseGUID("3015a308-dcbd-47aa-a747-192486d14d4a");
     HRESULT GetCertificateSize(UINT* pCertificateSize);
     HRESULT GetCertificate(UINT CertificateSize, BYTE* pCertificate);
     void GetChannelHandle(HANDLE* pChannelHandle);
 }
 interface ID3D11CryptoSession: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("9b32f9ad-bdcc-40a6-a39d-d5c865845720");
+    enum iidof = parseGUID("9b32f9ad-bdcc-40a6-a39d-d5c865845720");
     void GetCryptoType(GUID* pCryptoType);
     void GetDecoderProfile(GUID* pDecoderProfile);
     HRESULT GetCertificateSize(UINT* pCertificateSize);
@@ -1495,7 +1495,7 @@ interface ID3D11CryptoSession: ID3D11DeviceChild
 }
 interface ID3D11VideoDecoderOutputView: ID3D11View
 {
-    enum iidof = parseUUID("c2931aea-2a85-4f20-860f-fba1fd256e18");
+    enum iidof = parseGUID("c2931aea-2a85-4f20-860f-fba1fd256e18");
     void GetDesc(D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC* pDesc);
 }
 struct D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC
@@ -1518,7 +1518,7 @@ struct D3D11_TEX2D_VDOV
 }
 interface ID3D11VideoProcessorInputView: ID3D11View
 {
-    enum iidof = parseUUID("11ec5a5f-51dc-4945-ab34-6e8c21300ea5");
+    enum iidof = parseGUID("11ec5a5f-51dc-4945-ab34-6e8c21300ea5");
     void GetDesc(D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC* pDesc);
 }
 struct D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC
@@ -1542,7 +1542,7 @@ struct D3D11_TEX2D_VPIV
 }
 interface ID3D11VideoProcessorOutputView: ID3D11View
 {
-    enum iidof = parseUUID("a048285e-25a9-4527-bd93-d68b68c44254");
+    enum iidof = parseGUID("a048285e-25a9-4527-bd93-d68b68c44254");
     void GetDesc(D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC* pDesc);
 }
 struct D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC
@@ -1572,7 +1572,7 @@ struct D3D11_TEX2D_ARRAY_VPOV
 }
 interface ID3D11VideoContext: ID3D11DeviceChild
 {
-    enum iidof = parseUUID("61f21c45-3c0e-4a74-9cea-67100d9ad5e4");
+    enum iidof = parseGUID("61f21c45-3c0e-4a74-9cea-67100d9ad5e4");
     HRESULT GetDecoderBuffer(ID3D11VideoDecoder pDecoder, D3D11_VIDEO_DECODER_BUFFER_TYPE Type, UINT* pBufferSize, void** ppBuffer);
     HRESULT ReleaseDecoderBuffer(ID3D11VideoDecoder pDecoder, D3D11_VIDEO_DECODER_BUFFER_TYPE Type);
     HRESULT DecoderBeginFrame(ID3D11VideoDecoder pDecoder, ID3D11VideoDecoderOutputView pView, UINT ContentKeySize, void* pContentKey);
@@ -1774,7 +1774,7 @@ enum D3D11_VIDEO_PROCESSOR_ROTATION
 }
 interface ID3D11VideoDevice: IUnknown
 {
-    enum iidof = parseUUID("10ec4d5b-975a-4689-b9e4-d0aac30fe333");
+    enum iidof = parseGUID("10ec4d5b-975a-4689-b9e4-d0aac30fe333");
     HRESULT CreateVideoDecoder(D3D11_VIDEO_DECODER_DESC* pVideoDesc, D3D11_VIDEO_DECODER_CONFIG* pConfig, ID3D11VideoDecoder* ppDecoder);
     HRESULT CreateVideoProcessor(ID3D11VideoProcessorEnumerator pEnum, UINT RateConversionIndex, ID3D11VideoProcessor* ppVideoProcessor);
     HRESULT CreateAuthenticatedChannel(D3D11_AUTHENTICATED_CHANNEL_TYPE ChannelType, ID3D11AuthenticatedChannel* ppAuthenticatedChannel);

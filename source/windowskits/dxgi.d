@@ -1,6 +1,6 @@
 module windowskits.dxgi;
 import core.sys.windows.unknwn;
-import std.uuid;
+import windowskits.guidutil;
 import windowskits.winnt;
 import core.sys.windows.windef;
 import core.sys.windows.winnt;
@@ -50,14 +50,14 @@ enum DXGI_MWA_NO_PRINT_SCREEN = ( 1 << 2 );
 enum DXGI_MWA_VALID = ( 0x7 );
 interface IDXGIAdapter: IDXGIObject
 {
-    enum iidof = parseUUID("2411e7e1-12ac-4ccf-bd14-9798e8534dc0");
+    enum iidof = parseGUID("2411e7e1-12ac-4ccf-bd14-9798e8534dc0");
     HRESULT EnumOutputs(UINT Output, IDXGIOutput* ppOutput);
     HRESULT GetDesc(DXGI_ADAPTER_DESC* pDesc);
     HRESULT CheckInterfaceSupport(GUID* InterfaceName, LARGE_INTEGER* pUMDVersion);
 }
 interface IDXGIObject: IUnknown
 {
-    enum iidof = parseUUID("aec22fb8-76f3-4639-9be0-28eb43a67a2e");
+    enum iidof = parseGUID("aec22fb8-76f3-4639-9be0-28eb43a67a2e");
     HRESULT SetPrivateData(GUID* Name, UINT DataSize, void* pData);
     HRESULT SetPrivateDataInterface(GUID* Name, IUnknown pUnknown);
     HRESULT GetPrivateData(GUID* Name, UINT* pDataSize, void* pData);
@@ -65,7 +65,7 @@ interface IDXGIObject: IUnknown
 }
 interface IDXGIOutput: IDXGIObject
 {
-    enum iidof = parseUUID("ae02eedb-c735-4690-8d52-5a8dc20213aa");
+    enum iidof = parseGUID("ae02eedb-c735-4690-8d52-5a8dc20213aa");
     HRESULT GetDesc(DXGI_OUTPUT_DESC* pDesc);
     HRESULT GetDisplayModeList(DXGI_FORMAT EnumFormat, UINT Flags, UINT* pNumModes, DXGI_MODE_DESC* pDesc);
     HRESULT FindClosestMatchingMode(DXGI_MODE_DESC* pModeToMatch, DXGI_MODE_DESC* pClosestMatch, IUnknown pConcernedDevice);
@@ -89,14 +89,14 @@ struct DXGI_OUTPUT_DESC
 }
 interface IDXGISurface: IDXGIDeviceSubObject
 {
-    enum iidof = parseUUID("cafcb56c-6ac3-4889-bf47-9e23bbd260ec");
+    enum iidof = parseGUID("cafcb56c-6ac3-4889-bf47-9e23bbd260ec");
     HRESULT GetDesc(DXGI_SURFACE_DESC* pDesc);
     HRESULT Map(DXGI_MAPPED_RECT* pLockedRect, UINT MapFlags);
     HRESULT Unmap();
 }
 interface IDXGIDeviceSubObject: IDXGIObject
 {
-    enum iidof = parseUUID("3d3e0379-f9de-4d58-bb6c-18d62992f1a6");
+    enum iidof = parseGUID("3d3e0379-f9de-4d58-bb6c-18d62992f1a6");
     HRESULT GetDevice(IID* riid, void** ppDevice);
 }
 struct DXGI_SURFACE_DESC
@@ -152,7 +152,7 @@ enum DXGI_SWAP_EFFECT
 }
 interface IDXGISwapChain: IDXGIDeviceSubObject
 {
-    enum iidof = parseUUID("310d36a0-d2e7-4c0a-aa04-6a9d23b8886a");
+    enum iidof = parseGUID("310d36a0-d2e7-4c0a-aa04-6a9d23b8886a");
     HRESULT Present(UINT SyncInterval, UINT Flags);
     HRESULT GetBuffer(UINT Buffer, IID* riid, void** ppSurface);
     HRESULT SetFullscreenState(BOOL Fullscreen, IDXGIOutput pTarget);
@@ -166,7 +166,7 @@ interface IDXGISwapChain: IDXGIDeviceSubObject
 }
 interface IDXGIResource: IDXGIDeviceSubObject
 {
-    enum iidof = parseUUID("035f3ab4-482e-4e50-b41f-8a7f8bd8960b");
+    enum iidof = parseGUID("035f3ab4-482e-4e50-b41f-8a7f8bd8960b");
     HRESULT GetSharedHandle(HANDLE* pSharedHandle);
     HRESULT GetUsage(DXGI_USAGE* pUsage);
     HRESULT SetEvictionPriority(UINT EvictionPriority);
@@ -174,19 +174,19 @@ interface IDXGIResource: IDXGIDeviceSubObject
 }
 interface IDXGIKeyedMutex: IDXGIDeviceSubObject
 {
-    enum iidof = parseUUID("9d8e1289-d7b3-465f-8126-250e349af85d");
+    enum iidof = parseGUID("9d8e1289-d7b3-465f-8126-250e349af85d");
     HRESULT AcquireSync(UINT64 Key, DWORD dwMilliseconds);
     HRESULT ReleaseSync(UINT64 Key);
 }
 interface IDXGISurface1: IDXGISurface
 {
-    enum iidof = parseUUID("4ae63092-6327-4c1b-80ae-bfe12ea32b86");
+    enum iidof = parseGUID("4ae63092-6327-4c1b-80ae-bfe12ea32b86");
     HRESULT GetDC(BOOL Discard, HDC* phdc);
     HRESULT ReleaseDC(RECT* pDirtyRect);
 }
 interface IDXGIFactory: IDXGIObject
 {
-    enum iidof = parseUUID("7b7166ec-21c7-44ae-b21a-c9ae321ae369");
+    enum iidof = parseGUID("7b7166ec-21c7-44ae-b21a-c9ae321ae369");
     HRESULT EnumAdapters(UINT Adapter, IDXGIAdapter* ppAdapter);
     HRESULT MakeWindowAssociation(HWND WindowHandle, UINT Flags);
     HRESULT GetWindowAssociation(HWND* pWindowHandle);
@@ -195,7 +195,7 @@ interface IDXGIFactory: IDXGIObject
 }
 interface IDXGIDevice: IDXGIObject
 {
-    enum iidof = parseUUID("54ec77fa-1377-44e6-8c32-88fd5f44c84c");
+    enum iidof = parseGUID("54ec77fa-1377-44e6-8c32-88fd5f44c84c");
     HRESULT GetAdapter(IDXGIAdapter* pAdapter);
     HRESULT CreateSurface(DXGI_SURFACE_DESC* pDesc, UINT NumSurfaces, DXGI_USAGE Usage, DXGI_SHARED_RESOURCE* pSharedResource, IDXGISurface* ppSurface);
     HRESULT QueryResourceResidency(IUnknown* ppResources, DXGI_RESIDENCY* pResidencyStatus, UINT NumResources);
@@ -214,13 +214,13 @@ enum DXGI_RESIDENCY
 }
 interface IDXGIFactory1: IDXGIFactory
 {
-    enum iidof = parseUUID("770aae78-f26f-4dba-a829-253c83d1b387");
+    enum iidof = parseGUID("770aae78-f26f-4dba-a829-253c83d1b387");
     HRESULT EnumAdapters1(UINT Adapter, IDXGIAdapter1* ppAdapter);
     BOOL IsCurrent();
 }
 interface IDXGIAdapter1: IDXGIAdapter
 {
-    enum iidof = parseUUID("29038f61-3839-4626-91fd-086879011a05");
+    enum iidof = parseGUID("29038f61-3839-4626-91fd-086879011a05");
     HRESULT GetDesc1(DXGI_ADAPTER_DESC1* pDesc);
 }
 struct DXGI_ADAPTER_DESC1
@@ -238,7 +238,7 @@ struct DXGI_ADAPTER_DESC1
 }
 interface IDXGIDevice1: IDXGIDevice
 {
-    enum iidof = parseUUID("77db970f-6276-48ba-ba28-070143b4392c");
+    enum iidof = parseGUID("77db970f-6276-48ba-ba28-070143b4392c");
     HRESULT SetMaximumFrameLatency(UINT MaxLatency);
     HRESULT GetMaximumFrameLatency(UINT* pMaxLatency);
 }

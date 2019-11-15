@@ -56,8 +56,12 @@ extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	auto dtype = D3D_DRIVER_TYPE.D3D_DRIVER_TYPE_HARDWARE;
 	UINT flags = 0;
 	auto featureLevels = [
-		D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_11_0, D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_10_1, D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_10_0,
-		D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_9_3, D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_9_2, D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_9_1,
+		D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_11_0,
+		D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_10_1,
+		D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_10_0,
+		D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_9_3,
+		D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_9_2,
+		D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_9_1,
 	];
 
 	//UINT numFeatureLevels = sizeof(featureLevels) / sizeof(D3D_FEATURE_LEVEL);
@@ -83,10 +87,12 @@ extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	HRESULT hr = D3D11CreateDeviceAndSwapChain(null, dtype, null, flags, featureLevels.ptr,
 			cast(uint) featureLevels.length, sdkVersion, &scDesc, &swapchain,
 			&device, &validFeatureLevel, &context);
-    if(hr!=S_OK)      
+	if (hr != S_OK)
 	{
 		return 3;
 	}
+
+	ID3D11RenderTargetView rtv;
 
 	MSG Msg;
 	while (GetMessage(&Msg, NULL, 0, 0))
@@ -94,8 +100,25 @@ extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		TranslateMessage(&Msg);
 		DispatchMessage(&Msg);
 
-		// float[4] clearColor = [0.0f, 0.0f, 1.0f, 0.0f];
-		// pDeviceContext.ClearRenderTargetView(pRenderTargetView.ptr, clearColor);
+		if (!rtv)
+		{
+			ID3D11Texture2D backbuffer;
+			hr = swapchain.GetBuffer(0, &backbuffer.iidof, cast(void**)&backbuffer);
+			if (hr != S_OK)
+			{
+				throw new Exception("fail to GetBuffer");
+			}
+			scope (exit)
+				backbuffer.Release();
+
+			hr = device.CreateRenderTargetView(backbuffer, null, &rtv);
+			if (hr != S_OK)
+			{
+				throw new Exception("fail to CreateRenderTargetView");
+			}
+		}
+		float[4] clearColor = [0.0f, 0.0f, 1.0f, 0.0f];
+		context.ClearRenderTargetView(rtv, clearColor);
 
 		// context.Flush();
 
