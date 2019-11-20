@@ -80,6 +80,8 @@ extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, // @s
     }
 
     auto renderer = new Renderer();
+    scope (exit)
+        destroy(renderer);
     if (args.length > 1)
     {
         renderer.load(args[1]);
@@ -133,8 +135,6 @@ extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, // @s
         renderer.draw(now);
         fps.waitNextFrame();
     }
-
-    destroy(renderer);
 
     return cast(int) Msg.wParam;
 }
