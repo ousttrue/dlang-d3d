@@ -1,5 +1,9 @@
 import core.sys.windows.windows;
 import windowskits;
+import std.stdio;
+import std.conv;
+import std.getopt;
+import core.runtime;
 
 wstring g_className = "SAMPLE_CLASS_NAME";
 wstring g_windowName = "Window Title";
@@ -19,9 +23,38 @@ extern (Windows) LRESULT WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
     return DefWindowProc(hwnd, msg, wParam, lParam);
 }
 
-extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
-        LPSTR lpCmdLine, int nCmdShow)
+class Renderer
 {
+    void load(wstring path)
+    {
+        writeln(path);
+    }
+}
+
+extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, // @suppress(dscanner.suspicious.unused_parameter)
+        LPSTR lpCmdLine, int nCmdShow) // @suppress(dscanner.suspicious.unused_parameter)
+        {
+    // initilize stdout
+    Runtime.initialize;
+
+    writeln(to!string(lpCmdLine));
+    auto cmdline = to!wstring(GetCommandLine());
+    writeln(cmdline);
+
+    int argc = 0;
+    wstring[] args;
+    auto p = CommandLineToArgvW(cmdline.ptr, &argc);
+    for (int i = 0; i < argc; ++i)
+    {
+        args ~= to!wstring(p[i]);
+    }
+
+    auto renderer = new Renderer();
+    if (args.length > 1)
+    {
+        renderer.load(args[1]);
+    }
+
     WNDCLASSEX wc;
     wc.cbSize = WNDCLASSEX.sizeof;
     wc.style = 0;
