@@ -23,6 +23,44 @@ extern (Windows) LRESULT WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
     return DefWindowProc(hwnd, msg, wParam, lParam);
 }
 
+class FpsClock(int Target, int MarginMsecs = 5)
+{
+    import std.datetime.systime : SysTime, Clock;
+    import core.time : Duration, dur;
+
+    SysTime m_lastTime;
+
+    static immutable Duration frameDuration = dur!"msecs"(1000 / Target - MarginMsecs);
+
+    this()
+    {
+        m_lastTime = Clock.currTime;
+    }
+
+    // loopの頭に呼ぶ
+    SysTime newFrame()
+    {
+        immutable now = Clock.currTime;
+        // auto duration = now - m_lastTime;
+        m_lastTime = now;
+        return now;
+    }
+
+    // loopの終わりで呼んで早すぎる場合にはsleepして待つ
+    void waitNextFrame()
+    {
+        import core.thread.osthread : Thread;
+
+        immutable now = Clock.currTime;
+        immutable delta = now - m_lastTime;
+        if (delta < frameDuration)
+        {
+            auto wait = frameDuration - delta;
+            Thread.sleep(wait);
+        }
+    }
+}
+
 extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, // @suppress(dscanner.suspicious.unused_parameter)
         LPSTR lpCmdLine, int nCmdShow) // @suppress(dscanner.suspicious.unused_parameter)
         {
@@ -83,13 +121,17 @@ extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, // @s
         return 3;
     }
 
+    auto fps = new FpsClock!(30);
     MSG Msg;
     while (GetMessage(&Msg, NULL, 0, 0))
     {
+        auto now = fps.newFrame();
+
         TranslateMessage(&Msg);
         DispatchMessage(&Msg);
 
-        renderer.draw();
+        renderer.draw(now);
+        fps.waitNextFrame();
     }
 
     destroy(renderer);

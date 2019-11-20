@@ -2,6 +2,7 @@ module renderer;
 import core.sys.windows.windows;
 import windowskits;
 import std.stdio;
+import std.datetime.systime;
 
 class Renderer
 {
@@ -65,7 +66,7 @@ class Renderer
         writeln(path);
     }
 
-    void draw()
+    void draw(SysTime now)
     {
         if (!m_rtv)
         {
