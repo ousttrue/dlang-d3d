@@ -5,6 +5,8 @@ import std.stdio;
 import std.datetime.systime;
 import std.file;
 import glb;
+import std.json;
+import std.conv;
 
 class Renderer
 {
@@ -68,8 +70,16 @@ class Renderer
         writefln("load: %s", path);
         auto bytes = read(path);
 
-        auto glb = Glb.parse(cast(ubyte[])bytes);
+        auto glb = Glb.parse(cast(ubyte[]) bytes);
+        if (!glb.json || !glb.bin)
+        {
+            throw new Exception("fail to Glb.parse");
+        }
 
+        auto json_str = (cast(immutable char*) glb.json.ptr)[0 .. glb.json.length];
+        auto json = parseJSON(json_str).object;
+        // writefln("%s", json.type);
+        writefln("%s", json["asset"].object["generator"]);
     }
 
     void draw(SysTime now)
