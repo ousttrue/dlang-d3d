@@ -3,6 +3,8 @@ import core.sys.windows.windows;
 import windowskits;
 import std.stdio;
 import std.datetime.systime;
+import std.file;
+import glb;
 
 class Renderer
 {
@@ -63,7 +65,11 @@ class Renderer
 
     void load(wstring path)
     {
-        writeln(path);
+        writefln("load: %s", path);
+        auto bytes = read(path);
+
+        auto glb = Glb.parse(cast(ubyte[])bytes);
+
     }
 
     void draw(SysTime now)

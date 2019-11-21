@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/dlang-d3d.exe",
             "args": [
-                "${env:GLTF_SAMPLE_MODLES}/2.0/Box/glTF-Binary/Box.glb"
+                "${env:GLTF_SAMPLE_MODELS}/2.0/Box/glTF-Binary/Box.glb"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
