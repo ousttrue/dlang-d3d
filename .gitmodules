@@ -4,3 +4,6 @@
 [submodule "dependencies/dclangen"]
 	path = dependencies/dclangen
 	url = https://github.com/ousttrue/dclangen.git
+[submodule "dependencies/sukonbu"]
+	path = dependencies/sukonbu
+	url = https://github.com/ousttrue/sukonbu.git
