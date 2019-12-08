@@ -59,5 +59,22 @@
                 "PYTHONPATH": "${workspaceFolder}/dependencies/cpptypeinfo",
             }
         },
+        {
+            "name": "sukonbu dlang",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/dependencies/sukonbu/sukonbu/cli.py",
+            "args": [
+                "${workspaceFolder}/dependencies/sukonbu/glTF/specification/2.0/schema/glTF.schema.json",
+                "--lang",
+                "dlang",
+                "--dst",
+                "${workspaceFolder}/source/gltf.d",
+            ],
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/dependencies/sukonbu",
+            }
+        },
     ]
 }

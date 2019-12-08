@@ -59,6 +59,22 @@
                 "cwd": "${workspaceFolder}/dependencies/cpptypeinfo"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "generate gltf",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "sukonbu.cli",
+                "gen",
+                "dlang",
+                "${workspaceFolder}/source/gltf"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/dependencies/sukonbu"
+            },
+            "problemMatcher": []
         }
     ]
 }

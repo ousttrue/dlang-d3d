@@ -5,6 +5,7 @@ import std.stdio;
 import std.datetime.systime;
 import std.file;
 import glb;
+import gltf;
 import std.json;
 import std.conv;
 
@@ -77,7 +78,8 @@ class Renderer
         }
 
         auto json_str = (cast(immutable char*) glb.json.ptr)[0 .. glb.json.length];
-        auto json = parseJSON(json_str).object;
+        auto json = parseJSON(json_str);
+        auto parsed = gltf.glTF.fromJSON(json);
         // writefln("%s", json.type);
         writefln("%s", json["asset"].object["generator"]);
     }

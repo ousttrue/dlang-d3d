@@ -3,8 +3,12 @@
         "LLVM",
         "Struct",
         "cpptypeinfo",
+        "deserializer",
+        "dlang",
         "libclang",
-        "outdir"
+        "outdir",
+        "serializer",
+        "sukonbu"
     ],
     "python.envFile": "${workspaceFolder}/.env",
     "dscanner.ignoredKeys": [
