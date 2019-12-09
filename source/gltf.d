@@ -8,7 +8,7 @@ import std.array;
 
 float asFloat(const JSONValue value)
 {
-    return asFloat(&value); 
+    return asFloat(&value);
 }
 float asFloat(const JSONValue* value)
 {
@@ -1102,7 +1102,7 @@ class MeshPrimitive
     static MeshPrimitive fromJSON(JSONValue src)
     {
         auto value = new MeshPrimitive();
-        // not implemented: object
+        if(const(JSONValue)* x = "attributes" in src){ value.attributes = x.object.byPair.map!(kv => tuple(kv.key, cast(int)kv.value.integer)).assocArray; }
         if(const(JSONValue)* x = "indices" in src){ value.indices = nullable(cast(int)x.integer); }
         if(const(JSONValue)* x = "material" in src){ value.material = nullable(cast(int)x.integer); }
         if(const(JSONValue)* x = "mode" in src){ value.mode = cast(MeshPrimitiveMode)x.integer; }

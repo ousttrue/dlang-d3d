@@ -5,6 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "mago",
+            "type": "mago-mi",
+            "request": "launch",
+            "target": "${workspaceFolder}/dlang-d3d.exe",
+            // "arguments": "${env:GLTF_SAMPLE_MODELS}/2.0/Box/glTF-Binary/Box.glb",
+            "cwd": "${workspaceRoot}",
+            "env": {
+                "PATH": "C:\\Program Files (x86)\\VisualD\\Mago;${env:PATH}"
+            },
+            "valuesFormatting": "parseText"
+        },
+        {
             "name": "dlang-d3d",
             "type": "cppvsdbg",
             "request": "launch",
@@ -15,7 +27,8 @@
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": false
+            "externalConsole": false,
+            "visualizerFile": "${workspaceFolder}/.vscode/d.natvis"
         },
         {
             "name": "dclangen d3d11",

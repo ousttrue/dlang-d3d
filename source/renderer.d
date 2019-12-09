@@ -9,6 +9,11 @@ import gltf;
 import std.json;
 import std.conv;
 
+class Drawable
+{
+
+}
+
 class Renderer
 {
     IDXGISwapChain m_swapchain;
@@ -16,6 +21,8 @@ class Renderer
     ID3D11DeviceContext m_context;
 
     ID3D11RenderTargetView m_rtv;
+
+    Drawable[] m_drawables;
 
     ~this()
     {
@@ -79,9 +86,23 @@ class Renderer
 
         auto json_str = (cast(immutable char*) glb.json.ptr)[0 .. glb.json.length];
         auto json = parseJSON(json_str);
-        auto parsed = gltf.glTF.fromJSON(json);
+        gltf.glTF parsed = gltf.glTF.fromJSON(json);
         // writefln("%s", json.type);
         writefln("%s", json["asset"].object["generator"]);
+
+        foreach (mesh; parsed.meshes)
+        {
+            // writefln(mesh.name);
+            auto d = new Drawable();
+            foreach (prim; mesh.primitives)
+            {
+                if (const(int)* x = "POSITION" in prim.attributes)
+                {
+                    auto position = *x;
+                }
+            }
+            m_drawables ~= d;
+        }
     }
 
     void draw(SysTime now)
