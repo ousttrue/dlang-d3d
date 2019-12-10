@@ -9,9 +9,122 @@ import gltf;
 import std.json;
 import std.conv;
 
+struct float2
+{
+    float x;
+    float y;
+}
+
+struct float3
+{
+    float x;
+    float y;
+    float z;
+}
+
 class Drawable
 {
+    string Name;
 
+    const(float3)[] Positions;
+    const(float3)[] Normals;
+    const(float2)[] UVs;
+
+    const(int)[] Indices;
+
+    this(string name)
+    {
+        Name = name;
+    }
+}
+
+static int length(gltf.AccessorComponentType componentType)
+{
+    final switch (componentType)
+    {
+    case gltf.AccessorComponentType.BYTE:
+    case gltf.AccessorComponentType.UNSIGNED_BYTE:
+        return 1;
+
+    case gltf.AccessorComponentType.SHORT:
+    case gltf.AccessorComponentType.UNSIGNED_SHORT:
+        return 2;
+
+    case gltf.AccessorComponentType.FLOAT:
+    case gltf.AccessorComponentType.UNSIGNED_INT:
+        return 4;
+    }
+}
+
+static immutable(T)[] range_cast(T)(immutable ubyte[] bytes)
+{
+    return (cast(immutable T*) bytes.ptr)[0 .. bytes.length / T.sizeof];
+}
+
+static int count(gltf.AccessorType type)
+{
+    final switch (type)
+    {
+    case gltf.AccessorType.SCALAR:
+        return 1;
+
+    case gltf.AccessorType.VEC2:
+        return 2;
+
+    case gltf.AccessorType.VEC3:
+        return 3;
+
+    case gltf.AccessorType.VEC4:
+    case gltf.AccessorType.MAT2:
+        return 4;
+    case gltf.AccessorType.MAT3:
+        return 9;
+    case gltf.AccessorType.MAT4:
+        return 16;
+    }
+}
+
+static int stride(const gltf.Accessor accessor)
+{
+    return accessor.componentType.length * accessor.type.count;
+}
+
+static const(int)[] bytes_to_indices(immutable(ubyte)[] bytes, const gltf.Accessor accessor)
+{
+    if (accessor.type != gltf.AccessorType.SCALAR)
+    {
+        throw new Exception("not SCALAR");
+    }
+
+    if (accessor.componentType == gltf.AccessorComponentType.UNSIGNED_INT)
+    {
+        return bytes.range_cast!int;
+    }
+
+    int[] indices;
+    indices.length = accessor.count.get;
+    auto p = bytes.ptr;
+
+    switch (accessor.componentType)
+    {
+    case gltf.AccessorComponentType.UNSIGNED_BYTE:
+        for (int i = 0; i < indices.length; ++i, ++p)
+        {
+            indices[i] = *p;
+        }
+        break;
+
+    case gltf.AccessorComponentType.UNSIGNED_SHORT:
+        for (int i = 0; i < indices.length; ++i, p += 2)
+        {
+            indices[i] = *(cast(immutable ushort*) p);
+        }
+        break;
+
+    default:
+        throw new Exception("unknown type");
+    }
+    return indices;
 }
 
 class Renderer
@@ -73,32 +186,82 @@ class Renderer
         return hr == S_OK;
     }
 
+    static immutable(ubyte)[] get_bytes(const gltf.glTF* parsed,
+            immutable ubyte[] bin, const int* index)
+    {
+        if (!index)
+        {
+            return [];
+        }
+
+        const accessor = parsed.accessors[*index];
+        if (accessor.bufferView.isNull)
+        {
+            return [];
+        }
+
+        const view = parsed.bufferViews[accessor.bufferView.get];
+        if (view.buffer.isNull)
+        {
+            return [];
+        }
+
+        // auto buffer = parsed.buffers[view.buffer.get];
+        auto begin = view.byteOffset.get(0) + accessor.byteOffset.get(0);
+        auto end = begin + accessor.stride * accessor.count;
+        return bin[begin .. end];
+    }
+
+    const(int)[] get_indices(const gltf.glTF* parsed, immutable ubyte[] bin, int index)
+    {
+        auto bytes = get_bytes(parsed, bin, &index);
+        return bytes.bytes_to_indices(parsed.accessors[index]);
+    }
+
     void load(wstring path)
     {
         writefln("load: %s", path);
-        auto bytes = read(path);
+        const bytes = read(path);
 
-        auto glb = Glb.parse(cast(ubyte[]) bytes);
+        const glb = Glb.parse(cast(ubyte[]) bytes);
         if (!glb.json || !glb.bin)
         {
             throw new Exception("fail to Glb.parse");
         }
 
-        auto json_str = (cast(immutable char*) glb.json.ptr)[0 .. glb.json.length];
-        auto json = parseJSON(json_str);
+        const json_str = (cast(immutable char*) glb.json.ptr)[0 .. glb.json.length];
+        const json = parseJSON(json_str);
         gltf.glTF parsed = gltf.glTF.fromJSON(json);
         // writefln("%s", json.type);
         writefln("%s", json["asset"].object["generator"]);
 
         foreach (mesh; parsed.meshes)
         {
-            // writefln(mesh.name);
-            auto d = new Drawable();
+            auto d = new Drawable(mesh.name);
             foreach (prim; mesh.primitives)
             {
-                if (const(int)* x = "POSITION" in prim.attributes)
+                const positions = get_bytes(&parsed, glb.bin, "POSITION" in prim.attributes)
+                    .range_cast!float3;
+                d.Positions = positions;
+
+                const normals = get_bytes(&parsed, glb.bin, "NORMAL" in prim.attributes)
+                    .range_cast!float3;
+                if(normals.length)
                 {
-                    auto position = *x;
+                    d.Normals = normals;
+                }
+
+                const uvs = get_bytes(&parsed, glb.bin, "TEXCOORD_0" in prim.attributes)
+                    .range_cast!float2;
+                if(uvs.length)
+                {
+                    d.UVs = uvs;
+                }
+
+                auto indices = get_indices(&parsed, glb.bin, prim.indices.get);
+                if(indices)
+                {
+                    d.Indices = indices;
                 }
             }
             m_drawables ~= d;
