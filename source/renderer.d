@@ -36,6 +36,15 @@ class Drawable
     {
         Name = name;
     }
+
+    ~this()
+    {
+    }
+
+    void Draw(ID3D11Device device, ID3D11DeviceContext context)
+    {
+
+    }
 }
 
 static int length(gltf.AccessorComponentType componentType)
@@ -107,14 +116,14 @@ static const(int)[] bytes_to_indices(immutable(ubyte)[] bytes, const gltf.Access
 
     switch (accessor.componentType)
     {
-    case gltf.AccessorComponentType.UNSIGNED_BYTE:
+    case AccessorComponentType.UNSIGNED_BYTE:
         for (int i = 0; i < indices.length; ++i, ++p)
         {
             indices[i] = *p;
         }
         break;
 
-    case gltf.AccessorComponentType.UNSIGNED_SHORT:
+    case AccessorComponentType.UNSIGNED_SHORT:
         for (int i = 0; i < indices.length; ++i, p += 2)
         {
             indices[i] = *(cast(immutable ushort*) p);
@@ -186,7 +195,7 @@ class Renderer
         return hr == S_OK;
     }
 
-    static immutable(ubyte)[] get_bytes(const gltf.glTF* parsed,
+    static immutable(ubyte)[] get_bytes(const glTF* parsed,
             immutable ubyte[] bin, const int* index)
     {
         if (!index)
@@ -212,7 +221,7 @@ class Renderer
         return bin[begin .. end];
     }
 
-    const(int)[] get_indices(const gltf.glTF* parsed, immutable ubyte[] bin, int index)
+    const(int)[] get_indices(const glTF* parsed, immutable ubyte[] bin, int index)
     {
         auto bytes = get_bytes(parsed, bin, &index);
         return bytes.bytes_to_indices(parsed.accessors[index]);
@@ -231,7 +240,7 @@ class Renderer
 
         const json_str = (cast(immutable char*) glb.json.ptr)[0 .. glb.json.length];
         const json = parseJSON(json_str);
-        gltf.glTF parsed = gltf.glTF.fromJSON(json);
+        glTF parsed = glTF.fromJSON(json);
         // writefln("%s", json.type);
         writefln("%s", json["asset"].object["generator"]);
 
@@ -246,20 +255,20 @@ class Renderer
 
                 const normals = get_bytes(&parsed, glb.bin, "NORMAL" in prim.attributes)
                     .range_cast!float3;
-                if(normals.length)
+                if (normals.length)
                 {
                     d.Normals = normals;
                 }
 
                 const uvs = get_bytes(&parsed, glb.bin, "TEXCOORD_0" in prim.attributes)
                     .range_cast!float2;
-                if(uvs.length)
+                if (uvs.length)
                 {
                     d.UVs = uvs;
                 }
 
                 auto indices = get_indices(&parsed, glb.bin, prim.indices.get);
-                if(indices)
+                if (indices)
                 {
                     d.Indices = indices;
                 }
@@ -289,6 +298,11 @@ class Renderer
         }
         float[4] clearColor = [0.0f, 0.0f, 1.0f, 0.0f];
         m_context.ClearRenderTargetView(m_rtv, clearColor);
+
+        foreach (d; m_drawables)
+        {
+            d.Draw(m_device, m_context);
+        }
 
         // context.Flush();
 
