@@ -1,12 +1,11 @@
 module windowskits;
 public import windowskits.winnt;
-public import windowskits.guiddef;
 public import windowskits.d3dcommon;
-public import windowskits.windef;
+public import windowskits.d3dcompiler;
 public import windowskits.basetsd;
 public import windowskits.dxgitype;
 public import windowskits.dxgicommon;
 public import windowskits.d3d11;
 public import windowskits.dxgi;
-public import windowskits.minwindef;
+public import windowskits.d3d11shader;
 public import windowskits.dxgiformat;

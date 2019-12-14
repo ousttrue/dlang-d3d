@@ -8,6 +8,7 @@
 	"name": "dlang-d3d",
 	"libs": [
 		"user32",
-		"d3d11"
+		"d3d11",
+		"d3dcompiler"
 	]
 }

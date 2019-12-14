@@ -8,19 +8,7 @@ import glb;
 import gltf;
 import std.json;
 import std.conv;
-
-struct float2
-{
-    float x;
-    float y;
-}
-
-struct float3
-{
-    float x;
-    float y;
-    float z;
-}
+import dvecmath;
 
 class Drawable
 {
@@ -161,15 +149,15 @@ class Renderer
 
     bool initialize(HWND hwnd)
     {
-        auto dtype = D3D_DRIVER_TYPE.D3D_DRIVER_TYPE_HARDWARE;
+        auto dtype = D3D_DRIVER_TYPE._HARDWARE;
         UINT flags = 0;
         auto featureLevels = [
-            D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_11_0,
-            D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_10_1,
-            D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_10_0,
-            D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_9_3,
-            D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_9_2,
-            D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_9_1,
+            D3D_FEATURE_LEVEL._11_0,
+            D3D_FEATURE_LEVEL._10_1,
+            D3D_FEATURE_LEVEL._10_0,
+            D3D_FEATURE_LEVEL._9_3,
+            D3D_FEATURE_LEVEL._9_2,
+            D3D_FEATURE_LEVEL._9_1,
         ];
 
         //UINT numFeatureLevels = sizeof(featureLevels) / sizeof(D3D_FEATURE_LEVEL);
@@ -180,7 +168,7 @@ class Renderer
         scDesc.BufferCount = 1;
         scDesc.BufferDesc.Width = 0;
         scDesc.BufferDesc.Height = 0;
-        scDesc.BufferDesc.Format = DXGI_FORMAT.DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+        scDesc.BufferDesc.Format = DXGI_FORMAT._R8G8B8A8_UNORM_SRGB;
         scDesc.BufferDesc.RefreshRate.Numerator = 60;
         scDesc.BufferDesc.RefreshRate.Denominator = 1;
         scDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;

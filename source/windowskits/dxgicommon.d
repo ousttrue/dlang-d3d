@@ -1,6 +1,6 @@
 module windowskits.dxgicommon;
-import windowskits.minwindef;
 import core.sys.windows.windef;
+import core.sys.windows.winnt;
 struct DXGI_SAMPLE_DESC
 {
     UINT Count;
