@@ -255,7 +255,7 @@ class Shader
                     sigdesc.SemanticName, sigdesc.SemanticIndex, format, 0 // hardcoding
                     ,
                         D3D11_APPEND_ALIGNED_ELEMENT // hardcoding
-                        , D3D11_INPUT_CLASSIFICATION._PER_VERTEX_DATA // hardcoding
+                        , D3D11_INPUT_CLASSIFICATION._VERTEX_DATA // hardcoding
                         , 0 // hardcoding
 
                 
