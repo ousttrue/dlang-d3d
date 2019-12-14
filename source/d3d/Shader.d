@@ -20,7 +20,7 @@ static DXGI_FORMAT GetDxgiFormat(D3D_REGISTER_COMPONENT_TYPE type, BYTE mask)
         // xyzw
         switch (type)
         {
-        case D3D_REGISTER_COMPONENT_TYPE.D3D10_REGISTER_COMPONENT_FLOAT32:
+        case D3D_REGISTER_COMPONENT_TYPE._FLOAT32:
             return DXGI_FORMAT._R32G32B32A32_FLOAT;
 
         default:
@@ -33,7 +33,7 @@ static DXGI_FORMAT GetDxgiFormat(D3D_REGISTER_COMPONENT_TYPE type, BYTE mask)
         // xyz
         switch (type)
         {
-        case D3D_REGISTER_COMPONENT_TYPE.D3D10_REGISTER_COMPONENT_FLOAT32:
+        case D3D_REGISTER_COMPONENT_TYPE._FLOAT32:
             return DXGI_FORMAT._R32G32B32_FLOAT;
 
         default:
@@ -46,7 +46,7 @@ static DXGI_FORMAT GetDxgiFormat(D3D_REGISTER_COMPONENT_TYPE type, BYTE mask)
         // xy
         switch (type)
         {
-        case D3D_REGISTER_COMPONENT_TYPE.D3D10_REGISTER_COMPONENT_FLOAT32:
+        case D3D_REGISTER_COMPONENT_TYPE._FLOAT32:
             return DXGI_FORMAT._R32G32_FLOAT;
 
         default:
@@ -59,7 +59,7 @@ static DXGI_FORMAT GetDxgiFormat(D3D_REGISTER_COMPONENT_TYPE type, BYTE mask)
         // x
         switch (type)
         {
-        case D3D_REGISTER_COMPONENT_TYPE.D3D10_REGISTER_COMPONENT_FLOAT32:
+        case D3D_REGISTER_COMPONENT_TYPE._FLOAT32:
             return DXGI_FORMAT._R32_FLOAT;
 
         default:
