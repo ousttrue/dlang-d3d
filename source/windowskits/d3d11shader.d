@@ -21,9 +21,9 @@ enum D3D_SHADER_REQUIRES_TILED_RESOURCES = 0x00000100;
 interface ID3D11Linker: IUnknown
 {
     static const iidof = parseGUID("59a6cd0e-e10d-4c1f-88c0-63aba1daf30e");
-    HRESULT QueryInterface(IID* iid, LPVOID* ppv);
-    ULONG AddRef();
-    ULONG Release();
+    // skip QueryInterface
+    // skip AddRef
+    // skip Release
     HRESULT Link(ID3D11ModuleInstance pEntry, LPCSTR pEntryName, LPCSTR pTargetName, UINT uFlags, ID3DBlob* ppShaderBlob, ID3DBlob* ppErrorBuffer);
     HRESULT UseLibrary(ID3D11ModuleInstance pLibraryMI);
     HRESULT AddClipPlaneFromCBuffer(UINT uCBufferSlot, UINT uCBufferEntry);
@@ -31,9 +31,9 @@ interface ID3D11Linker: IUnknown
 interface ID3D11ModuleInstance: IUnknown
 {
     static const iidof = parseGUID("469e07f7-045a-48d5-aa12-68a478cdf75d");
-    HRESULT QueryInterface(IID* iid, LPVOID* ppv);
-    ULONG AddRef();
-    ULONG Release();
+    // skip QueryInterface
+    // skip AddRef
+    // skip Release
     HRESULT BindConstantBuffer(UINT uSrcSlot, UINT uDstSlot, UINT cbDstOffset);
     HRESULT BindConstantBufferByName(LPCSTR pName, UINT uDstSlot, UINT cbDstOffset);
     HRESULT BindResource(UINT uSrcSlot, UINT uDstSlot, UINT uCount);
@@ -48,17 +48,17 @@ interface ID3D11ModuleInstance: IUnknown
 interface ID3D11Module: IUnknown
 {
     static const iidof = parseGUID("cac701ee-80fc-4122-8242-10b39c8cec34");
-    HRESULT QueryInterface(IID* iid, LPVOID* ppv);
-    ULONG AddRef();
-    ULONG Release();
+    // skip QueryInterface
+    // skip AddRef
+    // skip Release
     HRESULT CreateInstance(LPCSTR pNamespace, ID3D11ModuleInstance* ppModuleInstance);
 }
 interface ID3D11FunctionLinkingGraph: IUnknown
 {
     static const iidof = parseGUID("54133220-1ce8-43d3-8236-9855c5ceecff");
-    HRESULT QueryInterface(IID* iid, LPVOID* ppv);
-    ULONG AddRef();
-    ULONG Release();
+    // skip QueryInterface
+    // skip AddRef
+    // skip Release
     HRESULT CreateModuleInstance(ID3D11ModuleInstance* ppModuleInstance, ID3DBlob* ppErrorBuffer);
     HRESULT SetInputSignature(D3D11_PARAMETER_DESC* pInputParameters, UINT cInputParameters, ID3D11LinkingNode* ppInputNode);
     HRESULT SetOutputSignature(D3D11_PARAMETER_DESC* pOutputParameters, UINT cOutputParameters, ID3D11LinkingNode* ppOutputNode);
@@ -87,9 +87,9 @@ struct _D3D11_PARAMETER_DESC
 interface ID3D11LinkingNode: IUnknown
 {
     static const iidof = parseGUID("d80dd70c-8d2f-4751-94a1-03c79b3556db");
-    HRESULT QueryInterface(IID* iid, LPVOID* ppv);
-    ULONG AddRef();
-    ULONG Release();
+    // skip QueryInterface
+    // skip AddRef
+    // skip Release
 }
 enum D3D11_SHADER_VERSION_TYPE
 {
@@ -287,9 +287,9 @@ alias LPD3D11SHADERREFLECTIONCONSTANTBUFFER = ID3D11ShaderReflectionConstantBuff
 interface ID3D11ShaderReflection: IUnknown
 {
     static const iidof = parseGUID("8d536ca1-0cca-4956-a837-786963755584");
-    HRESULT QueryInterface(IID* iid, LPVOID* ppv);
-    ULONG AddRef();
-    ULONG Release();
+    // skip QueryInterface
+    // skip AddRef
+    // skip Release
     HRESULT GetDesc(D3D11_SHADER_DESC* pDesc);
     ID3D11ShaderReflectionConstantBuffer GetConstantBufferByIndex(UINT Index);
     ID3D11ShaderReflectionConstantBuffer GetConstantBufferByName(LPCSTR Name);
@@ -314,9 +314,9 @@ alias LPD3D11SHADERREFLECTION = ID3D11ShaderReflection;
 interface ID3D11LibraryReflection: IUnknown
 {
     static const iidof = parseGUID("54384f1b-5b3e-4bb7-ae01-60ba3097cbb6");
-    HRESULT QueryInterface(IID* iid, LPVOID* ppv);
-    ULONG AddRef();
-    ULONG Release();
+    // skip QueryInterface
+    // skip AddRef
+    // skip Release
     HRESULT GetDesc(D3D11_LIBRARY_DESC* pDesc);
     ID3D11FunctionReflection GetFunctionByIndex(INT FunctionIndex);
 }
