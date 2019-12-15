@@ -7,3 +7,6 @@
 [submodule "dependencies/sukonbu"]
 	path = dependencies/sukonbu
 	url = https://github.com/ousttrue/sukonbu.git
+[submodule "dependencies/imgui"]
+	path = dependencies/imgui
+	url = https://github.com/ocornut/imgui.git
