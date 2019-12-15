@@ -6,6 +6,9 @@
 	"description": "A minimal D application.",
 	"license": "proprietary",
 	"name": "dlang-d3d",
+	"dflags": [
+		"-J=source"
+	],
 	"libs": [
 		"user32",
 		"d3d11",
