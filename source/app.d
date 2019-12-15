@@ -2,6 +2,7 @@ import core.sys.windows.windows;
 import std.stdio;
 import std.conv;
 import std.getopt;
+import std.experimental.logger;
 import core.runtime;
 import renderer;
 
@@ -67,9 +68,9 @@ extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, // @s
     // initilize stdout
     Runtime.initialize;
 
-    writeln(to!string(lpCmdLine));
+    log(to!string(lpCmdLine));
     auto cmdline = to!wstring(GetCommandLine());
-    writeln(cmdline);
+    log(cmdline);
 
     int argc = 0;
     wstring[] args;
@@ -85,6 +86,10 @@ extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, // @s
     if (args.length > 1)
     {
         renderer.load(args[1]);
+    }
+    else
+    {
+        renderer.createTriangle();
     }
 
     WNDCLASSEX wc;
