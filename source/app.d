@@ -5,6 +5,7 @@ import std.getopt;
 import std.experimental.logger;
 import core.runtime;
 import renderer;
+import imgui;
 
 wstring g_className = "SAMPLE_CLASS_NAME";
 wstring g_windowName = "Window Title";
@@ -127,6 +128,12 @@ extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, // @s
     {
         return 3;
     }
+
+    // Setup Dear ImGui context
+    IMGUI_CHECKVERSION();
+    imgui.CreateContext();
+    auto io = imgui.ImGui.GetIO();
+
 
     auto fps = new FpsClock!(30);
     MSG Msg;

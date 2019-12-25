@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "dub(shell)",
+            "label": "build",
             "type": "shell",
             "command": "dub",
             "args": [
@@ -18,45 +18,32 @@
                 "reveal": "always",
                 "panel": "new"
             },
-            "problemMatcher": ["$dmd"]
+            "problemMatcher": [
+                "$dmd"
+            ]
         },
         {
-            "type": "dub",
-            "run": false,
-            "compiler": "dmd",
-            "archType": "x86_64",
-            "buildType": "debug",
-            "configuration": "application",
-            "group": {
-                "kind": "build",
-                // "isDefault": true
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "build dclangen",
+            "label": "build regenerator",
             "type": "shell",
             "command": "dub build",
             "options": {
-                "cwd": "${workspaceFolder}/dependencies/dclangen"
+                "cwd": "${workspaceFolder}/dependencies/regenerator"
             },
             "problemMatcher": []
         },
         {
             "label": "generate d3d",
             "type": "shell",
-            "command": "python",
+            "command": "${workspaceFolder}/dependencies/regenerator/regenerator.exe",
             "args": [
-                "-m",
-                "cpptypeinfo.cli",
-                "gen",
-                "--d3d11",
-                "--windows",
-                "dlang",
+                "lua/d_d3d11.lua",
                 "${workspaceFolder}/source/windowskits"
             ],
             "options": {
-                "cwd": "${workspaceFolder}/dependencies/cpptypeinfo"
+                "cwd": "${workspaceFolder}/dependencies/regenerator",
+                "env": {
+                    "PATH": "${env:PATH};C:/Program Files/LLVM/bin",
+                }
             },
             "problemMatcher": []
         },

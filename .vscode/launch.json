@@ -19,26 +19,18 @@
             "visualizerFile": "${workspaceFolder}/.vscode/d.natvis"
         },
         {
-            "name": "dclangen d3d11",
+            "name": "dclangen imgui",
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}/dependencies/dclangen/dclangen.exe",
             "args": [
                 "-E",
                 "-H",
-                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/d3d11.h",
-                "-H",
-                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/shared/dxgi.h",
-                "-H",
-                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/d3dcompiler.h",
-                "-H",
-                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/d3d11shader.h",
-                "-I",
-                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/d3d10shader.h",
-                "-I",
-                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0",
+                "${workspaceFolder}/dependencies/imgui/imgui.h",
+                "--lua",
+                "imgui.lua",
                 "--outdir",
-                "${workspaceFolder}/source/windowskits",
+                "${workspaceFolder}/source/imgui",
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/dependencies/dclangen",
@@ -50,22 +42,6 @@
             ],
             "visualizerFile": "${workspaceFolder}/dependencies/dclangen/d.natvis",
             "externalConsole": false
-        },
-        {
-            "name": "cpptypeinfo d3d11",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/dependencies/cpptypeinfo/cpptypeinfo/cli.py",
-            "args": [
-                "gen",
-                "--d3d11",
-                "dlang",
-                "${workspaceFolder}/source/windowskits",
-            ],
-            "console": "integratedTerminal",
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}/dependencies/cpptypeinfo",
-            }
         },
         {
             "name": "sukonbu dlang",
