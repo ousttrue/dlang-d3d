@@ -130,10 +130,9 @@ extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, // @s
     }
 
     // Setup Dear ImGui context
-    IMGUI_CHECKVERSION();
-    imgui.CreateContext();
-    auto io = imgui.ImGui.GetIO();
-
+    // IMGUI_CHECKVERSION();
+    // imgui.CreateContext();
+    // auto io = imgui.GetIO();
 
     auto fps = new FpsClock!(30);
     MSG Msg;

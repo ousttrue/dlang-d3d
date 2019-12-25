@@ -469,7 +469,7 @@ enum D3D11_USAGE
 }
 struct D3D11_SUBRESOURCE_DATA
 {
-    const void* pSysMem;
+    void* pSysMem;
     UINT SysMemPitch;
     UINT SysMemSlicePitch;
 }

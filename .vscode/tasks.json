@@ -48,6 +48,23 @@
             "problemMatcher": []
         },
         {
+            "label": "generate imgui",
+            "type": "shell",
+            "command": "${workspaceFolder}/dependencies/regenerator/regenerator.exe",
+            "args": [
+                "lua/d_imgui.lua",
+                "${workspaceFolder}/dependencies/imgui",
+                "${workspaceFolder}/source/imgui"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/dependencies/regenerator",
+                "env": {
+                    "PATH": "${env:PATH};C:/Program Files/LLVM/bin",
+                }
+            },
+            "problemMatcher": []
+        },
+         {
             "label": "generate gltf",
             "type": "shell",
             "command": "python",
