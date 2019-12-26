@@ -13,3 +13,4 @@ dlang-d3d-test-*
 *.o
 *.obj
 *.lst
+/build
