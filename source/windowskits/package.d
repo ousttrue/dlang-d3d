@@ -6,6 +6,7 @@ public import windowskits.dxgicommon;
 public import windowskits.dxgiformat;
 public import windowskits.dxgitype;
 public import windowskits.d3d10;
+public import windowskits.d3d10effect;
 public import windowskits.d3d10shader;
 public import windowskits.d3d11;
 public import windowskits.d3d11shader;

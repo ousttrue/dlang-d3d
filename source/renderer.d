@@ -234,7 +234,7 @@ class Renderer
         if (!m_rtv)
         {
             ID3D11Texture2D backbuffer;
-            auto hr = m_swapchain.GetBuffer(0, &backbuffer.iidof, cast(void**)&backbuffer);
+            auto hr = m_swapchain.GetBuffer(0, backbuffer.iidof, cast(void**)&backbuffer);
             if (hr != S_OK)
             {
                 throw new Exception("fail to GetBuffer");

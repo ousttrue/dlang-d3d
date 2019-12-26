@@ -60,8 +60,8 @@ interface ID3D11FunctionLinkingGraph: IUnknown
     // skip AddRef
     // skip Release
     HRESULT CreateModuleInstance(ID3D11ModuleInstance* ppModuleInstance, ID3DBlob* ppErrorBuffer);
-    HRESULT SetInputSignature(const D3D11_PARAMETER_DESC* pInputParameters, UINT cInputParameters, ID3D11LinkingNode* ppInputNode);
-    HRESULT SetOutputSignature(const D3D11_PARAMETER_DESC* pOutputParameters, UINT cOutputParameters, ID3D11LinkingNode* ppOutputNode);
+    HRESULT SetInputSignature(const(D3D11_PARAMETER_DESC)* pInputParameters, UINT cInputParameters, ID3D11LinkingNode* ppInputNode);
+    HRESULT SetOutputSignature(const(D3D11_PARAMETER_DESC)* pOutputParameters, UINT cOutputParameters, ID3D11LinkingNode* ppOutputNode);
     HRESULT CallFunction(LPCSTR pModuleInstanceNamespace, ID3D11Module pModuleWithFunctionPrototype, LPCSTR pFunctionName, ID3D11LinkingNode* ppCallNode);
     HRESULT PassValue(ID3D11LinkingNode pSrcNode, INT SrcParameterIndex, ID3D11LinkingNode pDstNode, INT DstParameterIndex);
     HRESULT PassValueWithSwizzle(ID3D11LinkingNode pSrcNode, INT SrcParameterIndex, LPCSTR pSrcSwizzle, ID3D11LinkingNode pDstNode, INT DstParameterIndex, LPCSTR pDstSwizzle);

@@ -70,7 +70,7 @@ class Shader
         // vertex shader reflection
         ID3D11ShaderReflection pReflector;
         hr = D3DReflect(blob.GetBufferPointer(), blob.GetBufferSize(),
-                &ID3D11ShaderReflection.iidof, cast(void**)&pReflector);
+                ID3D11ShaderReflection.iidof, cast(void**)&pReflector);
         if (FAILED(hr))
             return false;
 

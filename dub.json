@@ -12,6 +12,26 @@
 	"libs": [
 		"user32",
 		"d3d11",
-		"d3dcompiler"
-	]
+		"d3dcompiler",
+	],
+	"buildTypes": {
+		"debug": {
+			"dflags": [
+				"-mscrtlib=MSVCRTD",
+				"-g",
+				"-debug"
+			],
+			"libs": [
+				"build/Debug/lib/imgui"
+			]
+		},
+		"release": {
+			"libs": [
+				"build/Release/lib/imgui"
+			],
+			"dflags": [
+				"-mscrtlib=msvcrt"
+			]
+		}
+	}
 }
