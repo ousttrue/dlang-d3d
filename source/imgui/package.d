@@ -2,4 +2,6 @@
 module imgui;
 public import imgui.vadefs;
 public import imgui.vcruntime;
+public import imgui.imgui_impl_dx11;
+public import imgui.imgui_impl_win32;
 public import imgui.imgui;

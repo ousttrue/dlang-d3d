@@ -276,7 +276,10 @@ class Renderer
         }
 
         // m_context.Flush();
+    }
 
+    void present()
+    {
         m_swapchain.Present(0, 0);
     }
 }

@@ -113,7 +113,7 @@ extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, // @s
     }
 
     auto hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, g_className.ptr, g_windowName.ptr,
-            WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 240, 120, NULL,
+            WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 640, 480, NULL,
             NULL, hInstance, NULL);
     if (hwnd == NULL)
     {
@@ -131,11 +131,17 @@ extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, // @s
 
     // Setup Dear ImGui context
     // IMGUI_CHECKVERSION();
-    CreateContext();
-    auto io = imgui.GetIO();
+    ImGui.CreateContext();
+    auto io = ImGui.GetIO();
+
+    // Setup Platform/Renderer bindings
+    ImGui_ImplWin32_Init(hwnd);
+    ImGui_ImplDX11_Init(cast(ID3D11Device*) renderer.m_device,
+            cast(ID3D11DeviceContext*) renderer.m_context);
 
     auto fps = new FpsClock!(30);
     MSG Msg;
+    bool show_demo_window = true;
     while (GetMessage(&Msg, NULL, 0, 0))
     {
         auto now = fps.newFrame();
@@ -143,9 +149,28 @@ extern (Windows) int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, // @s
         TranslateMessage(&Msg);
         DispatchMessage(&Msg);
 
+        // Start the Dear ImGui frame
+        ImGui_ImplDX11_NewFrame();
+        ImGui_ImplWin32_NewFrame();
+        ImGui.NewFrame();
+
+        ImGui.ShowDemoWindow(&show_demo_window);
+
         renderer.draw(now);
+
+        {
+            // imgui Rendering
+            ImGui.Render();
+            ImGui_ImplDX11_RenderDrawData(ImGui.GetDrawData());
+        }
+
+        renderer.present();
+
         fps.waitNextFrame();
     }
+
+    ImGui_ImplDX11_Shutdown();
+    ImGui_ImplWin32_Shutdown();
 
     return cast(int) Msg.wParam;
 }
