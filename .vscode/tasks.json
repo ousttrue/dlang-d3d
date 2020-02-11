@@ -10,6 +10,9 @@
             "args": [
                 "build",
             ],
+            "options": {
+                "cwd": "${workspaceFolder}/d3d11_imgui"
+            },
             "group": {
                 "kind": "build",
                 "isDefault": true

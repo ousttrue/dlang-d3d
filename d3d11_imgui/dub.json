@@ -5,14 +5,21 @@
 	"copyright": "Copyright © 2019, ousttrue",
 	"description": "A minimal D application.",
 	"license": "proprietary",
-	"name": "dlang-d3d",
+	"name": "d3d11_imgui",
+	"targetType": "executable",
 	"dflags": [
 		"-J=source"
 	],
+	"subPackages": [
+		"../dlang_generated/"
+	],
+	"dependencies": {
+		"d3d11_imgui:dlang_generated": "*"
+	},
 	"libs": [
 		"user32",
 		"d3d11",
-		"d3dcompiler",
+		"d3dcompiler"
 	],
 	"buildTypes": {
 		"debug": {
@@ -22,12 +29,12 @@
 				"-debug"
 			],
 			"libs": [
-				"build/Debug/lib/imgui"
+				"../build/Debug/lib/imgui"
 			]
 		},
 		"release": {
 			"libs": [
-				"build/Release/lib/imgui"
+				"../build/Release/lib/imgui"
 			],
 			"dflags": [
 				"-mscrtlib=msvcrt"

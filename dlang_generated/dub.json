@@ -1,0 +1,5 @@
+{
+    "name": "dlang_generated",
+    "targetType": "library",
+    "sourcePaths": ["./source"]
+}

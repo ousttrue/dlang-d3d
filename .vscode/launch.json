@@ -8,7 +8,7 @@
             "name": "dlang-d3d",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/dlang-d3d.exe",
+            "program": "${workspaceFolder}/d3d11_imgui/d3d11_imgui.exe",
             "args": [
                 "${env:GLTF_SAMPLE_MODELS}/2.0/Box/glTF-Binary/Box.glb"
             ],
