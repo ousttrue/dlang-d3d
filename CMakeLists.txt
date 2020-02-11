@@ -15,8 +15,8 @@ ADD_DEFINITIONS(
     -DNOMINMAX
     )
 ADD_COMPILE_OPTIONS(
-    /std:c++latest 
+    # /std:c++latest 
     /EHsc
+    /d2FH4-
     )
-
 SubDirs(imgui)
