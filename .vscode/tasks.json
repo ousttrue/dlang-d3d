@@ -35,12 +35,12 @@
             "problemMatcher": []
         },
         {
-            "label": "generate d3d",
+            "label": "generate windowskits",
             "type": "shell",
             "command": "${workspaceFolder}/dependencies/regenerator/regenerator.exe",
             "args": [
-                "lua/d_d3d11.lua",
-                "${workspaceFolder}/source/windowskits"
+                "lua/d_windowskits.lua",
+                "${workspaceFolder}/dlang_generated/source/windowskits"
             ],
             "options": {
                 "cwd": "${workspaceFolder}/dependencies/regenerator",

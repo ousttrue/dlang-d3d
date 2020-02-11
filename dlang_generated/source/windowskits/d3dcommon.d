@@ -2,10 +2,13 @@
 module windowskits.d3dcommon;
 import core.sys.windows.unknwn;
 import windowskits.guidutil;
+import windowskits.minwindef;
 import core.sys.windows.windef;
 import core.sys.windows.winnt;
 import windowskits.basetsd;
 import windowskits.winnt;
+            // alias ID3DBlob = ID3D10Blob;
+        
 enum D3D_SRV_DIMENSION
 {
     _UNKNOWN = 0x0,
@@ -153,6 +156,7 @@ enum D3D_PRIMITIVE_TOPOLOGY
 }
 enum D3D_FEATURE_LEVEL
 {
+    _1_0_CORE = 0x1000,
     _9_1 = 0x9100,
     _9_2 = 0x9200,
     _9_3 = 0x9300,
@@ -459,6 +463,7 @@ enum D3D_NAME
     _FINAL_LINE_DETAIL_TESSFACTOR = 0xf,
     _FINAL_LINE_DENSITY_TESSFACTOR = 0x10,
     _BARYCENTRICS = 0x17,
+    _SHADINGRATE = 0x18,
     _TARGET = 0x40,
     _DEPTH = 0x41,
     _COVERAGE = 0x42,
@@ -491,6 +496,7 @@ enum D3D_NAME
     D3D11_NAME_STENCIL_REF = 0x45,
     D3D11_NAME_INNER_COVERAGE = 0x46,
     D3D12_NAME_BARYCENTRICS = 0x17,
+    D3D12_NAME_SHADINGRATE = 0x18,
 }
 enum D3D_REGISTER_COMPONENT_TYPE
 {

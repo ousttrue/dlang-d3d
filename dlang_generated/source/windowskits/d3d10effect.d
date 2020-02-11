@@ -6,10 +6,12 @@ import windowskits.winnt;
 import core.sys.windows.windef;
 import core.sys.windows.winnt;
 import core.sys.windows.basetyps;
+import windowskits.minwindef;
 import windowskits.d3d10;
 import windowskits.dxgiformat;
 import windowskits.d3dcommon;
 import windowskits.basetsd;
+import windowskits.windef;
 import windowskits.dxgicommon;
 import windowskits.d3d10shader;
 interface ID3D10Effect: IUnknown

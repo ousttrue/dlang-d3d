@@ -6,10 +6,14 @@ import windowskits.winnt;
 import core.sys.windows.windef;
 import core.sys.windows.winnt;
 import core.sys.windows.basetyps;
-import windowskits.dxgitype;
+import windowskits.minwindef;
+import windowskits.basetsd;
 import windowskits.dxgiformat;
 import windowskits.dxgicommon;
-import windowskits.basetsd;
+import windowskits.windef;
+import windowskits.dxgitype;
+enum __REQUIRED_RPCNDR_H_VERSION__ = 500;
+enum __REQUIRED_RPCSAL_H_VERSION__ = 100;
 enum DXGI_CPU_ACCESS_NONE = ( 0 );
 enum DXGI_CPU_ACCESS_DYNAMIC = ( 1 );
 enum DXGI_CPU_ACCESS_READ_WRITE = ( 2 );
@@ -46,20 +50,65 @@ enum DXGI_MWA_NO_WINDOW_CHANGES = ( 1 << 0 );
 enum DXGI_MWA_NO_ALT_ENTER = ( 1 << 1 );
 enum DXGI_MWA_NO_PRINT_SCREEN = ( 1 << 2 );
 enum DXGI_MWA_VALID = ( 0x7 );
+interface IDXGIObject: IUnknown
+{
+    static const iidof = parseGUID("aec22fb8-76f3-4639-9be0-28eb43a67a2e");
+    HRESULT SetPrivateData(ref GUID Name, UINT DataSize, const(void)* pData);
+    HRESULT SetPrivateDataInterface(ref GUID Name, const(IUnknown) pUnknown);
+    HRESULT GetPrivateData(ref GUID Name, UINT* pDataSize, void* pData);
+    HRESULT GetParent(ref IID riid, void** ppParent);
+}
+interface IDXGIDeviceSubObject: IDXGIObject
+{
+    static const iidof = parseGUID("3d3e0379-f9de-4d58-bb6c-18d62992f1a6");
+    HRESULT GetDevice(ref IID riid, void** ppDevice);
+}
+interface IDXGIResource: IDXGIDeviceSubObject
+{
+    static const iidof = parseGUID("035f3ab4-482e-4e50-b41f-8a7f8bd8960b");
+    HRESULT GetSharedHandle(HANDLE* pSharedHandle);
+    HRESULT GetUsage(DXGI_USAGE* pUsage);
+    HRESULT SetEvictionPriority(UINT EvictionPriority);
+    HRESULT GetEvictionPriority(UINT* pEvictionPriority);
+}
+alias DXGI_USAGE = UINT;
+interface IDXGIKeyedMutex: IDXGIDeviceSubObject
+{
+    static const iidof = parseGUID("9d8e1289-d7b3-465f-8126-250e349af85d");
+    HRESULT AcquireSync(UINT64 Key, DWORD dwMilliseconds);
+    HRESULT ReleaseSync(UINT64 Key);
+}
+interface IDXGISurface: IDXGIDeviceSubObject
+{
+    static const iidof = parseGUID("cafcb56c-6ac3-4889-bf47-9e23bbd260ec");
+    HRESULT GetDesc(DXGI_SURFACE_DESC* pDesc);
+    HRESULT Map(DXGI_MAPPED_RECT* pLockedRect, UINT MapFlags);
+    HRESULT Unmap();
+}
+struct DXGI_SURFACE_DESC
+{
+    UINT Width;
+    UINT Height;
+    DXGI_FORMAT Format;
+    DXGI_SAMPLE_DESC SampleDesc;
+}
+struct DXGI_MAPPED_RECT
+{
+    INT Pitch;
+    BYTE* pBits;
+}
+interface IDXGISurface1: IDXGISurface
+{
+    static const iidof = parseGUID("4ae63092-6327-4c1b-80ae-bfe12ea32b86");
+    HRESULT GetDC(BOOL Discard, HDC* phdc);
+    HRESULT ReleaseDC(RECT* pDirtyRect);
+}
 interface IDXGIAdapter: IDXGIObject
 {
     static const iidof = parseGUID("2411e7e1-12ac-4ccf-bd14-9798e8534dc0");
     HRESULT EnumOutputs(UINT Output, IDXGIOutput* ppOutput);
     HRESULT GetDesc(DXGI_ADAPTER_DESC* pDesc);
     HRESULT CheckInterfaceSupport(ref GUID InterfaceName, LARGE_INTEGER* pUMDVersion);
-}
-interface IDXGIObject: IUnknown
-{
-    static const iidof = parseGUID("aec22fb8-76f3-4639-9be0-28eb43a67a2e");
-    HRESULT SetPrivateData(ref GUID Name, UINT DataSize, const(void)* pData);
-    HRESULT SetPrivateDataInterface(ref GUID Name, IUnknown pUnknown);
-    HRESULT GetPrivateData(ref GUID Name, UINT* pDataSize, void* pData);
-    HRESULT GetParent(ref IID riid, void** ppParent);
 }
 interface IDXGIOutput: IDXGIObject
 {
@@ -85,30 +134,6 @@ struct DXGI_OUTPUT_DESC
     DXGI_MODE_ROTATION Rotation;
     HMONITOR Monitor;
 }
-interface IDXGISurface: IDXGIDeviceSubObject
-{
-    static const iidof = parseGUID("cafcb56c-6ac3-4889-bf47-9e23bbd260ec");
-    HRESULT GetDesc(DXGI_SURFACE_DESC* pDesc);
-    HRESULT Map(DXGI_MAPPED_RECT* pLockedRect, UINT MapFlags);
-    HRESULT Unmap();
-}
-interface IDXGIDeviceSubObject: IDXGIObject
-{
-    static const iidof = parseGUID("3d3e0379-f9de-4d58-bb6c-18d62992f1a6");
-    HRESULT GetDevice(ref IID riid, void** ppDevice);
-}
-struct DXGI_SURFACE_DESC
-{
-    UINT Width;
-    UINT Height;
-    DXGI_FORMAT Format;
-    DXGI_SAMPLE_DESC SampleDesc;
-}
-struct DXGI_MAPPED_RECT
-{
-    INT Pitch;
-    BYTE* pBits;
-}
 struct DXGI_FRAME_STATISTICS
 {
     UINT PresentCount;
@@ -129,25 +154,6 @@ struct DXGI_ADAPTER_DESC
     SIZE_T SharedSystemMemory;
     LUID AdapterLuid;
 }
-struct DXGI_SWAP_CHAIN_DESC
-{
-    DXGI_MODE_DESC BufferDesc;
-    DXGI_SAMPLE_DESC SampleDesc;
-    DXGI_USAGE BufferUsage;
-    UINT BufferCount;
-    HWND OutputWindow;
-    BOOL Windowed;
-    DXGI_SWAP_EFFECT SwapEffect;
-    UINT Flags;
-}
-alias DXGI_USAGE = UINT;
-enum DXGI_SWAP_EFFECT
-{
-    _DISCARD = 0x0,
-    _SEQUENTIAL = 0x1,
-    _FLIP_SEQUENTIAL = 0x3,
-    _FLIP_DISCARD = 0x4,
-}
 interface IDXGISwapChain: IDXGIDeviceSubObject
 {
     static const iidof = parseGUID("310d36a0-d2e7-4c0a-aa04-6a9d23b8886a");
@@ -162,25 +168,23 @@ interface IDXGISwapChain: IDXGIDeviceSubObject
     HRESULT GetFrameStatistics(DXGI_FRAME_STATISTICS* pStats);
     HRESULT GetLastPresentCount(UINT* pLastPresentCount);
 }
-interface IDXGIResource: IDXGIDeviceSubObject
+struct DXGI_SWAP_CHAIN_DESC
 {
-    static const iidof = parseGUID("035f3ab4-482e-4e50-b41f-8a7f8bd8960b");
-    HRESULT GetSharedHandle(HANDLE* pSharedHandle);
-    HRESULT GetUsage(DXGI_USAGE* pUsage);
-    HRESULT SetEvictionPriority(UINT EvictionPriority);
-    HRESULT GetEvictionPriority(UINT* pEvictionPriority);
+    DXGI_MODE_DESC BufferDesc;
+    DXGI_SAMPLE_DESC SampleDesc;
+    DXGI_USAGE BufferUsage;
+    UINT BufferCount;
+    HWND OutputWindow;
+    BOOL Windowed;
+    DXGI_SWAP_EFFECT SwapEffect;
+    UINT Flags;
 }
-interface IDXGIKeyedMutex: IDXGIDeviceSubObject
+enum DXGI_SWAP_EFFECT
 {
-    static const iidof = parseGUID("9d8e1289-d7b3-465f-8126-250e349af85d");
-    HRESULT AcquireSync(UINT64 Key, DWORD dwMilliseconds);
-    HRESULT ReleaseSync(UINT64 Key);
-}
-interface IDXGISurface1: IDXGISurface
-{
-    static const iidof = parseGUID("4ae63092-6327-4c1b-80ae-bfe12ea32b86");
-    HRESULT GetDC(BOOL Discard, HDC* phdc);
-    HRESULT ReleaseDC(RECT* pDirtyRect);
+    _DISCARD = 0x0,
+    _SEQUENTIAL = 0x1,
+    _FLIP_SEQUENTIAL = 0x3,
+    _FLIP_DISCARD = 0x4,
 }
 interface IDXGIFactory: IDXGIObject
 {
@@ -268,7 +272,5 @@ struct DXGI_DISPLAY_COLOR_SPACE
     FLOAT[2][8] PrimaryCoordinates;
     FLOAT[2][16] WhitePoints;
 }
-extern(C++) {
 extern(C) HRESULT CreateDXGIFactory(ref IID riid, void** ppFactory);
 extern(C) HRESULT CreateDXGIFactory1(ref IID riid, void** ppFactory);
-} // 

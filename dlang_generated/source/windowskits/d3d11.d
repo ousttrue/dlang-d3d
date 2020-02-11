@@ -5,15 +5,15 @@ import windowskits.guidutil;
 import windowskits.winnt;
 import core.sys.windows.windef;
 import core.sys.windows.winnt;
+import windowskits.minwindef;
 import windowskits.dxgiformat;
 import windowskits.dxgicommon;
 import windowskits.d3dcommon;
 import windowskits.basetsd;
+import windowskits.windef;
 import core.sys.windows.basetyps;
+import windowskits.wtypesbase;
 import windowskits.dxgi;
-import windowskits.dxgitype;
-enum __REQUIRED_RPCNDR_H_VERSION__ = 500;
-enum __REQUIRED_RPCSAL_H_VERSION__ = 100;
 enum D3D11_16BIT_INDEX_STRIP_CUT_VALUE = ( 0xffff );
 enum D3D11_32BIT_INDEX_STRIP_CUT_VALUE = ( 0xffffffff );
 enum D3D11_8BIT_INDEX_STRIP_CUT_VALUE = ( 0xff );
@@ -389,6 +389,8 @@ enum D3D11_4_VIDEO_DECODER_MAX_HISTOGRAM_COMPONENTS = ( 4 );
 enum D3D11_4_VIDEO_DECODER_HISTOGRAM_OFFSET_ALIGNMENT = ( 256 );
 enum _FACD3D11 = ( 0x87c );
 enum _FACD3D11DEBUG = ( ( _FACD3D11 + 1 ) );
+// macro function: MAKE_D3D11_HRESULT ( code ) MAKE_HRESULT ( 1 , _FACD3D11 , code );
+// macro function: MAKE_D3D11_STATUS ( code ) MAKE_HRESULT ( 0 , _FACD3D11 , code );
 enum D3D11_APPEND_ALIGNED_ELEMENT = ( 0xffffffff );
 enum D3D11_FILTER_REDUCTION_TYPE_MASK = ( 0x3 );
 enum D3D11_FILTER_REDUCTION_TYPE_SHIFT = ( 7 );
@@ -398,6 +400,14 @@ enum D3D11_MAG_FILTER_SHIFT = ( 2 );
 enum D3D11_MIP_FILTER_SHIFT = ( 0 );
 enum D3D11_COMPARISON_FILTERING_BIT = ( 0x80 );
 enum D3D11_ANISOTROPIC_FILTERING_BIT = ( 0x40 );
+// macro function: D3D11_ENCODE_BASIC_FILTER ( min , mag , mip , reduction ) ( ( D3D11_FILTER ) ( ( ( ( min ) & D3D11_FILTER_TYPE_MASK ) << D3D11_MIN_FILTER_SHIFT ) | ( ( ( mag ) & D3D11_FILTER_TYPE_MASK ) << D3D11_MAG_FILTER_SHIFT ) | ( ( ( mip ) & D3D11_FILTER_TYPE_MASK ) << D3D11_MIP_FILTER_SHIFT ) | ( ( ( reduction ) & D3D11_FILTER_REDUCTION_TYPE_MASK ) << D3D11_FILTER_REDUCTION_TYPE_SHIFT ) ) );
+// macro function: D3D11_ENCODE_ANISOTROPIC_FILTER ( reduction ) ( ( D3D11_FILTER ) ( D3D11_ANISOTROPIC_FILTERING_BIT | D3D11_ENCODE_BASIC_FILTER ( D3D11_FILTER_TYPE_LINEAR , D3D11_FILTER_TYPE_LINEAR , D3D11_FILTER_TYPE_LINEAR , reduction ) ) );
+// macro function: D3D11_DECODE_MIN_FILTER ( d3d11Filter ) ( ( D3D11_FILTER_TYPE ) ( ( ( d3d11Filter ) >> D3D11_MIN_FILTER_SHIFT ) & D3D11_FILTER_TYPE_MASK ) );
+// macro function: D3D11_DECODE_MAG_FILTER ( d3d11Filter ) ( ( D3D11_FILTER_TYPE ) ( ( ( d3d11Filter ) >> D3D11_MAG_FILTER_SHIFT ) & D3D11_FILTER_TYPE_MASK ) );
+// macro function: D3D11_DECODE_MIP_FILTER ( d3d11Filter ) ( ( D3D11_FILTER_TYPE ) ( ( ( d3d11Filter ) >> D3D11_MIP_FILTER_SHIFT ) & D3D11_FILTER_TYPE_MASK ) );
+// macro function: D3D11_DECODE_FILTER_REDUCTION ( d3d11Filter ) ( ( D3D11_FILTER_REDUCTION_TYPE ) ( ( ( d3d11Filter ) >> D3D11_FILTER_REDUCTION_TYPE_SHIFT ) & D3D11_FILTER_REDUCTION_TYPE_MASK ) );
+// macro function: D3D11_DECODE_IS_COMPARISON_FILTER ( d3d11Filter ) ( D3D11_DECODE_FILTER_REDUCTION ( d3d11Filter ) == D3D11_FILTER_REDUCTION_TYPE_COMPARISON );
+// macro function: D3D11_DECODE_IS_ANISOTROPIC_FILTER ( d3d11Filter ) ( ( ( d3d11Filter ) & D3D11_ANISOTROPIC_FILTERING_BIT ) && ( D3D11_FILTER_TYPE_LINEAR == D3D11_DECODE_MIN_FILTER ( d3d11Filter ) ) && ( D3D11_FILTER_TYPE_LINEAR == D3D11_DECODE_MAG_FILTER ( d3d11Filter ) ) && ( D3D11_FILTER_TYPE_LINEAR == D3D11_DECODE_MIP_FILTER ( d3d11Filter ) ) );
 enum D3D11_SDK_VERSION = ( 7 );
 interface ID3D11DeviceChild: IUnknown
 {
@@ -405,7 +415,7 @@ interface ID3D11DeviceChild: IUnknown
     void GetDevice(ID3D11Device* ppDevice);
     HRESULT GetPrivateData(ref GUID guid, UINT* pDataSize, void* pData);
     HRESULT SetPrivateData(ref GUID guid, UINT DataSize, const(void)* pData);
-    HRESULT SetPrivateDataInterface(ref GUID guid, IUnknown pData);
+    HRESULT SetPrivateDataInterface(ref GUID guid, const(IUnknown) pData);
 }
 interface ID3D11Device: IUnknown
 {
@@ -443,7 +453,7 @@ interface ID3D11Device: IUnknown
     HRESULT CheckFeatureSupport(D3D11_FEATURE Feature, void* pFeatureSupportData, UINT FeatureSupportDataSize);
     HRESULT GetPrivateData(ref GUID guid, UINT* pDataSize, void* pData);
     HRESULT SetPrivateData(ref GUID guid, UINT DataSize, const(void)* pData);
-    HRESULT SetPrivateDataInterface(ref GUID guid, IUnknown pData);
+    HRESULT SetPrivateDataInterface(ref GUID guid, const(IUnknown) pData);
     D3D_FEATURE_LEVEL GetFeatureLevel();
     UINT GetCreationFlags();
     HRESULT GetDeviceRemovedReason();
@@ -563,7 +573,6 @@ struct D3D11_SHADER_RESOURCE_VIEW_DESC
     }
 }
 alias D3D11_SRV_DIMENSION = D3D_SRV_DIMENSION;
-// struct nameless
 struct D3D11_BUFFER_SRV
 {
     union {
@@ -575,8 +584,6 @@ struct D3D11_BUFFER_SRV
         UINT ElementWidth;
     }
 }
-// struct nameless
-// struct nameless
 struct D3D11_TEX1D_SRV
 {
     UINT MostDetailedMip;
@@ -666,7 +673,6 @@ enum D3D11_UAV_DIMENSION
     _TEXTURE2DARRAY = 0x5,
     _TEXTURE3D = 0x8,
 }
-// struct nameless
 struct D3D11_BUFFER_UAV
 {
     UINT FirstElement;
@@ -731,7 +737,6 @@ enum D3D11_RTV_DIMENSION
     _TEXTURE2DMSARRAY = 0x7,
     _TEXTURE3D = 0x8,
 }
-// struct nameless
 struct D3D11_BUFFER_RTV
 {
     union {
@@ -743,8 +748,6 @@ struct D3D11_BUFFER_RTV
         UINT ElementWidth;
     }
 }
-// struct nameless
-// struct nameless
 struct D3D11_TEX1D_RTV
 {
     UINT MipSlice;
@@ -809,7 +812,6 @@ enum D3D11_DSV_DIMENSION
     _TEXTURE2DMS = 0x5,
     _TEXTURE2DMSARRAY = 0x6,
 }
-// struct nameless
 struct D3D11_TEX1D_DSV
 {
     UINT MipSlice;
@@ -1510,7 +1512,6 @@ enum D3D11_VDOV_DIMENSION
     _UNKNOWN = 0x0,
     _TEXTURE2D = 0x1,
 }
-// struct nameless
 struct D3D11_TEX2D_VDOV
 {
     UINT ArraySlice;
@@ -1533,7 +1534,6 @@ enum D3D11_VPIV_DIMENSION
     _UNKNOWN = 0x0,
     _TEXTURE2D = 0x1,
 }
-// struct nameless
 struct D3D11_TEX2D_VPIV
 {
     UINT MipSlice;
@@ -1558,7 +1558,6 @@ enum D3D11_VPOV_DIMENSION
     _TEXTURE2D = 0x1,
     _TEXTURE2DARRAY = 0x2,
 }
-// struct nameless
 struct D3D11_TEX2D_VPOV
 {
     UINT MipSlice;
@@ -1684,7 +1683,6 @@ struct D3D11_VIDEO_COLOR
         D3D11_VIDEO_COLOR_RGBA RGBA;
     }
 }
-// struct nameless
 struct D3D11_VIDEO_COLOR_YCbCrA
 {
     float Y;
@@ -1790,7 +1788,7 @@ interface ID3D11VideoDevice: IUnknown
     HRESULT GetContentProtectionCaps(const(GUID)* pCryptoType, const(GUID)* pDecoderProfile, D3D11_VIDEO_CONTENT_PROTECTION_CAPS* pCaps);
     HRESULT CheckCryptoKeyExchange(const(GUID)* pCryptoType, const(GUID)* pDecoderProfile, UINT Index, GUID* pKeyExchangeType);
     HRESULT SetPrivateData(ref GUID guid, UINT DataSize, const(void)* pData);
-    HRESULT SetPrivateDataInterface(ref GUID guid, IUnknown pData);
+    HRESULT SetPrivateDataInterface(ref GUID guid, const(IUnknown) pData);
 }
 enum D3D11_AUTHENTICATED_CHANNEL_TYPE
 {
@@ -2515,9 +2513,7 @@ enum D3D11_CREATE_DEVICE_FLAG
     _DISABLE_GPU_TIMEOUT = 0x100,
     _VIDEO_SUPPORT = 0x800,
 }
-alias PFN_D3D11_CREATE_DEVICE = void*;
-alias PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN = void*;
-extern(C++) {
+alias PFN_D3D11_CREATE_DEVICE = extern(C) HRESULT function(IDXGIAdapter , D3D_DRIVER_TYPE , HMODULE , UINT , const(D3D_FEATURE_LEVEL)* , UINT FeatureLevels, UINT , ID3D11Device* , D3D_FEATURE_LEVEL* , ID3D11DeviceContext* );
+alias PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN = extern(C) HRESULT function(IDXGIAdapter , D3D_DRIVER_TYPE , HMODULE , UINT , const(D3D_FEATURE_LEVEL)* , UINT FeatureLevels, UINT , const(DXGI_SWAP_CHAIN_DESC)* , IDXGISwapChain* , ID3D11Device* , D3D_FEATURE_LEVEL* , ID3D11DeviceContext* );
 extern(C) HRESULT D3D11CreateDevice(IDXGIAdapter pAdapter, D3D_DRIVER_TYPE DriverType, HMODULE Software, UINT Flags, const(D3D_FEATURE_LEVEL)* pFeatureLevels, UINT FeatureLevels, UINT SDKVersion, ID3D11Device* ppDevice, D3D_FEATURE_LEVEL* pFeatureLevel, ID3D11DeviceContext* ppImmediateContext);
 extern(C) HRESULT D3D11CreateDeviceAndSwapChain(IDXGIAdapter pAdapter, D3D_DRIVER_TYPE DriverType, HMODULE Software, UINT Flags, const(D3D_FEATURE_LEVEL)* pFeatureLevels, UINT FeatureLevels, UINT SDKVersion, const(DXGI_SWAP_CHAIN_DESC)* pSwapChainDesc, IDXGISwapChain* ppSwapChain, ID3D11Device* ppDevice, D3D_FEATURE_LEVEL* pFeatureLevel, ID3D11DeviceContext* ppImmediateContext);
-} // 

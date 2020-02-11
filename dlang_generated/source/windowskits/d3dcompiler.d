@@ -6,12 +6,14 @@ import core.sys.windows.winnt;
 import windowskits.d3dcommon;
 import core.sys.windows.unknwn;
 import windowskits.guidutil;
+import windowskits.minwindef;
 import windowskits.basetsd;
 import core.sys.windows.basetyps;
 import windowskits.d3d11shader;
 import windowskits.d3d10effect;
 import windowskits.d3d10;
 import windowskits.dxgiformat;
+import windowskits.windef;
 import windowskits.dxgicommon;
 import windowskits.d3d10shader;
 enum D3DCOMPILER_DLL_A = "d3dcompiler_47.dll";
@@ -61,9 +63,9 @@ enum D3D_DISASM_INSTRUCTION_ONLY = 0x00000040;
 enum D3D_DISASM_PRINT_HEX_LITERALS = 0x00000080;
 enum D3D_GET_INST_OFFSETS_INCLUDE_NON_EXECUTABLE = 0x00000001;
 enum D3D_COMPRESS_SHADER_KEEP_ALL_PARTS = 0x00000001;
-alias pD3DCompile = void*;
-alias pD3DPreprocess = void*;
-alias pD3DDisassemble = void*;
+alias pD3DCompile = extern(C) HRESULT function(LPCVOID pSrcData, SIZE_T SrcDataSize, LPCSTR pFileName, const(D3D_SHADER_MACRO)* pDefines, void*    pInclude, LPCSTR pEntrypoint, LPCSTR pTarget, UINT Flags1, UINT Flags2, ID3DBlob* ppCode, ID3DBlob* ppErrorMsgs);
+alias pD3DPreprocess = extern(C) HRESULT function(LPCVOID pSrcData, SIZE_T SrcDataSize, LPCSTR pFileName, const(D3D_SHADER_MACRO)* pDefines, void*    pInclude, ID3DBlob* ppCodeText, ID3DBlob* ppErrorMsgs);
+alias pD3DDisassemble = extern(C) HRESULT function(LPCVOID pSrcData, SIZE_T SrcDataSize, UINT Flags, LPCSTR szComments, ID3DBlob* ppDisassembly);
 enum D3DCOMPILER_STRIP_FLAGS
 {
     _REFLECTION_DATA = 0x1,
@@ -99,7 +101,6 @@ struct _D3D_SHADER_DATA
     SIZE_T BytecodeLength;
 }
 alias D3D_SHADER_DATA = _D3D_SHADER_DATA;
-extern(C++) {
 extern(C) HRESULT D3DReadFileToBlob(LPCWSTR pFileName, ID3DBlob* ppContents);
 extern(C) HRESULT D3DGetOutputSignatureBlob(LPCVOID pSrcData, SIZE_T SrcDataSize, ID3DBlob* ppSignatureBlob);
 extern(C) HRESULT D3DGetInputAndOutputSignatureBlob(LPCVOID pSrcData, SIZE_T SrcDataSize, ID3DBlob* ppSignatureBlob);
@@ -125,4 +126,3 @@ extern(C) HRESULT D3DGetDebugInfo(LPCVOID pSrcData, SIZE_T SrcDataSize, ID3DBlob
 extern(C) HRESULT D3DDisassemble(LPCVOID pSrcData, SIZE_T SrcDataSize, UINT Flags, LPCSTR szComments, ID3DBlob* ppDisassembly);
 extern(C) HRESULT D3DReflectLibrary(LPCVOID pSrcData, SIZE_T SrcDataSize, ref IID riid, LPVOID* ppReflector);
 extern(C) HRESULT D3DDisassemble10Effect(ID3D10Effect pEffect, UINT Flags, ID3DBlob* ppDisassembly);
-} // 

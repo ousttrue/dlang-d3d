@@ -2,6 +2,7 @@
 module windowskits.d3d10;
 import core.sys.windows.unknwn;
 import windowskits.guidutil;
+import windowskits.minwindef;
 import core.sys.windows.windef;
 import core.sys.windows.winnt;
 import windowskits.winnt;
@@ -9,6 +10,7 @@ import core.sys.windows.basetyps;
 import windowskits.dxgiformat;
 import windowskits.d3dcommon;
 import windowskits.basetsd;
+import windowskits.windef;
 import windowskits.dxgicommon;
 interface ID3D10Device: IUnknown
 {
@@ -78,7 +80,7 @@ interface ID3D10Device: IUnknown
     UINT GetExceptionMode();
     HRESULT GetPrivateData(ref GUID guid, UINT* pDataSize, void* pData);
     HRESULT SetPrivateData(ref GUID guid, UINT DataSize, const(void)* pData);
-    HRESULT SetPrivateDataInterface(ref GUID guid, IUnknown pData);
+    HRESULT SetPrivateDataInterface(ref GUID guid, const(IUnknown) pData);
     void ClearState();
     void Flush();
     HRESULT CreateBuffer(const(D3D10_BUFFER_DESC)* pDesc, const(D3D10_SUBRESOURCE_DATA)* pInitialData, ID3D10Buffer* ppBuffer);
@@ -129,7 +131,7 @@ interface ID3D10DeviceChild: IUnknown
     void GetDevice(ID3D10Device* ppDevice);
     HRESULT GetPrivateData(ref GUID guid, UINT* pDataSize, void* pData);
     HRESULT SetPrivateData(ref GUID guid, UINT DataSize, const(void)* pData);
-    HRESULT SetPrivateDataInterface(ref GUID guid, IUnknown pData);
+    HRESULT SetPrivateDataInterface(ref GUID guid, const(IUnknown) pData);
 }
 enum D3D10_RESOURCE_DIMENSION
 {
@@ -189,7 +191,6 @@ struct D3D10_SHADER_RESOURCE_VIEW_DESC
     }
 }
 alias D3D10_SRV_DIMENSION = D3D_SRV_DIMENSION;
-// struct nameless
 struct D3D10_BUFFER_SRV
 {
     union {
@@ -201,8 +202,6 @@ struct D3D10_BUFFER_SRV
         UINT ElementWidth;
     }
 }
-// struct nameless
-// struct nameless
 struct D3D10_TEX1D_SRV
 {
     UINT MostDetailedMip;
@@ -387,7 +386,6 @@ enum D3D10_RTV_DIMENSION
     _TEXTURE2DMSARRAY = 0x7,
     _TEXTURE3D = 0x8,
 }
-// struct nameless
 struct D3D10_BUFFER_RTV
 {
     union {
@@ -399,8 +397,6 @@ struct D3D10_BUFFER_RTV
         UINT ElementWidth;
     }
 }
-// struct nameless
-// struct nameless
 struct D3D10_TEX1D_RTV
 {
     UINT MipSlice;
@@ -464,7 +460,6 @@ enum D3D10_DSV_DIMENSION
     _TEXTURE2DMS = 0x5,
     _TEXTURE2DMSARRAY = 0x6,
 }
-// struct nameless
 struct D3D10_TEX1D_DSV
 {
     UINT MipSlice;

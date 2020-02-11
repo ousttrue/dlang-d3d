@@ -4,11 +4,13 @@ import windowskits.d3dcommon;
 import windowskits.winnt;
 import core.sys.windows.windef;
 import core.sys.windows.winnt;
+import windowskits.minwindef;
 import windowskits.d3d10;
 import core.sys.windows.unknwn;
 import windowskits.guidutil;
 import core.sys.windows.basetyps;
 import windowskits.basetsd;
+// macro function: D3D10_TX_VERSION ( _Major , _Minor ) ( ( 'T' << 24 ) | ( 'X' << 16 ) | ( ( _Major ) << 8 ) | ( _Minor ) );
 enum D3D10_SHADER_DEBUG = ( 1 << 0 );
 enum D3D10_SHADER_SKIP_VALIDATION = ( 1 << 1 );
 enum D3D10_SHADER_SKIP_OPTIMIZATION = ( 1 << 2 );
@@ -180,7 +182,6 @@ interface ID3D10ShaderReflection: IUnknown
     HRESULT GetOutputParameterDesc(UINT ParameterIndex, D3D10_SIGNATURE_PARAMETER_DESC* pDesc);
 }
 alias LPD3D10SHADERREFLECTION = ID3D10ShaderReflection;
-extern(C++) {
 extern(C) HRESULT D3D10CompileShader(LPCSTR pSrcData, SIZE_T SrcDataSize, LPCSTR pFileName, const(D3D10_SHADER_MACRO)* pDefines, LPD3D10INCLUDE pInclude, LPCSTR pFunctionName, LPCSTR pProfile, UINT Flags, ID3D10Blob* ppShader, ID3D10Blob* ppErrorMsgs);
 extern(C) HRESULT D3D10PreprocessShader(LPCSTR pSrcData, SIZE_T SrcDataSize, LPCSTR pFileName, const(D3D10_SHADER_MACRO)* pDefines, LPD3D10INCLUDE pInclude, ID3D10Blob* ppShaderText, ID3D10Blob* ppErrorMsgs);
 extern(C) HRESULT D3D10GetInputSignatureBlob(const(void)* pShaderBytecode, SIZE_T BytecodeLength, ID3D10Blob* ppSignatureBlob);
@@ -192,4 +193,3 @@ extern(C) LPCSTR D3D10GetGeometryShaderProfile(ID3D10Device pDevice);
 extern(C) HRESULT D3D10DisassembleShader(const(void)* pShader, SIZE_T BytecodeLength, BOOL EnableColorCode, LPCSTR pComments, ID3D10Blob* ppDisassembly);
 extern(C) LPCSTR D3D10GetPixelShaderProfile(ID3D10Device pDevice);
 extern(C) HRESULT D3D10GetShaderDebugInfo(const(void)* pShaderBytecode, SIZE_T BytecodeLength, ID3D10Blob* ppDebugInfo);
-} // 
