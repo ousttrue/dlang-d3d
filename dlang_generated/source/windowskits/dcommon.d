@@ -4,7 +4,7 @@ import windowskits.minwindef;
 import core.sys.windows.windef;
 import core.sys.windows.winnt;
 import windowskits.dxgiformat;
-import windowskits.intsafe;
+import core.sys.windows.basetsd;
 import windowskits.windef;
 struct D2D_MATRIX_3X2_F___anonymous_6
 {
@@ -53,8 +53,8 @@ struct D2D_RECT_F
 struct D2D_MATRIX_3X2_F
 {
     union {
-        D2D_MATRIX_3X2_F___anonymous_6 __param__68;
-        D2D_MATRIX_3X2_F___anonymous_7 __param__69;
+        D2D_MATRIX_3X2_F___anonymous_6 __param__6;
+        D2D_MATRIX_3X2_F___anonymous_7 __param__7;
         FLOAT[2][3] m;
     }
 }
@@ -107,7 +107,7 @@ enum DWRITE_MEASURING_MODE
 struct D2D_MATRIX_4X4_F
 {
     union {
-        D2D_MATRIX_4X4_F___anonymous_27 __param__70;
+        D2D_MATRIX_4X4_F___anonymous_27 __param__8;
         FLOAT[4][4] m;
     }
 }

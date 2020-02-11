@@ -2,6 +2,7 @@
 module windowskits.rpcdcep;
 import windowskits.rpcdce;
 import windowskits.rpc;
+import windowskits.guiddef;
 import core.sys.windows.basetyps;
 alias PRPC_MESSAGE = _RPC_MESSAGE*;
 struct _RPC_MESSAGE

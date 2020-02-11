@@ -2,14 +2,15 @@
 module windowskits.d2d1;
 import core.sys.windows.unknwn;
 import windowskits.guidutil;
-import windowskits.intsafe;
 import core.sys.windows.windef;
+import core.sys.windows.basetsd;
 import windowskits.minwindef;
 import core.sys.windows.winnt;
 import windowskits.dcommon;
 import windowskits.dwrite;
 import windowskits.wincodec;
 import windowskits.dxgiformat;
+import windowskits.guiddef;
 import core.sys.windows.basetyps;
 import windowskits.d2dbasetypes;
 import windowskits.dxgitype;

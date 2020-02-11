@@ -2,8 +2,9 @@
 module windowskits.documenttarget;
 import core.sys.windows.unknwn;
 import windowskits.guidutil;
-import windowskits.intsafe;
 import core.sys.windows.windef;
+import core.sys.windows.basetsd;
+import windowskits.guiddef;
 import core.sys.windows.basetyps;
 import windowskits.oaidl;
 import windowskits.winnt;

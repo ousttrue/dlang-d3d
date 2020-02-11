@@ -2,6 +2,7 @@
 module windowskits.wingdi;
 import windowskits.winnt;
 import core.sys.windows.windef;
+import core.sys.windows.basetsd;
 import core.sys.windows.winnt;
 import windowskits.minwindef;
 alias LOGFONTW = tagLOGFONTW;

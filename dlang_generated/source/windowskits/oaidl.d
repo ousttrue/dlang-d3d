@@ -4,12 +4,13 @@ import core.sys.windows.unknwn;
 import windowskits.guidutil;
 import windowskits.winnt;
 import core.sys.windows.windef;
+import core.sys.windows.basetsd;
 import core.sys.windows.winnt;
 import windowskits.minwindef;
 import windowskits.wtypes;
+import windowskits.guiddef;
 import core.sys.windows.basetyps;
 import windowskits.wtypesbase;
-import windowskits.basetsd;
 struct tagVARIANT___anonymous_39
 {
     VARTYPE vt;
@@ -235,7 +236,7 @@ alias VARIANT = tagVARIANT;
 struct tagVARIANT
 {
     union {
-        tagVARIANT___anonymous_39 __param__1;
+        tagVARIANT___anonymous_39 __param__9;
         DECIMAL decVal;
     }
 }

@@ -4,10 +4,12 @@ import core.sys.windows.unknwn;
 import windowskits.guidutil;
 import windowskits.winnt;
 import core.sys.windows.windef;
+import core.sys.windows.basetsd;
 import core.sys.windows.winnt;
 import windowskits.minwindef;
 import windowskits.wtypes;
 import windowskits.wtypesbase;
+import windowskits.guiddef;
 import core.sys.windows.basetyps;
 import windowskits.oaidl;
 interface IPropertyBag2: IUnknown

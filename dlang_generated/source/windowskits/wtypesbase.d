@@ -3,6 +3,7 @@ module windowskits.wtypesbase;
 import core.sys.windows.windef;
 import core.sys.windows.winnt;
 import windowskits.winnt;
+import core.sys.windows.basetsd;
 import windowskits.minwindef;
 alias DOUBLE = double;
 alias SCODE = LONG;

@@ -4,10 +4,12 @@ import core.sys.windows.unknwn;
 import windowskits.guidutil;
 import windowskits.winnt;
 import core.sys.windows.windef;
+import core.sys.windows.basetsd;
 import core.sys.windows.winnt;
 import windowskits.wtypesbase;
 import windowskits.minwindef;
 import windowskits.objidlbase;
+import windowskits.guiddef;
 import core.sys.windows.basetyps;
 interface IStorage: IUnknown
 {

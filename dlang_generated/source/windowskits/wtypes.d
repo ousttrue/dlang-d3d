@@ -3,8 +3,9 @@ module windowskits.wtypes;
 import core.sys.windows.winnt;
 import windowskits.wtypesbase;
 import core.sys.windows.windef;
-import windowskits.winnt;
 import windowskits.minwindef;
+import windowskits.winnt;
+import core.sys.windows.basetsd;
 struct tagCY__anonymous_5
 {
     ULONG Lo;
@@ -25,7 +26,7 @@ alias VARIANT_BOOL = short;
 alias CY = tagCY;
 struct tagCY
 {
-    tagCY__anonymous_5 __param__71;
+    tagCY__anonymous_5 __param__81;
     LONGLONG int64;
 }
 alias DATE = double;
@@ -48,12 +49,12 @@ struct tagDEC
 {
     USHORT wReserved;
     union {
-        tagDEC___anonymous_15 __param__72;
+        tagDEC___anonymous_15 __param__82;
         USHORT signscale;
     }
     ULONG Hi32;
     union {
-        tagDEC___anonymous_17 __param__73;
+        tagDEC___anonymous_17 __param__83;
         ULONGLONG Lo64;
     }
 }

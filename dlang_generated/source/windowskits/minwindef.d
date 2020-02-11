@@ -2,6 +2,10 @@
 module windowskits.minwindef;
 import core.sys.windows.windef;
 import core.sys.windows.winnt;
+struct HINSTANCE__
+{
+    int unused;
+}
 alias FILETIME = _FILETIME;
 struct _FILETIME
 {
