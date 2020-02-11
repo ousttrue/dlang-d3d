@@ -14,3 +14,4 @@ dlang-d3d-test-*
 *.obj
 *.lst
 /build
+/imgui.ini

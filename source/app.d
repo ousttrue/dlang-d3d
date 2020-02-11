@@ -10,8 +10,13 @@ import imgui;
 wstring g_className = "SAMPLE_CLASS_NAME";
 wstring g_windowName = "Window Title";
 
+
+extern (C) LRESULT ImGui_ImplWin32_WndProcHandler_C(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) nothrow;
 extern (Windows) LRESULT WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) nothrow
 {
+    if (ImGui_ImplWin32_WndProcHandler_C(hwnd, msg, 0, 0))
+        return true;
+
     switch (msg)
     {
     case WM_DESTROY:
