@@ -5,5 +5,11 @@
 	"copyright": "Copyright © 2020, oustt",
 	"description": "A minimal D application.",
 	"license": "proprietary",
-	"name": "d3d12_imgui"
+	"name": "d3d12_imgui",
+	"subPackages": [
+		"../dlang_generated/"
+	],
+	"dependencies": {
+		"d3d12_imgui:dlang_generated": "*"
+	}
 }
