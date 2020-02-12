@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/d3d12_imgui
+d3d12_imgui.so
+d3d12_imgui.dylib
+d3d12_imgui.dll
+d3d12_imgui.a
+d3d12_imgui.lib
+d3d12_imgui-test-*
+*.exe
+*.o
+*.obj
+*.lst

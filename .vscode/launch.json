@@ -5,7 +5,21 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "dlang-d3d",
+            "name": "d3d12_imgui",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/d3d12_imgui/d3d12_imgui.exe",
+            "args": [
+                "${env:GLTF_SAMPLE_MODELS}/2.0/Box/glTF-Binary/Box.glb"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "visualizerFile": "${workspaceFolder}/.vscode/d.natvis"
+        },
+        {
+            "name": "d3d11_imgui",
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}/d3d11_imgui/d3d11_imgui.exe",

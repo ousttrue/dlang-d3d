@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "build 11",
             "type": "shell",
             "command": "dub",
             "args": [
@@ -15,11 +15,28 @@
             },
             "group": {
                 "kind": "build",
-                "isDefault": true
             },
             "presentation": {
                 "reveal": "always",
                 "panel": "new"
+            },
+            "problemMatcher": [
+                "$dmd"
+            ]
+        },
+        {
+            "label": "build 12",
+            "type": "shell",
+            "command": "dub",
+            "args": [
+                "build",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/d3d12_imgui"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
             },
             "problemMatcher": [
                 "$dmd"
@@ -67,7 +84,7 @@
             },
             "problemMatcher": []
         },
-         {
+        {
             "label": "generate gltf",
             "type": "shell",
             "command": "python",
