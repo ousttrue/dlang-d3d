@@ -38,9 +38,10 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": [
-                "$dmd"
-            ]
+            "problemMatcher": {
+                "base": "$dmd",
+                "fileLocation": ["relative", "${workspaceFolder}/d3d12_imgui/"]
+            }
         },
         {
             "label": "build regenerator",
